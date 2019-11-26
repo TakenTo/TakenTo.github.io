@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="算法常用小技巧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-26T10:57:39.889Z">
+<meta property="og:updated_time" content="2019-11-26T12:07:37.093Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -82,7 +82,7 @@
 				
 					<a class="qq" target="_blank" href="/assets/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/assets/wechat.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/assets/weixin.jpg" title="weixin"><i class="icon-weixin"></i></a>
 		        
 			</div>
 		</nav>
@@ -121,7 +121,7 @@
 					
 						<a class="qq" target="_blank" href="/assets/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/assets/wechat.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/assets/weixin.jpg" title="weixin"><i class="icon-weixin"></i></a>
 			        
 				</div>
 			</nav>
@@ -170,9 +170,24 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="算法常用小技巧"><a href="#算法常用小技巧" class="headerlink" title="算法常用小技巧"></a>算法常用小技巧</h1><a id="more"></a>
-<h2 id="1-判断素数"><a href="#1-判断素数" class="headerlink" title="1.判断素数"></a>1.判断素数</h2><h3 id="用-i-i-lt-n-取代-i-lt-sqrt-n-减少了开方带来的开销"><a href="#用-i-i-lt-n-取代-i-lt-sqrt-n-减少了开方带来的开销" class="headerlink" title="用 i*i&lt;n 取代 i&lt;sqrt(n) 减少了开方带来的开销"></a>用 i*i&lt;n 取代 i&lt;sqrt(n) 减少了开方带来的开销</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPrime</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">3</span> )&#123;      </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span>)&#123;    <span class="comment">//过滤掉偶数</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i * i &lt; n; i += <span class="number">2</span>)&#123;  <span class="comment">//省去开方，并且步长要为2</span></span><br><span class="line">        <span class="keyword">if</span>(n % i == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-奇偶判断"><a href="#2-奇偶判断" class="headerlink" title="2.奇偶判断"></a>2.奇偶判断</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//偶数最低位为0，奇数最低为为1，&amp;1 用来取出某一位</span></span><br><span class="line">x &amp; <span class="number">1</span> == <span class="number">0</span>  <span class="comment">//x为偶数</span></span><br><span class="line">x &amp; <span class="number">1</span> == <span class="number">1</span>  <span class="comment">//x为奇数</span></span><br></pre></td></tr></table></figure>
-<h1 id="3-待更新"><a href="#3-待更新" class="headerlink" title="3.待更新"></a>3.待更新</h1>
+<h2 id="1-判断素数"><a href="#1-判断素数" class="headerlink" title="1.判断素数"></a>1.判断素数</h2><blockquote>
+<p>用 i*i&lt;n 取代 i&lt;sqrt(n) 减少了开方带来的开销 </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPrime</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">3</span> )&#123;      </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span>)&#123;    <span class="comment">//过滤掉偶数</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i * i &lt; n; i += <span class="number">2</span>)&#123;  <span class="comment">//省去开方，并且步长要为2</span></span><br><span class="line">        <span class="keyword">if</span>(n % i == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-小数比较大小"><a href="#2-小数比较大小" class="headerlink" title="2.小数比较大小"></a>2.小数比较大小</h2><blockquote>
+<p>因为浮点数不能进行精确比较，所以尽量不要用小数进行比较大小等 </p>
+</blockquote>
+<ul>
+<li>例1<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1.0</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2.0</span>;</span><br><span class="line"><span class="keyword">if</span>(a + b == <span class="number">3.0</span>)  <span class="comment">//这里执行 return 2; 因为a + b 不等于 3.0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure></li>
+<li>例2<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断 1/a + 1/b 是否等于 1   （a, b为整数）</span></span><br><span class="line"><span class="comment">//普通写法</span></span><br><span class="line"><span class="keyword">if</span>((<span class="number">1.0</span> / a + <span class="number">1.0</span> / b) == <span class="number">1.0</span>)   <span class="comment">//这样写是不对的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//保险写法 ------&gt; 想办法去除分式 </span></span><br><span class="line"><span class="keyword">if</span>(a + b == ab)</span><br><span class="line"></span><br><span class="line"><span class="comment">//解析</span></span><br><span class="line"><span class="number">1</span>/a + <span class="number">1</span>/b = <span class="number">1</span></span><br><span class="line">=&gt; (a + b) / ab = <span class="number">1</span>  <span class="comment">//通分</span></span><br><span class="line">=&gt;  a + b = ab</span><br></pre></td></tr></table></figure>
+<h2 id="3-奇偶判断"><a href="#3-奇偶判断" class="headerlink" title="3.奇偶判断"></a>3.奇偶判断</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//偶数最低位为0，奇数最低为为1，&amp;1 用来取出某一位</span></span><br><span class="line">x &amp; <span class="number">1</span> == <span class="number">0</span>  <span class="comment">//x为偶数</span></span><br><span class="line">x &amp; <span class="number">1</span> == <span class="number">1</span>  <span class="comment">//x为奇数</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-取数"><a href="#4-取数" class="headerlink" title="4.取数"></a>4.取数</h2></li>
+<li>例1.取出数中的每一位<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">12345</span>;</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(a &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    book[i] = a % <span class="number">10</span>;  <span class="comment">//取出末位</span></span><br><span class="line">    a = a / <span class="number">10</span>;        <span class="comment">//删除末位</span></span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>例2.求数n各个位 之和<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(n != <span class="number">0</span>)&#123;</span><br><span class="line">    sum = sum + n % <span class="number">10</span>;  <span class="comment">//取个位 + 累加</span></span><br><span class="line">    n = n / <span class="number">10</span>;          <span class="comment">//删除个位</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>例3.求数n的倒叙。 如123 倒叙 321<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">inverse</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>( n != <span class="number">0</span>)&#123;</span><br><span class="line">        k = k * <span class="number">10</span> + n % <span class="number">10</span>;</span><br><span class="line">        n = n / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> k;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-有空更新"><a href="#5-有空更新" class="headerlink" title="5. 有空更新"></a>5. 有空更新</h2></li>
+</ul>
+
       
 
       
@@ -312,26 +327,6 @@
 </aside>
 
 
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="算法常用小技巧" data-title="算法常用小技巧" data-url="https://TakenTo.github.io/2019/11/26/%E7%AE%97%E6%B3%95%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
 
   
   
