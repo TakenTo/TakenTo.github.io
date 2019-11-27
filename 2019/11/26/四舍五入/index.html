@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://TakenTo.github.io">
-  <title>Archives | 我的博客</title>
+  <title>四舍五入 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;takento.github.io&#x2F;archives&#x2F;index.html">
+  <meta name="description" content="手动四舍五入">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="四舍五入">
+<meta property="og:url" content="https:&#x2F;&#x2F;takento.github.io&#x2F;2019&#x2F;11&#x2F;26&#x2F;%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5&#x2F;index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="手动四舍五入">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-27T05:51:19.889Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -147,36 +149,72 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-四舍五入" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      四舍五入
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/26/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/" class="archive-article-date">
+
+        
+        <a href="/2019/11/26/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/" class="archive-article-date">
   	<time datetime="2019-11-26T13:37:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-26</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/26/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/">四舍五入</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="手动四舍五入"><a href="#手动四舍五入" class="headerlink" title="手动四舍五入"></a>手动四舍五入</h1><a id="more"></a>
+<h2 id="1-只要整数部分（保留0位小数）"><a href="#1-只要整数部分（保留0位小数）" class="headerlink" title="1.只要整数部分（保留0位小数）"></a>1.只要整数部分（保留0位小数）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对0.75 四舍五入 保留整数部分</span></span><br><span class="line"><span class="keyword">int</span> b = (<span class="keyword">int</span>)(<span class="number">0.75</span> + <span class="number">0.5</span>)    <span class="comment">//b = 1;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-保留小数点后2位"><a href="#2-保留小数点后2位" class="headerlink" title="2.保留小数点后2位"></a>2.保留小数点后2位</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对0.756 四舍五入保留两位小数</span></span><br><span class="line"><span class="keyword">float</span> a = <span class="number">0.756</span>, b;</span><br><span class="line"><span class="keyword">int</span> x;</span><br><span class="line"></span><br><span class="line">b = a * <span class="number">100</span>;    <span class="comment">// b = 75.6</span></span><br><span class="line">b += <span class="number">0.5</span>;       <span class="comment">// b = 76.1</span></span><br><span class="line">x = (<span class="keyword">int</span>)b;     <span class="comment">// x = 76;</span></span><br><span class="line">b = x / <span class="number">100.0</span>;  <span class="comment">// b = 0.76;</span></span><br><span class="line"></span><br><span class="line">a = (<span class="keyword">int</span>)((a * <span class="number">100</span>) + <span class="number">0.5</span>) / <span class="number">100.0</span>;  <span class="comment">//总结上述代码</span></span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
+<blockquote>
+<p>一. 把准备去掉的那一位 变成 一个新的小数 的 小数点后面第一位  如 0.756–&gt;75.6<br>二. 加上0.5 —&gt;若小数点后一位大于0.5，实现向前进一位。<br>若小于0.5, 如 0.4 -&gt; 0.4 + 0.5 = 0.9 -&gt; 不会向前进位<br>三. 强制转换为int型（目的是为了去除小数点后的数）<br>四. 除以100.0  (保留一位，除10.0 - - 保留三位，除1000.0)<br>第一位乘以多少，第四步就除以多少。</p>
+</blockquote>
+<h1 id="3-总结如下"><a href="#3-总结如下" class="headerlink" title="3.总结如下"></a>3.总结如下</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = (<span class="keyword">int</span>)(a * <span class="number">10</span>^n + <span class="number">0.5</span>) / (<span class="number">10</span>^n * <span class="number">1.0</span>);  <span class="comment">// a保留n位小数</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/pay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -188,84 +226,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://takento.github.io/2019/11/26/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/26/%E7%AE%97%E6%B3%95%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="archive-article-date">
-  	<time datetime="2019-11-26T08:52:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/26/%E7%AE%97%E6%B3%95%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">算法常用小技巧</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/26/%E7%AE%97%E6%B3%95%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">算法常用小技巧</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/25/hello-world/" class="archive-article-date">
-  	<time datetime="2019-11-25T08:11:11.162Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/25/hello-world/">我的博客</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -288,8 +348,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

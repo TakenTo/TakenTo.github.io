@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="算法常用小技巧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-26T12:07:37.093Z">
+<meta property="og:updated_time" content="2019-11-27T05:46:20.168Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -183,8 +183,8 @@
 <h2 id="3-奇偶判断"><a href="#3-奇偶判断" class="headerlink" title="3.奇偶判断"></a>3.奇偶判断</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//偶数最低位为0，奇数最低为为1，&amp;1 用来取出某一位</span></span><br><span class="line">x &amp; <span class="number">1</span> == <span class="number">0</span>  <span class="comment">//x为偶数</span></span><br><span class="line">x &amp; <span class="number">1</span> == <span class="number">1</span>  <span class="comment">//x为奇数</span></span><br></pre></td></tr></table></figure>
 <h2 id="4-取数"><a href="#4-取数" class="headerlink" title="4.取数"></a>4.取数</h2></li>
 <li>例1.取出数中的每一位<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">12345</span>;</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(a &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    book[i] = a % <span class="number">10</span>;  <span class="comment">//取出末位</span></span><br><span class="line">    a = a / <span class="number">10</span>;        <span class="comment">//删除末位</span></span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>例2.求数n各个位 之和<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(n != <span class="number">0</span>)&#123;</span><br><span class="line">    sum = sum + n % <span class="number">10</span>;  <span class="comment">//取个位 + 累加</span></span><br><span class="line">    n = n / <span class="number">10</span>;          <span class="comment">//删除个位</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>例3.求数n的倒叙。 如123 倒叙 321<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">inverse</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>( n != <span class="number">0</span>)&#123;</span><br><span class="line">        k = k * <span class="number">10</span> + n % <span class="number">10</span>;</span><br><span class="line">        n = n / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> k;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>例2.求数n各个位 之和<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(n &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    sum = sum + n % <span class="number">10</span>;  <span class="comment">//取个位 + 累加</span></span><br><span class="line">    n = n / <span class="number">10</span>;          <span class="comment">//删除个位</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>例3.求数n的倒叙。 如123 倒叙 321<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">inverse</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>( n &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        k = k * <span class="number">10</span> + n % <span class="number">10</span>;</span><br><span class="line">        n = n / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> k;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="5-有空更新"><a href="#5-有空更新" class="headerlink" title="5. 有空更新"></a>5. 有空更新</h2></li>
 </ul>
 
@@ -300,6 +300,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/11/26/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          四舍五入
+        
+      </div>
+    </a>
   
   
     <a href="/2019/11/25/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
