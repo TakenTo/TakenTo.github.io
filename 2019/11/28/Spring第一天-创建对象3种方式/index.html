@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="1.2 创建对象3种方式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-29T13:50:25.154Z">
+<meta property="og:updated_time" content="2019-11-30T06:06:45.183Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -198,7 +198,7 @@
 <hr>
 <h2 id="静态工厂"><a href="#静态工厂" class="headerlink" title="静态工厂"></a>静态工厂</h2><p>不需要创建工厂,快速创建对象.<br>实现步骤</p>
 <ul>
-<li>编写一个静态工厂(必须在方法上添加 static，因为静态方法 <code>引用点</code> 的形式调用，不需要new个对象)<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PeopleFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> People <span class="title">newInstance</span><span class="params">()</span></span>&#123; <span class="comment">//静态方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> People(<span class="number">1</span>,<span class="string">"测试"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>编写一个静态工厂(必须在方法上添加 static，因为静态方法 <code>类名点</code> 的形式调用，不需要new个对象)<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PeopleFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> People <span class="title">newInstance</span><span class="params">()</span></span>&#123; <span class="comment">//静态方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> People(<span class="number">1</span>,<span class="string">"测试"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>在 applicationContext.xml 中<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"peo2"</span> <span class="attr">class</span>=<span class="string">"com.pojo.PeopleFactory"</span> <span class="attr">factory-method</span>=<span class="string">"newInstance"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -454,11 +454,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
             
             <div class="clearfix"></div>
