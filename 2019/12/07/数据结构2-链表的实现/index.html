@@ -21,7 +21,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;linkde&#x2F;clear.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;linkde&#x2F;add.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;linkde&#x2F;remove.jpg">
-<meta property="og:updated_time" content="2019-12-08T03:25:03.760Z">
+<meta property="og:updated_time" content="2019-12-08T03:33:02.443Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;linkde&#x2F;interface.png">
   
@@ -218,9 +218,8 @@
 <hr>
 <h2 id="12-重写toString"><a href="#12-重写toString" class="headerlink" title="12.重写toString"></a>12.重写toString</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    StringBuilder string = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    string.append(<span class="string">"size="</span>).append(size).append(<span class="string">", ["</span>);</span><br><span class="line">    </span><br><span class="line">    Node&lt;E&gt; node = first;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i != <span class="number">0</span>)&#123;      <span class="comment">//不是第一个元素，加个逗号</span></span><br><span class="line">            string.append(<span class="string">", "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        string.append(node.element);</span><br><span class="line">        </span><br><span class="line">        node = node.nextNode;</span><br><span class="line">    &#125;</span><br><span class="line">    string.append(<span class="string">"]"</span>);</span><br><span class="line">    <span class="keyword">return</span> string.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-
+<hr>
+<p><a href="https://visualgo.net/zh" target="_blank" rel="noopener">动态演示</a></p>
 
       
 
