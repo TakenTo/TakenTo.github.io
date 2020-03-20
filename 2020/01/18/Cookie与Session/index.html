@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://TakenTo.github.io">
-  <title>Archives: 2019/11 | 我的博客</title>
+  <title>Cookie与Session | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;takento.github.io&#x2F;archives&#x2F;2019&#x2F;11&#x2F;index.html">
+  <meta name="description" content="1.3 给Bean属性赋值">
+<meta name="keywords" content="javaWeb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cookie与Session">
+<meta property="og:url" content="https:&#x2F;&#x2F;takento.github.io&#x2F;2020&#x2F;01&#x2F;18&#x2F;Cookie%E4%B8%8ESession&#x2F;index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="1.3 给Bean属性赋值">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-18T04:07:50.106Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -147,288 +149,241 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Cookie与Session" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cookie与Session
+    </h1>
+  
+
+        
+        <a href="/2020/01/18/Cookie%E4%B8%8ESession/" class="archive-article-date">
+  	<time datetime="2020-01-18T04:03:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-18</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-3-给Bean属性赋值"><a href="#1-3-给Bean属性赋值" class="headerlink" title="1.3 给Bean属性赋值"></a>1.3 给Bean属性赋值</h1><a id="more"></a>
+<p>*<em>会话 *</em>：用户打开一个浏览器，点击了很多超链接，访问多个web资源，关闭浏览器，这个过程可以称之为会话</p>
+<p><strong>有状态会话</strong>: 一个同学来过教室，下次再来教室，我们能知道他曾经来过，称之为有状态会话。</p>
+<p><strong>一个网站，怎么证明你来过了？</strong></p>
+<p>​    客户端                    服务端</p>
+<p>1.服务端给客户端一个信件，客户端下次访问服务器带上信件就可以了 。Cookie</p>
+<p>2.服务器登记你来过了，下次你来的时候我来匹配你。Session</p>
+<p><strong>Cookie</strong></p>
+<ul>
+<li>客户端技术（响应，请求）</li>
+</ul>
+<p><strong>Session</strong></p>
+<ul>
+<li>服务器技术，利用这个技术可以保存用户的会话信息。我们可以把信息或者数据放在Session中</li>
+</ul>
+<p>常见例子：网站登陆之后，下次就不需要再次登录。</p>
+<h3 id="一、-Cookie"><a href="#一、-Cookie" class="headerlink" title="一、 Cookie"></a>一、 Cookie</h3><ol>
+<li>从请求中拿到Cookie信息</li>
+<li>服务器响应给客户端Cookie</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Cookie[] cookies = req.getCookies();<span class="comment">//获得Cookie</span></span><br><span class="line">cookie.getName();<span class="comment">//获得cookie中的key</span></span><br><span class="line">cookie.getValue();<span class="comment">//获得cookie中的值</span></span><br><span class="line"><span class="keyword">new</span> Cookie(<span class="string">"lastLoginTime"</span>, System.currentTimeMillis()+<span class="string">""</span>);<span class="comment">//新建一个cookie</span></span><br><span class="line">cookie.setMaxAge(<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>);<span class="comment">//设置cookie的有效期为1天</span></span><br><span class="line">resp.addCookie(cookie);<span class="comment">//响应给客户端一个cookie</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//解决乱码问题</span></span><br><span class="line">    resp.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">    req.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">    resp.setContentType(<span class="string">"text/html;charset=UTF-8"</span>);</span><br><span class="line"></span><br><span class="line">    Cookie[] cookies = req.getCookies(); <span class="comment">//由getCookies可知结果有多个</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断Cookie是否存在</span></span><br><span class="line">    <span class="keyword">if</span>(cookies == <span class="keyword">null</span>)&#123;</span><br><span class="line">        out.write(<span class="string">"这是第一次访问本网站"</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        out.write(<span class="string">"上次访问的时间是"</span>);</span><br><span class="line">        <span class="keyword">for</span> (Cookie cookie : cookies) &#123;</span><br><span class="line">            <span class="keyword">if</span>(cookie.getName().equals(<span class="string">"lastLoginTime"</span>))&#123;</span><br><span class="line">                <span class="comment">//获取cookie的值</span></span><br><span class="line">                Long lastLoginTime = Long.parseLong(cookie.getValue());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//服务器给客户端响应一个cookie</span></span><br><span class="line">    Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"lastLoginTime"</span>, System.currentTimeMillis()+<span class="string">""</span>);</span><br><span class="line">    </span><br><span class="line">    cookie.setMaxAge(<span class="number">20</span> * <span class="number">60</span> * <span class="number">60</span>); <span class="comment">//cookie 有效期为1天</span></span><br><span class="line"></span><br><span class="line">    resp.addCookie(cookie);  <span class="comment">//添加cookie</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除cookie：</strong></p>
+<ul>
+<li>不设置有效期，关闭浏览器，自动失效</li>
+<li>设置有效期时间为0</li>
+</ul>
+<h3 id="二、Session："><a href="#二、Session：" class="headerlink" title="二、Session："></a>二、Session：</h3><ul>
+<li>服务器会给每一个用户（浏览器）创建一个Session对象</li>
+<li>一个Session独占一个浏览器，只要浏览器没有关闭，这个Session就存在</li>
+<li>用户登录之后，整个网站都可以访问  —-&gt;保存用户信息；保存购物车信息 等等..</li>
+<li>Session能存字符串，也能存入用户信息</li>
+</ul>
+<p>Session和Cookie的区别：</p>
+<ul>
+<li>Cookie是把用户的数据写给用户的浏览器，浏览器保存（可以保存多个）</li>
+<li>Session把用户的数据写到用户独占Session中，服务器保存（保存重要信息，减少服务器资源浪费）</li>
+<li>Session对象由服务器创建</li>
+</ul>
+<p>使用场景：</p>
+<ul>
+<li>保存一个登陆用户的信息</li>
+<li>购物车信息</li>
+<li>在整个网站中经常会使用的数据，我们将它保存在Session中</li>
+</ul>
+<p>使用Session:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//解决乱码问题</span></span><br><span class="line">    resp.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">    req.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">    resp.setContentType(<span class="string">"text/html;charset=UTF-8"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//得到Session</span></span><br><span class="line">    HttpSession session = req.getSession();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//给session中存入东西</span></span><br><span class="line">    session.setAttribute(<span class="string">"name"</span>, <span class="keyword">new</span> Person(<span class="string">"张三"</span>, <span class="number">16</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取Session的ID</span></span><br><span class="line">    String id = session.getId();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断Session是不是新创建的</span></span><br><span class="line">    <span class="keyword">if</span>(session.isNew())&#123;</span><br><span class="line">        resp.getWriter().write(<span class="string">"Session创建成功，ID:"</span> + id);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        resp.getWriter().write(<span class="string">"Session已经在服务器中存在，ID:"</span> + id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Session创建的时候做了以下事情：</span></span><br><span class="line">    <span class="comment">//Cookie cookie = new Cookie("JESSIONID",id);</span></span><br><span class="line">    <span class="comment">//resp.addCookie(cookie);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//得到Session</span></span><br><span class="line">HttpSession session = req.getSession();</span><br><span class="line"></span><br><span class="line">Person name = (Person) session.getAttribute(<span class="string">"name"</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(name.toString());</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HttpSession session = req.getSession();</span><br><span class="line">session.removeAttribute(<span class="string">"name"</span>);</span><br><span class="line"><span class="comment">//手动注销Session</span></span><br><span class="line">session.invalidate();</span><br></pre></td></tr></table></figure>
+
+<p>会话自动过期:web.xml配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--设置Session默认的失效时间--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">session-config</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!--15分钟后Session自动失效(以分钟为单位)--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">session-timeout</span>&gt;</span>1<span class="tag">&lt;/<span class="name">session-timeout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">session-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/pay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/29/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-DI/" class="archive-article-date">
-  	<time datetime="2019-11-29T12:19:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/29/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-DI/">Spring第一天-DI</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">javaWeb</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://takento.github.io/2020/01/18/Cookie%E4%B8%8ESession/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/28/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-%E7%BB%99Bean%E5%B1%9E%E6%80%A7%E8%B5%8B%E5%80%BC/" class="archive-article-date">
-  	<time datetime="2019-11-28T11:33:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/03/11/SSM%E6%95%B4%E5%90%88/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SSM整合
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%83%E4%B9%A0-%E5%8F%8D%E8%BD%AC%E4%B8%80%E4%B8%AA%E9%93%BE%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构练习-反转一个链表</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/28/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-%E7%BB%99Bean%E5%B1%9E%E6%80%A7%E8%B5%8B%E5%80%BC/">Spring第一天-给Bean属性赋值</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/28/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A13%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2019-11-28T05:12:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/28/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A13%E7%A7%8D%E6%96%B9%E5%BC%8F/">Spring第一天-创建对象3种方式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/28/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2019-11-28T02:18:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/28/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-%E5%9F%BA%E7%A1%80/">Spring第一天-基础</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/26/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/" class="archive-article-date">
-  	<time datetime="2019-11-26T13:37:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/26/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/">四舍五入</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/26/%E7%AE%97%E6%B3%95%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="archive-article-date">
-  	<time datetime="2019-11-26T08:52:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/26/%E7%AE%97%E6%B3%95%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">算法常用小技巧</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/26/%E6%89%93%E8%A1%A8%E8%A7%A3%E9%A2%98%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2019-11-26T05:58:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/26/%E6%89%93%E8%A1%A8%E8%A7%A3%E9%A2%98%E6%B3%95/">打表解题法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -451,8 +406,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

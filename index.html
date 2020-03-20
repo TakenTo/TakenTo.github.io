@@ -149,6 +149,199 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Vue：前端体系、前后端分离" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/20/Vue%EF%BC%9A%E5%89%8D%E7%AB%AF%E4%BD%93%E7%B3%BB%E3%80%81%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/">Vue：前端体系、前后端分离</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/20/Vue%EF%BC%9A%E5%89%8D%E7%AB%AF%E4%BD%93%E7%B3%BB%E3%80%81%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" class="archive-article-date">
+  	<time datetime="2020-03-20T05:56:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<blockquote>
+<p>1、概述</p>
+</blockquote>
+<p>Vue是一套用于构建用户界面的 <strong>渐进式框架</strong>，发布于 2014 年 2 月。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。 <strong>Vue 的核心库只关注视图层</strong>，不仅易于上手，还便于与第三方库（如：<code>vue-router：跳转</code>，<code>vue-resource：通信</code>，<code>vuex：管理</code>）或既有项目整合。<br>官网：<a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/</a></p>
+<blockquote>
+<p>2.1、前端三要素</p>
+</blockquote>
+<ul>
+<li>HTML（结构）：超文本标记语言（Hyper Text Markup Language），决定网页的结构和内容</li>
+<li>CSS（表现）：层叠样式表（Cascading Style Sheets），设定网页的表现样式</li>
+<li>JavaScript（行为）：一种弱类型脚本语言，其源代码不需经过编译，由浏览器解释运行，用于控制网页的行为<blockquote>
+<p>2.2、结构层（HTML） 略</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>2.3、表现层（CSS）</p>
+</blockquote>
+<p>CSS 层叠样式表是一门标记语言，并不是编程语言，因此不可以自定义变量，不可以引用等，换句话说就是不具备任何语法支持，它主要缺陷如下：</p>
+<ul>
+<li>语法不够强大，比如无法嵌套书写，导致模块化开发中需要书写很多重复的选择器；</li>
+<li>没有变量和合理的样式复用机制，使得逻辑上相关的属性值必须以字面量的形式重复输出，导致难以维护；  </li>
+</ul>
+<p>这就导致编码增加许多工作量。为了解决这个问题，前端开发人员会使用一种称之为 <strong>【CSS 预处理器】</strong> 的工具，提供 CSS 缺失的样式层复用机制、减少冗余代码，提高样式代码的可维护性。大大提高了前端在样式上的开发效率。</p>
+<blockquote>
+<p>什么是 CSS 预处理器</p>
+</blockquote>
+<p>CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，然后开发者就只要使用这种语言进行 CSS 的编码工作。转化成通俗易懂的话来说就是 <strong>“用一种专门的编程语言，进行 Web 页面样式设计，再通过编译器转化为正常的 CSS 文件，以供项目使用”</strong> </p>
+<h3 id="常用的-CSS-预处理器有哪些"><a href="#常用的-CSS-预处理器有哪些" class="headerlink" title="常用的 CSS 预处理器有哪些"></a>常用的 CSS 预处理器有哪些</h3><ul>
+<li>SASS：基于 Ruby，通过服务端处理，功能强大。解析效率高。需要学习 Ruby 语言，上手难度高于 LESS。 </li>
+<li>LESS：基于 NodeJS，通过客户端处理，使用简单。功能比 SASS 简单，解析效率也低于SASS，但在实际开发中足够了，所以后台人员如果需要的话，建议使用 LESS。 <blockquote>
+<p>2.4、JavaScript 框架</p>
+</blockquote>
+</li>
+<li>jQuery：大家熟知的 JavaScript 框架，优点是简化了 DOM 操作，缺点是 DOM 操作太频繁，影响前端性能；在前端眼里使用它仅仅是为了兼容 IE6、7、8；</li>
+<li>Angular：Google 收购的前端框架，由一群 Java 程序员开发，其特点是将后台的 MVC 模式搬到了前端并增加了<strong>模块化开发</strong>的理念，与微软合作，采用 TypeScript 语法开发；对后台程序员友好，对前端程序员不太友好；最大的缺点是版本迭代不合理（如：1代 -&gt; 2代，除了名字，基本就是两个东西；截止发表博客时已推出了 Angular6）</li>
+<li>React：Facebook 出品，一款高性能的 JS 前端框架；特点是提出了新概念 <strong>【虚拟 DOM】</strong> 用于减少真实 DOM 操作，在内存中模拟 DOM 操作，有效的提升了前端渲染效率；缺点是使用复杂，因为需要额外学习一门 【JSX】 语言；</li>
+<li>Vue：一款渐进式 JavaScript 框架，所谓渐进式就是逐步实现新特性的意思，如实现模块化开发、路由、状态管理等新特性。其特点是综合了 Angular（模块化） 和 React（虚拟 DOM） 的优点；</li>
+<li>Axios：前端通信框架；因为 Vue 的边界很明确，就是为了处理 DOM，所以并不具备通信能力，此时就需要额外使用一个通信框架与服务器交互；当然也可以直接选择使用 jQuery 提供的 AJAX 通信功能；<blockquote>
+<p>3、了解前后分离的演变史 </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>3.1、后端为主的 MVC 时代 </p>
+</blockquote>
+<p>为了降低开发的复杂度，以后端为出发点，比如：Struts、SpringMVC 等框架的使用，就是后端的 MVC 时代;<br>以 SpringMVC 流程为例：<br><img src="/images/vue/1-1.png" alt="图加载中...">    </p>
+<ul>
+<li>发起请求到前端控制器(<code>DispatcherServlet</code>)</li>
+<li>前端控制器请求 <code>HandlerMapping</code> 查找 <code>Handler</code>，可以根据 <code>xml</code> 配置、注解进行查找</li>
+<li>处理器映射器 <code>HandlerMapping</code> 向前端控制器返回 <code>Handler</code></li>
+<li>前端控制器调用处理器适配器去执行 <code>Handler</code></li>
+<li>处理器适配器去执行 <code>Handler</code></li>
+<li><code>Handler</code> 执行完成给适配器返回 <code>ModelAndView</code></li>
+<li>处理器适配器向前端控制器返回 <code>ModelAndView</code>，<code>ModelAndView</code> 是 <code>SpringMVC</code> 框架的一个底层对象，包括 <code>Model</code> 和 <code>View</code></li>
+<li>前端控制器请求视图解析器去进行视图解析，根据逻辑视图名解析成真正的视图(JSP)</li>
+<li>视图解析器向前端控制器返回 <code>View</code></li>
+<li>前端控制器进行视图渲染，视图渲染将模型数据(在 <code>ModelAndView</code> 对象中)填充到 <code>request</code> 域</li>
+<li>前端控制器向用户响应结果  <h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2>MVC 是一个非常好的协作模式，能够有效降低代码的耦合度，从架构上能够让开发者明白代码应该写在哪里。为了让 View 更纯粹，还可以使用 Thymeleaf、Freemarker 等模板引擎，使模板里无法写入 Java 代码，让前后端分工更加清晰。<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2></li>
+</ul>
+<ul>
+<li>前端开发重度依赖开发环境，开发效率低，这种架构下，前后端协作有两种模式：<ul>
+<li>第一种是前端写 DEMO，写好后，让后端去套模板。好处是 DEMO 可以本地开发，很高效。不足是还需要后端套模板，有可能套错，套完后还需要前端确定，来回沟通调整的成本比较大；</li>
+<li>另一种协作模式是前端负责浏览器端的所有开发和服务器端的 View 层模板开发。好处是 UI 相关的代码都是前端去写就好，后端不用太关注，不足就是前端开发重度绑定后端环境，环境成为影响前端开发效率的重要因素。</li>
+</ul>
+</li>
+<li>前后端职责纠缠不清：模板引擎功能强大，依旧可以通过拿到的上下文变量来实现各种业务逻辑。这样，只要前端弱势一点，往往就会被后端要求在模板层写出不少业务代码。还有一个很大的灰色地带是 <code>Controller</code>，页面路由等功能本应该是前端最关注的，但却是由后端来实现。 <code>Controller</code> 本身与<code>Model</code> 往往也会纠缠不清，看了让人咬牙的业务代码经常会出现在<code>Controller</code> 层。这些问题不能全归结于程序员的素养，否则 <code>JSP</code> 就够了。</li>
+<li>对前端发挥的局限性：性能优化如果只在前端做空间非常有限，于是我们经常需要后端合作，但由于后端框架限制，我们很难使用 <code>【Comet】</code>、<code>【BigPipe】</code> 等技术方案来优化性能。<blockquote>
+<p>3.2、基于 AJAX 带来的 SPA 时代   </p>
+</blockquote>
+</li>
+</ul>
+<p>AJAX（Asynchronous JavaScript And XML，异步 JavaScript 和 XML，老技术新用法） 被正式提出并开始使用 CDN 作为静态资源存储<br><img src="/images/vue/1-2.png" alt="图加载中...">    </p>
+<h2 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h2><p>这种模式下，<strong>前后端的分工非常清晰，前后端的关键协作点是 AJAX 接口</strong>。看起来是如此美妙，但回过头来看看的话，这与 JSP 时代区别不大。复杂度从服务端的 JSP 里移到了浏览器的 JavaScript，浏览器端变得很复杂。类似 Spring MVC，<strong>这个时代开始出现浏览器端的分层架构</strong>：<br><img src="/images/vue/1-3.png" alt="图加载中...">   </p>
+<h2 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li><strong>前后端接口的约定</strong>： 如果后端的接口一塌糊涂，如果后端的业务模型不够稳定，那么前端开发会很痛苦；不少团队也有类似尝试，通过接口规则、接口平台等方式来做。<strong>有了和后端一起沉淀的 接口规则，还可以用来模拟数据，使得前后端可以在约定接口后实现高效并行开发</strong>。</li>
+<li><strong>前端开发的复杂度控制</strong>： SPA 应用大多以功能交互型为主，JavaScript 代码过十万行很正常。大量 JS 代码的组织，与 View 层的绑定等，都不是容易的事情。  </li>
+</ul>
+<blockquote>
+<p>3.3、前端为主的 MV* 时代  </p>
+</blockquote>
+<p>此处的 MV* 模式如下：</p>
+<ul>
+<li><p>MVC（同步通信为主）：Model、View、Controller</p>
+</li>
+<li><p>MVP（异步通信为主）：Model、View、Presenter</p>
+</li>
+<li><p>MVVM（异步通信为主）：Model、View、ViewModel<br>为了降低前端开发复杂度，涌现了大量的前端框架，比如：<code>AngularJS</code>、<code>React</code>、<code>Vue.js</code>、<code>EmberJS</code>等，这些框架总的原则是先按类型分层，比如 <code>Templates</code>、<code>Controllers</code>、<code>Models</code>，然后再在层内做切分，如下图：<br><img src="/images/vue/1-4.png" alt="图加载中...">     </p>
+<h2 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h2></li>
+<li><p>前后端职责很清晰： 前端工作在浏览器端，后端工作在服务端。清晰的分工，可以让开发并行，测试数据的模拟不难，前端可以本地开发。后端则可以专注于业务逻辑的处理，输出 RESTful等接口。</p>
+</li>
+<li><p>前端开发的复杂度可控： 前端代码很重，但合理的分层，让前端代码能各司其职。这一块蛮有意思的，简单如模板特性的选择，就有很多很多讲究。并非越强大越好，限制什么，留下哪些自由，代码应该如何组织，所有这一切设计，得花一本书的厚度去说明。</p>
+</li>
+<li><p>部署相对独立： 可以快速改进产品体验</p>
+</li>
+</ul>
+<h2 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>代码不能复用。比如后端依旧需要对数据做各种校验，校验逻辑无法复用浏览器端的代码。如果可以复用，那么后端的数据校验可以相对简单化。</li>
+<li>全异步，对 SEO 不利。往往还需要服务端做同步渲染的降级方案。</li>
+<li>性能并非最佳，特别是移动互联网环境下。</li>
+<li>SPA 不能满足所有需求，依旧存在大量多页面应用。URL Design 需要后端配合，前端无法完全掌控。</li>
+</ul>
+<blockquote>
+<p>3.4、NodeJS 带来的全栈时代  </p>
+</blockquote>
+<p>前端为主的 MV* 模式解决了很多很多问题，但如上所述，依旧存在不少不足之处。随着 NodeJS 的兴起，JavaScript 开始有能力运行在服务端。这意味着可以有一种新的研发模式：<br><img src="/images/vue/1-5.jpg" alt="图加载中..."><br>在这种研发模式下，前后端的职责很清晰。对前端来说，两个 UI 层各司其职：  </p>
+<ul>
+<li><code>Front-end UI layer</code> 处理浏览器层的展现逻辑。通过 CSS 渲染样式，通过 JavaScript 添加交互功能，HTML 的生成也可以放在这层，具体看应用场景。</li>
+<li><code>Back-end UI layer</code> 处理路由、模板、数据获取、Cookie 等。通过路由，前端终于可以自主把控 URL Design，这样无论是单页面应用还是多页面应用，前端都可以自由调控。后端也终于可以摆脱对展现的强关注，转而可以专心于业务逻辑层的开发。  </li>
+</ul>
+<p>通过 Node，Web Server 层也是 JavaScript 代码，这意味着部分代码可前后复用，需要 SEO 的场景可以在服务端同步渲染，由于异步请求太多导致的性能问题也可以通过服务端来缓解。前一种模式的不足，通过这种模式几乎都能完美解决掉。  </p>
+<p>与 JSP 模式相比，全栈模式看起来是一种回归，也的确是一种向原始开发模式的回归，不过是一种螺旋上升式的回归。  </p>
+<p>基于 NodeJS 的全栈模式，依旧面临很多挑战：  </p>
+<ul>
+<li>需要前端对服务端编程有更进一步的认识。比如 TCP/IP 等网络知识的掌握。</li>
+<li>NodeJS 层与 Java 层的高效通信。NodeJS 模式下，都在服务器端，RESTful HTTP 通信未必高效，通过 SOAP 等方式通信更高效。一切需要在验证中前行。</li>
+<li>对部署、运维层面的熟练了解，需要更多知识点和实操经验。</li>
+<li>大量历史遗留问题如何过渡。这可能是最大最大的阻力。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">Vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/20/Vue%EF%BC%9A%E5%89%8D%E7%AB%AF%E4%BD%93%E7%B3%BB%E3%80%81%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SSM整合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -169,8 +362,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/images/remove.png" alt="图加载中..."><br><img src="/source/_posts/SSM%E6%95%B4%E5%90%88/12.png" alt="图加载中..."><br><img src="/12/12.png" alt="图加载中..."><br><img src="/12.png" alt="图加载中..."><br><img src="/_posts/12/12.png" alt="图加载中..."></p>
-
+        
       
 
       
@@ -183,6 +375,82 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/03/11/SSM%E6%95%B4%E5%90%88/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Cookie与Session" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/18/Cookie%E4%B8%8ESession/">Cookie与Session</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/18/Cookie%E4%B8%8ESession/" class="archive-article-date">
+  	<time datetime="2020-01-18T04:03:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-3-给Bean属性赋值"><a href="#1-3-给Bean属性赋值" class="headerlink" title="1.3 给Bean属性赋值"></a>1.3 给Bean属性赋值</h1>
+        
+          <a class="article-more-a" href="/2020/01/18/Cookie%E4%B8%8ESession/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">javaWeb</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/18/Cookie%E4%B8%8ESession/">展开全文 >></a>
         </p>
       
 
@@ -620,7 +888,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-3-给Bean属性赋值"><a href="#1-3-给Bean属性赋值" class="headerlink" title="1.3 给Bean属性赋值"></a>1.3 给Bean属性赋值</h1>
+        <h1 id="保存会话的两种技术"><a href="#保存会话的两种技术" class="headerlink" title="保存会话的两种技术"></a>保存会话的两种技术</h1>
         
           <a class="article-more-a" href="/2019/11/28/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-%E7%BB%99Bean%E5%B1%9E%E6%80%A7%E8%B5%8B%E5%80%BC/#more">more >></a>
         
@@ -752,158 +1020,6 @@
 
 
   
-    <article id="post-Spring第一天-基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/28/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-%E5%9F%BA%E7%A1%80/">Spring第一天-基础</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/28/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2019-11-28T02:18:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-1-Spring基础知识"><a href="#1-1-Spring基础知识" class="headerlink" title="1.1 Spring基础知识"></a>1.1 Spring基础知识</h1>
-        
-          <a class="article-more-a" href="/2019/11/28/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-%E5%9F%BA%E7%A1%80/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/28/Spring%E7%AC%AC%E4%B8%80%E5%A4%A9-%E5%9F%BA%E7%A1%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-四舍五入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/26/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/">四舍五入</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/26/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/" class="archive-article-date">
-  	<time datetime="2019-11-26T13:37:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="手动四舍五入"><a href="#手动四舍五入" class="headerlink" title="手动四舍五入"></a>手动四舍五入</h1>
-        
-          <a class="article-more-a" href="/2019/11/26/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/26/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1002,6 +1118,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
