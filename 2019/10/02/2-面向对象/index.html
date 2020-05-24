@@ -6,22 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://TakenTo.github.io">
-  <title>1-基础知识 | 我的博客</title>
+  <title>2-面向对象 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: 1.基础知识date: 2019-10-02 22:33:07tags: java  基础知识">
+  <meta name="description" content="面向对象">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1-基础知识">
-<meta property="og:url" content="https:&#x2F;&#x2F;takento.github.io&#x2F;2020&#x2F;05&#x2F;02&#x2F;1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86&#x2F;index.html">
+<meta property="og:title" content="2-面向对象">
+<meta property="og:url" content="https:&#x2F;&#x2F;takento.github.io&#x2F;2019&#x2F;10&#x2F;02&#x2F;2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1&#x2F;index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="title: 1.基础知识date: 2019-10-02 22:33:07tags: java  基础知识">
+<meta property="og:description" content="面向对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-1.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-2.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-3.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-4.png">
-<meta property="og:updated_time" content="2020-05-24T13:02:20.740Z">
+<meta property="og:updated_time" content="2020-05-24T13:20:41.499Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-1.png">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
   
@@ -153,88 +149,145 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-1-基础知识" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2-面向对象" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      1-基础知识
+      2-面向对象
     </h1>
   
 
         
-        <a href="/2020/05/02/1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="archive-article-date">
-  	<time datetime="2020-05-02T14:33:07.635Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
+        <a href="/2019/10/02/2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
+  	<time datetime="2019-10-02T14:54:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: 1.基础知识<br>date: 2019-10-02 22:33:07<br>tags: java</p>
-<hr>
-<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><a id="more"></a>  
+        <h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><a id="more"></a>
 
-<h2 id="1-从java7开始，可以给数字添加下划线-增强可读性"><a href="#1-从java7开始，可以给数字添加下划线-增强可读性" class="headerlink" title="1.从java7开始，可以给数字添加下划线 增强可读性"></a>1.从java7开始，可以给数字添加下划线 增强可读性</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> v1 = <span class="number">1_0000_0000</span>;</span><br><span class="line"><span class="keyword">int</span> v2 = <span class="number">0xFF_EC_DE_5E</span>;</span><br><span class="line"><span class="keyword">int</span> v3 = <span class="number">0b11001100_11110000_10101010</span>;</span><br><span class="line"><span class="keyword">double</span> v4 = <span class="number">1.23_34_43</span>;</span><br></pre></td></tr></table></figure>
-
-<h5 id="以下方法是错误的："><a href="#以下方法是错误的：" class="headerlink" title="以下方法是错误的："></a>以下方法是错误的：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不能在小数点前后使用</span></span><br><span class="line"><span class="keyword">double</span> r1 = <span class="number">1</span>._23;</span><br><span class="line"><span class="keyword">double</span> r2 = <span class="number">1</span>_<span class="number">.23</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//不能在数字前后使用</span></span><br><span class="line"><span class="keyword">int</span> v1 = _123;</span><br><span class="line"><span class="keyword">int</span> v2 = <span class="number">123</span>_;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-gt-gt-与-gt-gt-gt"><a href="#2-gt-gt-与-gt-gt-gt" class="headerlink" title="2.&gt;&gt; 与 &gt;&gt;&gt;"></a>2.&gt;&gt; 与 &gt;&gt;&gt;</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;：有符号右移（最左用符号位补齐）</span><br><span class="line">&gt;&gt;&gt;：无符号右移动（最左用<span class="number">0</span>补齐）</span><br><span class="line"></span><br><span class="line">-<span class="number">128</span>       = <span class="number">1111111110000000</span> </span><br><span class="line">-<span class="number">128</span> &gt;&gt;  <span class="number">2</span> = <span class="number">1111111111100000</span> </span><br><span class="line">-<span class="number">128</span> &gt;&gt;&gt; <span class="number">2</span> = <span class="number">0011111111100000</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-数据类型"><a href="#3-数据类型" class="headerlink" title="3.数据类型"></a>3.数据类型</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span>: <span class="number">8</span>bit    [-<span class="number">128</span>, <span class="number">127</span>]      默认：<span class="number">0</span>                  </span><br><span class="line"><span class="keyword">short</span>: <span class="number">16</span>bit  [-<span class="number">32768</span>, <span class="number">32767</span>] 默认：<span class="number">0</span></span><br><span class="line"><span class="keyword">int</span>: <span class="number">32</span>bit     [-<span class="number">2</span>^<span class="number">31</span>, <span class="number">2</span>^<span class="number">31</span>-<span class="number">1</span>] 默认：<span class="number">0</span></span><br><span class="line"><span class="keyword">long</span>: <span class="number">64</span>bit    [-<span class="number">2</span>^<span class="number">63</span>, <span class="number">2</span>^<span class="number">63</span>-<span class="number">1</span>] 默认：<span class="number">0L</span></span><br><span class="line"><span class="keyword">float</span>: <span class="number">32</span>bit   [<span class="number">1.40E-45F</span>, <span class="number">3.4028235E38F</span>]       默认：<span class="number">0.0F</span></span><br><span class="line"><span class="keyword">double</span>: <span class="number">64</span>bit  [<span class="number">4.9E-324</span>, <span class="number">1.7976931348623157</span>E] 默认：<span class="number">0.0</span></span><br><span class="line"><span class="keyword">boolean</span>: <span class="keyword">true</span> <span class="keyword">false</span>  默认：<span class="keyword">false</span></span><br><span class="line"><span class="keyword">char</span>: <span class="number">16</span>bit的Unicode字符 默认：<span class="string">'\u0000'</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Math类的常用方法</span></span><br><span class="line">Math.abs(-<span class="number">100</span>);  <span class="comment">// 求绝对值 100</span></span><br><span class="line">Math.max();      <span class="comment">// 求最大值 200</span></span><br><span class="line">Math.min();      <span class="comment">// 求最小值 100</span></span><br><span class="line">Math.floor();    <span class="comment">// 向下取整 3.0</span></span><br><span class="line">Math.ceil();     <span class="comment">// 向上取整 4.0</span></span><br><span class="line">Math.round();    <span class="comment">// 四舍五入 4</span></span><br><span class="line">Math.pow();      <span class="comment">// 4的2次方 16.0</span></span><br><span class="line">Math.sqrt();     <span class="comment">// 16的平方根 4.0</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-可变参数"><a href="#4-可变参数" class="headerlink" title="4.可变参数"></a>4.可变参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span>... numbers)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> num : numbers)&#123;</span><br><span class="line">        result += num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sum(<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">举例：</span><br><span class="line">System.out.printf(<span class="string">"My name is %s, age is %d"</span>, name, age);</span><br><span class="line"></span><br><span class="line">源码：</span><br><span class="line"><span class="function"><span class="keyword">public</span> PrintStream <span class="title">printf</span><span class="params">(String format, Object... args)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> format(format, args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="5-方法参数与返回值"><a href="#5-方法参数与返回值" class="headerlink" title="5.方法参数与返回值"></a>5.方法参数与返回值</h2><ol>
-<li><p>引用类型作为参数 传递的是地址</p>
+<h2 id="1-包："><a href="#1-包：" class="headerlink" title="1.包："></a>1.包：</h2><ol>
+<li><p>如果公司域名中有非法字符，建议使用下划线（_）来使包名合法化。</p>
 </li>
-<li><p>引用类型作为返回值 返回的是地址</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] test()&#123;</span><br><span class="line">    <span class="keyword">int</span>[] t = &#123;<span class="number">11</span>, <span class="number">22</span>&#125;;</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] n = test();</span><br><span class="line">test() 方法执行完，&#123;<span class="number">11</span>, <span class="number">22</span>&#125;在堆内存中的内容不会被GC，因为被n引用了。</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="6-方法的签名：方法名-参数类型"><a href="#6-方法的签名：方法名-参数类型" class="headerlink" title="6.方法的签名：方法名 + 参数类型"></a>6.方法的签名：方法名 + 参数类型</h2><h2 id="7-方法重载：方法名相同，方法签名不同"><a href="#7-方法重载：方法名相同，方法签名不同" class="headerlink" title="7.方法重载：方法名相同，方法签名不同"></a>7.方法重载：方法名相同，方法签名不同</h2><h2 id="8-栈帧-Frame-："><a href="#8-栈帧-Frame-：" class="headerlink" title="8.栈帧(Frame)："></a>8.栈帧(Frame)：</h2><ol>
-<li><p>栈帧随着方法的调用而创建，随着方法结束而销毁，存储了方法的局部变量信息。</p>
-</li>
-<li><p>栈溢出：Stack Overflow</p>
-<p><img src="/images/java/1-1.png" alt="1-1"></p>
-</li>
-</ol>
-<h2 id="问：方法存储在哪里？"><a href="#问：方法存储在哪里？" class="headerlink" title="问：方法存储在哪里？"></a>问：方法存储在哪里？</h2><p>内存划分：</p>
+<li><p>java编译器为每个源文件自动导入2个包</p>
 <ol>
-<li><p>PC寄存器(Program Counter Register)：存储java虚拟机正在执行的字节码指令地址</p>
+<li>import java.lang.*;  </li>
+<li>import 当前文件所在包.*;  这样同一包下的类，互相使用，就不用导包了</li>
+</ol>
 </li>
-<li><p>java虚拟机栈(java Virtual Machine Stack)：存储栈帧</p>
+<li><p>静态导入：</p>
+<ol>
+<li><p>可以省略类名来访问静态成员（成员变量、方法、嵌套类）</p>
 </li>
-<li><p>堆(Heap)：存储GC所管理的各种对象</p>
+<li><p>正确使用静态导入，可以消除重复类名，提高代码可读性。</p>
 </li>
-<li><p>方法区(Method Area)：存储每个类的结构信息（比如字段名称和类型，方法的返回值与签名，构造方法和普通方法的字节码等）</p>
-</li>
-<li><p>本地方法栈(Native Method Stack)：用来支持native方法的调用(比如C语言编写的方法)</p>
-</li>
-<li><p>简单对象内存</p>
-<p><img src="/images/java/1-2.png" alt=""></p>
-</li>
-<li><p>复杂对象内存</p>
-<p><img src="/images/java/1-3.png" alt=""></p>
-</li>
-<li><p>对象数组内存</p>
-<p><img src="/images/java/1-4.png" alt=""></p>
+<li><p>过度使用静态导入，读者会分不清静态成员是哪个类中的。（所以不建议使用静态导入）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 静态导入举例</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.Math.PI;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用(PI可以直接使用)</span></span><br><span class="line">System.out.println(<span class="number">2</span> * PI);</span><br></pre></td></tr></table></figure>
+
+<p>​     </p>
 </li>
 </ol>
+</li>
+</ol>
+<h2 id="2-构造方法：Constructor"><a href="#2-构造方法：Constructor" class="headerlink" title="2.构造方法：Constructor"></a>2.构造方法：Constructor</h2><ol>
+<li>构造方法无返回值</li>
+<li>如果一个类未定义构造方法，编译器会为其提供一个默认的无参构造方法。</li>
+<li>一旦定义了构造方法，默认无参构造方法将不存在。</li>
+<li>构造方法有个默认参数this：如Peron的无参构造方法，实际样子-&gt;public Persion(Persion this){}</li>
+</ol>
+<h2 id="3-this：是一个指向当前对象的引用"><a href="#3-this：是一个指向当前对象的引用" class="headerlink" title="3.this：是一个指向当前对象的引用"></a>3.this：是一个指向当前对象的引用</h2><ol>
+<li>可访问当前类中定义的成员变量</li>
+<li>调用当前类中定义的方法（包括构造方法）</li>
+</ol>
+<h2 id="4-继承："><a href="#4-继承：" class="headerlink" title="4.继承："></a>4.继承：</h2><ol>
+<li><p>java.lang.Object 是所有类的父类（新建一个类，它默认继承Object类）</p>
+</li>
+<li><p>子类可以定义与父类重名的成员变量（不建议这么做）</p>
+</li>
+<li><p>重写：子类的方法签名和父类一样。也叫覆盖</p>
+</li>
+<li><p>super：代表父类</p>
+</li>
+<li><p>子类重写的方法权限必须 ≥ 父类的方法权限</p>
+</li>
+<li><p>子类重写的方法权限返回值类型必须 ≤ 父类的方法返回值类型 </p>
+</li>
+</ol>
+<blockquote>
+<p>关于this 与 super    </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只有在构造方法里面，才能用super/this来调用构造方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Persion</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> age)</span></span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">super</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(name, <span class="number">0</span>); <span class="comment">//使用this  调用构造方法</span></span><br><span class="line">        <span class="keyword">super</span>();        <span class="comment">//使用super 调用父类构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>子类的构造方法必须先调用父类的构造方法，再执行后面的代码。<br>   即子类构造方法的第一句默认为 super(); 目的是让父类比子类先初始化<br>   如果显式的调用 super(), 默认的就无效了。<br>   所以上面例子会报错，因该改为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">	<span class="keyword">super</span>();        <span class="comment">//使用super 调用父类构造方法</span></span><br><span class="line">	<span class="keyword">this</span>(name, <span class="number">0</span>);  <span class="comment">//使用this  调用构造方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>上面改后依然报错，提示 this(name, 0) 必须放在第一行。<br>   因为有参构造方法里面也有 super() 这里第一行也是 super()<br>   导致结果就是此方法里有2个 super()，重复了。删除super()即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(name, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//关于继承 父类变量私有化</span></span><br><span class="line"><span class="comment">// 问：子类对象的内存中，是否包含父类中定义的private成员变量</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="comment">//提供getter和setter方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student st = <span class="keyword">new</span> Student();</span><br><span class="line">st.name; <span class="comment">//报错</span></span><br><span class="line">st.getName(); <span class="comment">//证明name变量存到了student对象中了。</span></span><br><span class="line"><span class="comment">//private只是做访问控制，让外界不能直接访问name，但不代表name就不存在了。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-访问权限："><a href="#5-访问权限：" class="headerlink" title="5.访问权限："></a>5.访问权限：</h2><p><code>public</code>：在任何地方都可见<br><code>protected</code>：仅在本包中，自己子类中可见<br><code>default</code>(无修饰符)：仅在本包中可见 （所以无修饰符又叫包私有权限）<br><code>private</code>：仅在自己类中可见</p>
+<p>1.上述4个访问权限都可以修饰类的成员，比如成员变量、成员方法、嵌套类等（即类中的一切）<br>2.只有<code>public</code>、<code>default</code>可以修饰顶级类。（顶级类定义出来就是被使用的，定义成其他类型就无法被使用，失去了存在的意义）<br>3.以上4个访问权限不可修饰局部类，局部变量。（局部变量的作用域仅限在方法里，与访问权限的意义相矛盾）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个java文件中，最外面的那个类叫顶级类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="comment">//嵌套类</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ABC</span></span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 修饰局部变量no</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> no = <span class="number">10</span>; <span class="comment">//会报错</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="6-封装："><a href="#6-封装：" class="headerlink" title="6.封装："></a>6.封装：</h2><ol>
+<li>成员变量private化，提供public的getter、getter方法。<br>toString(): println(对象引用)，当参数为对象引用时，println会调用对象的toString方法</li>
+</ol>
+<h2 id="7-多态"><a href="#7-多态" class="headerlink" title="7.多态:"></a>7.多态:</h2><ol>
+<li>什么是多态？<ul>
+<li>具有多种形态</li>
+<li>同一操作 作用于不同对象，产生不同的结果</li>
+</ul>
+</li>
+<li>多态的体现：<ul>
+<li>父类（接口）类型引用 指向 子类对象</li>
+<li>调用子类重写的方法</li>
+</ul>
+</li>
+<li>JVM会根据引用变量指向的具体对象来调用对应的方法。<ul>
+<li>这个行为叫：虚方法调用（Virtual method invocation）</li>
+<li>类似于C++中的虚函数调用</li>
+</ul>
+</li>
+</ol>
+<h2 id="8-static"><a href="#8-static" class="headerlink" title="8.static:"></a>8.static:</h2><ol>
+<li><p>常用来修饰类的成员：成员变量，成员方法，嵌套类</p>
+</li>
+<li><p>被static修饰的变量：类变量，静态变量，静态字段。（放在方法区，只有一份内存）</p>
+<p>未被static修饰的变量：每一个对象实例，都会有此变量，所以叫实例变量（每个对象内部都有一份内存）</p>
+</li>
+<li><p>被static修饰的方法：类方法，静态方法。（）</p>
+<p>内部不可以使用this，因为被static修饰的东西先加载。加载后发现找不到当前对象，会报错。</p>
+</li>
+<li><p>静态代码块：</p>
+<ol>
+<li>当一个类被初始化的时候，执行静态代码块。</li>
+<li>当一个类第一次被主动引用的时候，JVM会对类进行初始化。</li>
+<li>静态代码块在整个程序运行期间，只执行一次。</li>
+<li>静态代码块常用来做类内部的一些初始化。</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>静态变量应用：比如统计创建了多少个对象</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> count;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        count = <span class="number">0</span>;  <span class="comment">//也可在静态代码块中为静态变量赋值（）</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Persion</span><span class="params">()</span></span>&#123;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -274,6 +327,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -324,7 +388,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://takento.github.io/2020/05/02/1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://takento.github.io/2019/10/02/2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -338,18 +402,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/02/2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/02/3-final%E3%80%81%E5%B5%8C%E5%A5%97%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          2-面向对象
+          3-final、嵌套类、抽象类
         
       </div>
     </a>
   
   
-    <a href="/2020/03/24/POI%E5%92%8CeasyExcel/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">POI和easyExcel</div>
+    <a href="/2019/10/02/1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1.基础知识</div>
       <i class="icon-circle-right"></i>
     </a>
   
