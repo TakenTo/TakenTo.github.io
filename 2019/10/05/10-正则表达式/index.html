@@ -21,7 +21,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;10-3.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;10-4.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;10-5.png">
-<meta property="og:updated_time" content="2020-05-24T12:08:28.700Z">
+<meta property="og:updated_time" content="2020-05-24T13:12:09.192Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;10-1.png">
   
@@ -176,25 +176,31 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="10-正则表达式"><a href="#10-正则表达式" class="headerlink" title="10.正则表达式"></a>10.正则表达式</h1><a id="more"></a>  
-<h3 id="1-基本介绍"><a href="#1-基本介绍" class="headerlink" title="1.基本介绍"></a>1.基本介绍</h3><ul>
+<h2 id="1-基本介绍"><a href="#1-基本介绍" class="headerlink" title="1.基本介绍"></a>1.基本介绍</h2><ul>
 <li>正则表达式英文：Regex Expression</li>
 <li>正则表达式是一种通用技术，适用于绝大多数流行的编程语言。</li>
 <li><a href="https://c.runoob.com/front-end/854" target="_blank" rel="noopener">正则在线测试/常用正则式</a></li>
 </ul>
-<h3 id="2-单字符匹配"><a href="#2-单字符匹配" class="headerlink" title="2.单字符匹配"></a>2.单字符匹配</h3><p><img src="/images/java/10-1.png" alt="图片1"></p>
-<h3 id="3-预定义字符"><a href="#3-预定义字符" class="headerlink" title="3.预定义字符"></a>3.预定义字符</h3><ol>
+<h2 id="2-单字符匹配"><a href="#2-单字符匹配" class="headerlink" title="2.单字符匹配"></a>2.单字符匹配</h2><p><img src="/images/java/10-1.png" alt="图片1"></p>
+<h2 id="3-预定义字符"><a href="#3-预定义字符" class="headerlink" title="3.预定义字符"></a>3.预定义字符</h2><ol>
 <li>以一个反斜杠(\)开头，大部分为转义字符。</li>
 <li>在java中，为了让正则表达式能完整地表示预定义字符，需要以两个反斜杠开头（\\ 就表示普通斜杠）</li>
 </ol>
 <p><img src="/images/java/10-2.png" alt="图片2"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"123"</span>;</span><br><span class="line">String regex = <span class="string">"\\d[a-zA-Z]"</span>;</span><br><span class="line">String regex2 = <span class="string">"\\."</span>;  <span class="comment">// 用来匹配点（.）</span></span><br><span class="line"></span><br><span class="line">str.matches(regex);   <span class="comment">// 匹配</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="4-量词"><a href="#4-量词" class="headerlink" title="4.量词"></a>4.量词</h3><p><img src="/images/java/10-3.png" alt="图片3"></p>
+
+
+<h2 id="4-量词"><a href="#4-量词" class="headerlink" title="4.量词"></a>4.量词</h2><p><img src="/images/java/10-3.png" alt="图片3"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">String regex = <span class="string">"6&#123;3&#125;"</span>;</span><br><span class="line"><span class="string">"6"</span>.matches(regex);    <span class="comment">// false</span></span><br><span class="line"><span class="string">"66"</span>.matches(regex);   <span class="comment">// false</span></span><br><span class="line"><span class="string">"666"</span>.matches(regex);  <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">String regex = <span class="string">"6+"</span>;</span><br><span class="line"><span class="string">""</span>.matches(regex);    <span class="comment">// false</span></span><br><span class="line"><span class="string">"6"</span>.matches(regex);   <span class="comment">// true</span></span><br><span class="line"><span class="string">"66"</span>.matches(regex);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="5-捕获组"><a href="#5-捕获组" class="headerlink" title="5.捕获组"></a>5.捕获组</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"dog&#123;3&#125;"</span>   匹配  doggg（<span class="keyword">do</span>开头，g出现<span class="number">3</span>次）</span><br><span class="line"><span class="string">"[dog]&#123;3&#125;"</span> 匹配  匹配<span class="number">3</span>个字符，每个字符都可能是d 或o 或g（如：ggg、dod）</span><br><span class="line"><span class="string">"[abc]&#123;3&#125;"</span>: 相当于<span class="string">"[abc][abc][abc]"</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 捕获组: 小括号中的内容作为一个整体，即一组</span></span><br><span class="line"><span class="string">"(dog)&#123;3&#125;"</span>    匹配  dogdogdog （dog出现<span class="number">3</span>次）</span><br><span class="line"><span class="string">"(d|o|g)&#123;3&#125;"</span>  相当于 <span class="string">"[dog]&#123;3&#125;"</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 捕获组 - 反向引用</span></span><br><span class="line"><span class="comment">// 首先要明白，每个捕获组都是有编号的，下标从1开始</span></span><br><span class="line"><span class="comment">// 可通过 \+组编号 来引用组的内容。</span></span><br><span class="line"><span class="string">"(\d\d)\1"</span>  (\d\d)匹配两位的数字, \<span class="number">1</span>可理解为提取第一组匹配到的数据</span><br><span class="line">            可匹配：<span class="number">1212</span>、<span class="number">3333</span>、<span class="number">5757</span></span><br><span class="line"><span class="string">"([a-z]&#123;2&#125;)([A-Z]&#123;2&#125;)\2\1"</span>  可匹配：abCECEab</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-边界匹配符"><a href="#6-边界匹配符" class="headerlink" title="6.边界匹配符"></a>6.边界匹配符</h3><p><img src="/images/java/10-4.png" alt="图片4"></p>
+
+<h2 id="5-捕获组"><a href="#5-捕获组" class="headerlink" title="5.捕获组"></a>5.捕获组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"dog&#123;3&#125;"</span>   匹配  doggg（<span class="keyword">do</span>开头，g出现<span class="number">3</span>次）</span><br><span class="line"><span class="string">"[dog]&#123;3&#125;"</span> 匹配  匹配<span class="number">3</span>个字符，每个字符都可能是d 或o 或g（如：ggg、dod）</span><br><span class="line"><span class="string">"[abc]&#123;3&#125;"</span>: 相当于<span class="string">"[abc][abc][abc]"</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 捕获组: 小括号中的内容作为一个整体，即一组</span></span><br><span class="line"><span class="string">"(dog)&#123;3&#125;"</span>    匹配  dogdogdog （dog出现<span class="number">3</span>次）</span><br><span class="line"><span class="string">"(d|o|g)&#123;3&#125;"</span>  相当于 <span class="string">"[dog]&#123;3&#125;"</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 捕获组 - 反向引用</span></span><br><span class="line"><span class="comment">// 首先要明白，每个捕获组都是有编号的，下标从1开始</span></span><br><span class="line"><span class="comment">// 可通过 \+组编号 来引用组的内容。</span></span><br><span class="line"><span class="string">"(\d\d)\1"</span>  (\d\d)匹配两位的数字, \<span class="number">1</span>可理解为提取第一组匹配到的数据</span><br><span class="line">            可匹配：<span class="number">1212</span>、<span class="number">3333</span>、<span class="number">5757</span></span><br><span class="line"><span class="string">"([a-z]&#123;2&#125;)([A-Z]&#123;2&#125;)\2\1"</span>  可匹配：abCECEab</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-边界匹配符"><a href="#6-边界匹配符" class="headerlink" title="6.边界匹配符"></a>6.边界匹配符</h2><p><img src="/images/java/10-4.png" alt="图片4"></p>
 <p>一些概念：</p>
 <ul>
 <li><p>终止符：\r（回车符）、\n（换行符）、\r\n （回车换行）</p>
@@ -219,11 +225,11 @@
 
 
 
-<h3 id="7-举例"><a href="#7-举例" class="headerlink" title="7.举例"></a>7.举例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">手机号码：<span class="string">"^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d&#123;8&#125;$"</span></span><br><span class="line">邮政编码：<span class="string">"[1-9]\d&#123;5&#125;(?!\d)"</span> (中国邮政编码为<span class="number">6</span>位数字)</span><br><span class="line">腾讯QQ号：<span class="string">"[1-9][0-9]&#123;4,&#125;"</span>   (腾讯QQ号从<span class="number">10000</span>开始)</span><br><span class="line">IP地址：<span class="string">"\d+\.\d+\.\d+\.\d+"</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-举例"><a href="#7-举例" class="headerlink" title="7.举例"></a>7.举例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">手机号码：<span class="string">"^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d&#123;8&#125;$"</span></span><br><span class="line">邮政编码：<span class="string">"[1-9]\d&#123;5&#125;(?!\d)"</span> (中国邮政编码为<span class="number">6</span>位数字)</span><br><span class="line">腾讯QQ号：<span class="string">"[1-9][0-9]&#123;4,&#125;"</span>   (腾讯QQ号从<span class="number">10000</span>开始)</span><br><span class="line">IP地址：<span class="string">"\d+\.\d+\.\d+\.\d+"</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="8-Pattern、Matcher"><a href="#8-Pattern、Matcher" class="headerlink" title="8.Pattern、Matcher"></a>8.Pattern、Matcher</h3><ol>
+<h2 id="8-Pattern、Matcher"><a href="#8-Pattern、Matcher" class="headerlink" title="8.Pattern、Matcher"></a>8.Pattern、Matcher</h2><ol>
 <li><p>String的matches方法：底层用到了Pattern、Matcher两个类。</p>
 </li>
 <li><p>如何在字符串中找到符合要求的字串呢？matcher.find()</p>
@@ -250,9 +256,11 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String input = <span class="string">"afooaaafooaa"</span>;</span><br><span class="line">findAll(<span class="string">".*foo"</span>, input);   <span class="comment">// 贪婪 "afooaaafoo"</span></span><br><span class="line">findAll(<span class="string">".*?foo"</span>, input);  <span class="comment">// 勉强 ["afoo", "aaafoo"]</span></span><br><span class="line">findAll(<span class="string">".*+foo"</span>, input);  <span class="comment">// 独占 匹配失败</span></span><br></pre></td></tr></table></figure>
 
+
+
 </li>
 </ol>
-<h3 id="9-String类与正则式"><a href="#9-String类与正则式" class="headerlink" title="9.String类与正则式"></a>9.String类与正则式</h3><p>String类中接收正则表达式 作为参数的 常用方法有：</p>
+<h2 id="9-String类与正则式"><a href="#9-String类与正则式" class="headerlink" title="9.String类与正则式"></a>9.String类与正则式</h2><p>String类中接收正则表达式 作为参数的 常用方法有：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">replaceAll</span><span class="params">(String regex, String replacement)</span> </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">replaceFirst</span><span class="params">(String regex, String replacement)</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> String[] split(String regex) &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(String regex)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
       
 
@@ -504,11 +512,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,7 +524,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">

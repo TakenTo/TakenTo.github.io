@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="3-final、嵌套类、抽象类">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-02T15:43:01.580Z">
+<meta property="og:updated_time" content="2020-05-24T13:06:23.972Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -171,19 +171,23 @@
       
         <h1 id="3-final、嵌套类、抽象类"><a href="#3-final、嵌套类、抽象类" class="headerlink" title="3-final、嵌套类、抽象类"></a>3-final、嵌套类、抽象类</h1><a id="more"></a>   
 
-<h3 id="1-final："><a href="#1-final：" class="headerlink" title="1.final："></a>1.final：</h3><ol>
+<h2 id="1-final："><a href="#1-final：" class="headerlink" title="1.final："></a>1.final：</h2><ol>
 <li>被final修饰的类：不能被继承</li>
 <li>被final修饰的方法：不能被重写</li>
 <li>被final修饰的变量：只能进行一次赋值</li>
 </ol>
-<h4 id="1-1-常量："><a href="#1-1-常量：" class="headerlink" title="1.1.常量："></a>1.1.常量：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>; <span class="comment">// 只是不能被再次赋值，也不算是常量</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>;  <span class="comment">// 公共常量（被static修饰，内存中只有此一份）</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>; <span class="comment">// 私有常量</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-1-常量："><a href="#1-1-常量：" class="headerlink" title="1.1.常量："></a>1.1.常量：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>; <span class="comment">// 只是不能被再次赋值，也不算是常量</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>;  <span class="comment">// 公共常量（被static修饰，内存中只有此一份）</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>; <span class="comment">// 私有常量</span></span><br></pre></td></tr></table></figure>
 
 <p>如果将基本类型或字符串定义为常量，且在编译时就能确定值。<br>编译器会使用常量值替代各处常量名（类似c语言的宏替换）<br>上面的例子是编译时能确定值的，下面举例编译时不能确定值的情况。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> PI = getPI();</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-嵌套类：定义在一个类中的类"><a href="#2-嵌套类：定义在一个类中的类" class="headerlink" title="2.嵌套类：定义在一个类中的类"></a>2.嵌套类：定义在一个类中的类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//最外层的外部类，又称顶级类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OuterClass</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 静态嵌套类</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticNestedClass</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 内部类（非静态嵌套类）</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-1-内部类：没有被static修饰的嵌套类。"><a href="#2-1-内部类：没有被static修饰的嵌套类。" class="headerlink" title="2.1.内部类：没有被static修饰的嵌套类。"></a>2.1.内部类：没有被static修饰的嵌套类。</h4><p>1.跟实例变量、实例方法一样，都必须通过对象的引用去访问/创建。</p>
+
+<h2 id="2-嵌套类：定义在一个类中的类"><a href="#2-嵌套类：定义在一个类中的类" class="headerlink" title="2.嵌套类：定义在一个类中的类"></a>2.嵌套类：定义在一个类中的类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//最外层的外部类，又称顶级类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OuterClass</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 静态嵌套类</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticNestedClass</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 内部类（非静态嵌套类）</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-1-内部类：没有被static修饰的嵌套类。"><a href="#2-1-内部类：没有被static修饰的嵌套类。" class="headerlink" title="2.1.内部类：没有被static修饰的嵌套类。"></a>2.1.内部类：没有被static修饰的嵌套类。</h3><p>1.跟实例变量、实例方法一样，都必须通过对象的引用去访问/创建。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;    <span class="comment">//Persion对象不实例化 这个实例变量就没用</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Hand</span></span>&#123;  <span class="comment">//Persion对象不实例化 这个内部类就没用（没法创建）</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person person = <span class="keyword">new</span> Persion();</span><br><span class="line">Hand hand = person.<span class="keyword">new</span> Hand();  <span class="comment">//必须通过对象的引用去创建</span></span><br></pre></td></tr></table></figure>
 
 <p>2.内部类不能定义除编译时常量以外的任何static成员。</p>
@@ -192,7 +196,9 @@
 <p>3.内部类可以直接访问外部类中的所有成员（即使被声明为private）<br>4.外部类可以直接访问内部类实例的成员变量、方法（即使被声明为private）<br>5.内部类细节</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> x = <span class="number">2</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            print(x);             <span class="comment">// 2</span></span><br><span class="line">            print(<span class="keyword">this</span>.x);        <span class="comment">// 2</span></span><br><span class="line">            print(Outer.<span class="keyword">this</span>.x); <span class="comment">// 1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-2-静态嵌套类"><a href="#2-2-静态嵌套类" class="headerlink" title="2.2.静态嵌套类:"></a>2.2.静态嵌套类:</h4><p>1.静态嵌套类在行为上是个顶级类，只是定义的代码写在了一个类中。</p>
+
+
+<h3 id="2-2-静态嵌套类"><a href="#2-2-静态嵌套类" class="headerlink" title="2.2.静态嵌套类:"></a>2.2.静态嵌套类:</h3><p>1.静态嵌套类在行为上是个顶级类，只是定义的代码写在了一个类中。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用（Car与Person无任何关系，只是恰巧代码在Person类里面而已）</span></span><br><span class="line">Person.Car car = <span class="keyword">new</span> Persion.Car();</span><br></pre></td></tr></table></figure>
 
 <p>2.静态嵌套类可直接访问外部类除实例变量、实例方法外的其他成员（即使被声明为private）</p>
@@ -209,7 +215,7 @@
 <li><p>所以设计内部类的时候，能静态就静态。</p>
 </li>
 </ol>
-<h4 id="2-3-局部类：Local-Class"><a href="#2-3-局部类：Local-Class" class="headerlink" title="2.3.局部类：Local Class"></a>2.3.局部类：Local Class</h4><p>局部类：定义在代码块中的类（可以定义在方法中、for循环中、if语句中等）</p>
+<h3 id="2-3-局部类：Local-Class"><a href="#2-3-局部类：Local-Class" class="headerlink" title="2.3.局部类：Local Class"></a>2.3.局部类：Local Class</h3><p>局部类：定义在代码块中的类（可以定义在方法中、for循环中、if语句中等）</p>
 <ol>
 <li>局部类不能定义除编译时常量以外的任何static成员。（因为代码块里面的东西作用范围仅在代码块中有效）</li>
 <li>局部类只能访问final 或 有效final的局部变量。</li>
@@ -219,7 +225,7 @@
 
 
 
-<h3 id="3-抽象类-Abstract-Class-：被abstract修饰的类"><a href="#3-抽象类-Abstract-Class-：被abstract修饰的类" class="headerlink" title="3.抽象类(Abstract Class)：被abstract修饰的类"></a>3.抽象类(Abstract Class)：被abstract修饰的类</h3><ol>
+<h2 id="3-抽象类-Abstract-Class-：被abstract修饰的类"><a href="#3-抽象类-Abstract-Class-：被abstract修饰的类" class="headerlink" title="3.抽象类(Abstract Class)：被abstract修饰的类"></a>3.抽象类(Abstract Class)：被abstract修饰的类</h2><ol>
 <li><p>可以定义为抽象方法</p>
 </li>
 <li><p>不能实例化，但可自定义构造方法（和接口一样，不能通过new来创建）</p>
@@ -482,11 +488,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,7 +500,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">

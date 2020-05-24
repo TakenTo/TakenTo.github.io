@@ -20,7 +20,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;7-2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;7-3.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;7-4.png">
-<meta property="og:updated_time" content="2020-05-24T12:51:44.037Z">
+<meta property="og:updated_time" content="2020-05-24T13:10:18.951Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;7-1.png">
   
@@ -176,7 +176,7 @@
       
         <h1 id="7-字符串"><a href="#7-字符串" class="headerlink" title="7.字符串"></a>7.字符串</h1><a id="more"></a>  
 
-<h3 id="1-字符串简介"><a href="#1-字符串简介" class="headerlink" title="1.字符串简介"></a>1.字符串简介</h3><ol>
+<h2 id="1-字符串简介"><a href="#1-字符串简介" class="headerlink" title="1.字符串简介"></a>1.字符串简介</h2><ol>
 <li><p>底层使用<code>char[]</code> 存储字符数据，从<code>java9</code>开始，底层使用<code>byte[]</code>存储字符数据。</p>
 </li>
 <li><p>所有字符串字面量（比如”abc”）都是String类的实例。</p>
@@ -189,13 +189,12 @@
 
 
 
-
 </li>
 </ol>
-<h3 id="2-字符串初始化"><a href="#2-字符串初始化" class="headerlink" title="2.字符串初始化"></a>2.字符串初始化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="string">"mj"</span></span><br><span class="line">String s2 = <span class="keyword">new</span> String(<span class="string">"mj"</span>);</span><br><span class="line">String s3 = <span class="keyword">new</span> String(<span class="string">"s1"</span>);</span><br><span class="line">String s4 = <span class="keyword">new</span> String(<span class="string">"s2"</span>);</span><br><span class="line"><span class="keyword">char</span>[] cs = &#123;<span class="string">'m'</span>, <span class="string">'j'</span>&#125;;</span><br><span class="line">String s5 = <span class="keyword">new</span> String(cs);</span><br><span class="line">String s6 = <span class="keyword">new</span> String(s5);</span><br></pre></td></tr></table></figure>
+<h2 id="2-字符串初始化"><a href="#2-字符串初始化" class="headerlink" title="2.字符串初始化"></a>2.字符串初始化</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="string">"mj"</span></span><br><span class="line">String s2 = <span class="keyword">new</span> String(<span class="string">"mj"</span>);</span><br><span class="line">String s3 = <span class="keyword">new</span> String(<span class="string">"s1"</span>);</span><br><span class="line">String s4 = <span class="keyword">new</span> String(<span class="string">"s2"</span>);</span><br><span class="line"><span class="keyword">char</span>[] cs = &#123;<span class="string">'m'</span>, <span class="string">'j'</span>&#125;;</span><br><span class="line">String s5 = <span class="keyword">new</span> String(cs);</span><br><span class="line">String s6 = <span class="keyword">new</span> String(s5);</span><br></pre></td></tr></table></figure>
 
 <p><img src="/images/java/7-1.png" alt=""></p>
-<h3 id="3-字符串常量池：String-Constant-Pool（简称SCP）"><a href="#3-字符串常量池：String-Constant-Pool（简称SCP）" class="headerlink" title="3.字符串常量池：String Constant Pool（简称SCP）"></a>3.字符串常量池：String Constant Pool（简称SCP）</h3><ul>
+<h2 id="3-字符串常量池：String-Constant-Pool（简称SCP）"><a href="#3-字符串常量池：String-Constant-Pool（简称SCP）" class="headerlink" title="3.字符串常量池：String Constant Pool（简称SCP）"></a>3.字符串常量池：String Constant Pool（简称SCP）</h2><ul>
 <li>从java7开始属于堆空间的一部分（以前放在方法区）</li>
 <li>当遇到字符串字面量时，会去查<code>SCP</code>（查到句返回，差不多就创建新的）</li>
 <li><code>A.intern()</code><ul>
@@ -213,7 +212,7 @@
 
 
 
-<h3 id="4-StringBuilder："><a href="#4-StringBuilder：" class="headerlink" title="4.StringBuilder："></a>4.StringBuilder：</h3><p>在进行大量字符串的改动操作时（如拼接、替换）</p>
+<h2 id="4-StringBuilder："><a href="#4-StringBuilder：" class="headerlink" title="4.StringBuilder："></a>4.StringBuilder：</h2><p>在进行大量字符串的改动操作时（如拼接、替换）</p>
 <ol>
 <li>使用String会消耗内存，降低程序性能。</li>
 <li>使用StringBuilder可节省内存，提高程序性能。</li>
@@ -229,7 +228,7 @@
 <p><img src="/images/java/7-3.png" alt=""></p>
 </li>
 </ul>
-<h3 id="5-格式化输出："><a href="#5-格式化输出：" class="headerlink" title="5.格式化输出："></a>5.格式化输出：</h3><ol>
+<h2 id="5-格式化输出："><a href="#5-格式化输出：" class="headerlink" title="5.格式化输出："></a>5.格式化输出：</h2><ol>
 <li><p>可以使用System.out.printf() 或 System.out.format() 实现格式化输出。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.printf(<span class="string">"my name is %s"</span>, name);</span><br></pre></td></tr></table></figure>
 </li>
@@ -240,8 +239,8 @@
 
 </li>
 </ol>
-<h3 id="6-字符串截取"><a href="#6-字符串截取" class="headerlink" title="6.字符串截取"></a>6.字符串截取</h3><p><img src="/images/java/7-4.png" alt="截取"></p>
-<h3 id="7-字符串常用方法"><a href="#7-字符串常用方法" class="headerlink" title="7.字符串常用方法"></a>7.字符串常用方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 去除左右两边的空格 </span></span><br><span class="line"><span class="string">" 123 456 "</span>.trim();  <span class="comment">// "123 456"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 大小写转换</span></span><br><span class="line"><span class="string">"abc"</span>.toUpperCase();  <span class="comment">// ABC</span></span><br><span class="line"><span class="string">"ABC"</span>.toLowerCase();  <span class="comment">// abc</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 是否包含某个字符串</span></span><br><span class="line"><span class="string">"123456"</span>.contains(<span class="string">"34"</span>);  <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 是否以某个字符串开头</span></span><br><span class="line"><span class="string">"123456"</span>.startsWith(<span class="string">"123"</span>);  <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 是否以某个字符串结尾</span></span><br><span class="line"><span class="string">"123456"</span>.endsWith(<span class="string">"456"</span>);    <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将字符串分割为数组</span></span><br><span class="line"><span class="string">"1_2_3_4_5"</span>.split(<span class="string">"_"</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 比较字符串的大小</span></span><br><span class="line"><span class="string">"abc"</span>.compareTo(<span class="string">"abc"</span>);     <span class="comment">// &lt;0</span></span><br><span class="line"><span class="comment">// 忽略大小写 比较字符串的大小</span></span><br><span class="line"><span class="string">"abc"</span>.compareToIgnoreCase(<span class="string">"ABC"</span>); <span class="comment">// &lt;0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看两个字符串的内容是否相等</span></span><br><span class="line"><span class="string">"s1"</span>.equals(<span class="string">"s2"</span>);  </span><br><span class="line"><span class="comment">// 忽略大小写 查看两个字符串的内容是否相等</span></span><br><span class="line"><span class="string">"s1a"</span>.equalsIgnoreCase(<span class="string">"s2A"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="6-字符串截取"><a href="#6-字符串截取" class="headerlink" title="6.字符串截取"></a>6.字符串截取</h2><p><img src="/images/java/7-4.png" alt="截取"></p>
+<h2 id="7-字符串常用方法"><a href="#7-字符串常用方法" class="headerlink" title="7.字符串常用方法"></a>7.字符串常用方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 去除左右两边的空格 </span></span><br><span class="line"><span class="string">" 123 456 "</span>.trim();  <span class="comment">// "123 456"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 大小写转换</span></span><br><span class="line"><span class="string">"abc"</span>.toUpperCase();  <span class="comment">// ABC</span></span><br><span class="line"><span class="string">"ABC"</span>.toLowerCase();  <span class="comment">// abc</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 是否包含某个字符串</span></span><br><span class="line"><span class="string">"123456"</span>.contains(<span class="string">"34"</span>);  <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 是否以某个字符串开头</span></span><br><span class="line"><span class="string">"123456"</span>.startsWith(<span class="string">"123"</span>);  <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 是否以某个字符串结尾</span></span><br><span class="line"><span class="string">"123456"</span>.endsWith(<span class="string">"456"</span>);    <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将字符串分割为数组</span></span><br><span class="line"><span class="string">"1_2_3_4_5"</span>.split(<span class="string">"_"</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 比较字符串的大小</span></span><br><span class="line"><span class="string">"abc"</span>.compareTo(<span class="string">"abc"</span>);     <span class="comment">// &lt;0</span></span><br><span class="line"><span class="comment">// 忽略大小写 比较字符串的大小</span></span><br><span class="line"><span class="string">"abc"</span>.compareToIgnoreCase(<span class="string">"ABC"</span>); <span class="comment">// &lt;0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看两个字符串的内容是否相等</span></span><br><span class="line"><span class="string">"s1"</span>.equals(<span class="string">"s2"</span>);  </span><br><span class="line"><span class="comment">// 忽略大小写 查看两个字符串的内容是否相等</span></span><br><span class="line"><span class="string">"s1a"</span>.equalsIgnoreCase(<span class="string">"s2A"</span>);</span><br></pre></td></tr></table></figure>
 
       
 
@@ -493,11 +492,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,7 +504,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="title: 2-面向对象date: 2019-10-02 22:54:11tags: java  面向对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-03T13:27:27.401Z">
+<meta property="og:updated_time" content="2020-05-24T13:03:59.743Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -173,7 +173,7 @@
 <hr>
 <h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><a id="more"></a>   
 
-<h3 id="1-包："><a href="#1-包：" class="headerlink" title="1.包："></a>1.包：</h3><ol>
+<h2 id="1-包："><a href="#1-包：" class="headerlink" title="1.包："></a>1.包：</h2><ol>
 <li><p>如果公司域名中有非法字符，建议使用下划线（_）来使包名合法化。</p>
 </li>
 <li><p>java编译器为每个源文件自动导入2个包</p>
@@ -196,17 +196,17 @@
 </ol>
 </li>
 </ol>
-<h3 id="2-构造方法：Constructor"><a href="#2-构造方法：Constructor" class="headerlink" title="2.构造方法：Constructor"></a>2.构造方法：Constructor</h3><ol>
+<h2 id="2-构造方法：Constructor"><a href="#2-构造方法：Constructor" class="headerlink" title="2.构造方法：Constructor"></a>2.构造方法：Constructor</h2><ol>
 <li>构造方法无返回值</li>
 <li>如果一个类未定义构造方法，编译器会为其提供一个默认的无参构造方法。</li>
 <li>一旦定义了构造方法，默认无参构造方法将不存在。</li>
 <li>构造方法有个默认参数this：如Peron的无参构造方法，实际样子-&gt;public Persion(Persion this){}</li>
 </ol>
-<h3 id="3-this：是一个指向当前对象的引用"><a href="#3-this：是一个指向当前对象的引用" class="headerlink" title="3.this：是一个指向当前对象的引用"></a>3.this：是一个指向当前对象的引用</h3><ol>
+<h2 id="3-this：是一个指向当前对象的引用"><a href="#3-this：是一个指向当前对象的引用" class="headerlink" title="3.this：是一个指向当前对象的引用"></a>3.this：是一个指向当前对象的引用</h2><ol>
 <li>可访问当前类中定义的成员变量</li>
 <li>调用当前类中定义的方法（包括构造方法）</li>
 </ol>
-<h3 id="4-继承："><a href="#4-继承：" class="headerlink" title="4.继承："></a>4.继承：</h3><ol>
+<h2 id="4-继承："><a href="#4-继承：" class="headerlink" title="4.继承："></a>4.继承：</h2><ol>
 <li><p>java.lang.Object 是所有类的父类（新建一个类，它默认继承Object类）</p>
 </li>
 <li><p>子类可以定义与父类重名的成员变量（不建议这么做）</p>
@@ -243,13 +243,15 @@
 
 
 
-<h3 id="5-访问权限："><a href="#5-访问权限：" class="headerlink" title="5.访问权限："></a>5.访问权限：</h3><p><code>public</code>：在任何地方都可见<br><code>protected</code>：仅在本包中，自己子类中可见<br><code>default</code>(无修饰符)：仅在本包中可见 （所以无修饰符又叫包私有权限）<br><code>private</code>：仅在自己类中可见</p>
+<h2 id="5-访问权限："><a href="#5-访问权限：" class="headerlink" title="5.访问权限："></a>5.访问权限：</h2><p><code>public</code>：在任何地方都可见<br><code>protected</code>：仅在本包中，自己子类中可见<br><code>default</code>(无修饰符)：仅在本包中可见 （所以无修饰符又叫包私有权限）<br><code>private</code>：仅在自己类中可见</p>
 <p>1.上述4个访问权限都可以修饰类的成员，比如成员变量、成员方法、嵌套类等（即类中的一切）<br>2.只有<code>public</code>、<code>default</code>可以修饰顶级类。（顶级类定义出来就是被使用的，定义成其他类型就无法被使用，失去了存在的意义）<br>3.以上4个访问权限不可修饰局部类，局部变量。（局部变量的作用域仅限在方法里，与访问权限的意义相矛盾）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个java文件中，最外面的那个类叫顶级类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="comment">//嵌套类</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ABC</span></span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 修饰局部变量no</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> no = <span class="number">10</span>; <span class="comment">//会报错</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="6-封装："><a href="#6-封装：" class="headerlink" title="6.封装："></a>6.封装：</h3><ol>
+
+
+<h2 id="6-封装："><a href="#6-封装：" class="headerlink" title="6.封装："></a>6.封装：</h2><ol>
 <li>成员变量private化，提供public的getter、getter方法。<br>toString(): println(对象引用)，当参数为对象引用时，println会调用对象的toString方法</li>
 </ol>
-<h3 id="7-多态"><a href="#7-多态" class="headerlink" title="7.多态:"></a>7.多态:</h3><ol>
+<h2 id="7-多态"><a href="#7-多态" class="headerlink" title="7.多态:"></a>7.多态:</h2><ol>
 <li>什么是多态？<ul>
 <li>具有多种形态</li>
 <li>同一操作 作用于不同对象，产生不同的结果</li>
@@ -266,7 +268,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="8-static"><a href="#8-static" class="headerlink" title="8.static:"></a>8.static:</h3><ol>
+<h2 id="8-static"><a href="#8-static" class="headerlink" title="8.static:"></a>8.static:</h2><ol>
 <li><p>常用来修饰类的成员：成员变量，成员方法，嵌套类</p>
 </li>
 <li><p>被static修饰的变量：类变量，静态变量，静态字段。（放在方法区，只有一份内存）</p>
@@ -528,11 +530,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,7 +542,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
