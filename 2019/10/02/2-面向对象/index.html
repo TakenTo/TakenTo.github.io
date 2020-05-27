@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="面向对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-24T13:20:41.499Z">
+<meta property="og:updated_time" content="2020-05-27T04:50:20.776Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -172,7 +172,7 @@
         <h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><a id="more"></a>
 
 <h2 id="1-包："><a href="#1-包：" class="headerlink" title="1.包："></a>1.包：</h2><ol>
-<li><p>如果公司域名中有非法字符，建议使用下划线（_）来使包名合法化。</p>
+<li><p>如果公司域名中有非法字符，建议使用下划线（_）来使包名合法化。 </p>
 </li>
 <li><p>java编译器为每个源文件自动导入2个包</p>
 <ol>
@@ -190,15 +190,17 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 静态导入举例</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.Math.PI;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用(PI可以直接使用)</span></span><br><span class="line">System.out.println(<span class="number">2</span> * PI);</span><br></pre></td></tr></table></figure>
 
 <p>​     </p>
-</li>
+<h2 id="2-构造方法：Constructor"><a href="#2-构造方法：Constructor" class="headerlink" title="2.构造方法：Constructor"></a>2.构造方法：Constructor</h2></li>
 </ol>
 </li>
-</ol>
-<h2 id="2-构造方法：Constructor"><a href="#2-构造方法：Constructor" class="headerlink" title="2.构造方法：Constructor"></a>2.构造方法：Constructor</h2><ol>
-<li>构造方法无返回值</li>
-<li>如果一个类未定义构造方法，编译器会为其提供一个默认的无参构造方法。</li>
-<li>一旦定义了构造方法，默认无参构造方法将不存在。</li>
-<li>构造方法有个默认参数this：如Peron的无参构造方法，实际样子-&gt;public Persion(Persion this){}</li>
+<li><p>构造方法无返回值</p>
+</li>
+<li><p>如果一个类未定义构造方法，编译器会为其提供一个默认的无参构造方法。</p>
+</li>
+<li><p>一旦定义了构造方法，默认无参构造方法将不存在。</p>
+</li>
+<li><p>构造方法有个默认参数this：如Peron的无参构造方法，实际样子-&gt;public Persion(Persion this){}</p>
+</li>
 </ol>
 <h2 id="3-this：是一个指向当前对象的引用"><a href="#3-this：是一个指向当前对象的引用" class="headerlink" title="3.this：是一个指向当前对象的引用"></a>3.this：是一个指向当前对象的引用</h2><ol>
 <li>可访问当前类中定义的成员变量</li>
@@ -215,7 +217,7 @@
 </li>
 <li><p>子类重写的方法权限必须 ≥ 父类的方法权限</p>
 </li>
-<li><p>子类重写的方法权限返回值类型必须 ≤ 父类的方法返回值类型 </p>
+<li><p>子类重写的方法返回值类型必须 ≤ 父类的方法返回值类型 </p>
 </li>
 </ol>
 <blockquote>
@@ -232,18 +234,12 @@
 </li>
 </ol>
 <ol start="2">
-<li><p>上面改后依然报错，提示 this(name, 0) 必须放在第一行。<br>   因为有参构造方法里面也有 super() 这里第一行也是 super()<br>   导致结果就是此方法里有2个 super()，重复了。删除super()即可</p>
+<li><p>上面改后依然报错，提示 this(name, 0) 必须放在第一行。<br>   因为有参构造方法里面也有 super() 这里第一行也是 super()<br>   导致父类被加载两次，重复了。删除super()即可。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(name, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//关于继承 父类变量私有化</span></span><br><span class="line"><span class="comment">// 问：子类对象的内存中，是否包含父类中定义的private成员变量</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="comment">//提供getter和setter方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student st = <span class="keyword">new</span> Student();</span><br><span class="line">st.name; <span class="comment">//报错</span></span><br><span class="line">st.getName(); <span class="comment">//证明name变量存到了student对象中了。</span></span><br><span class="line"><span class="comment">//private只是做访问控制，让外界不能直接访问name，但不代表name就不存在了。</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="5-访问权限："><a href="#5-访问权限：" class="headerlink" title="5.访问权限："></a>5.访问权限：</h2><p><code>public</code>：在任何地方都可见<br><code>protected</code>：仅在本包中，自己子类中可见<br><code>default</code>(无修饰符)：仅在本包中可见 （所以无修饰符又叫包私有权限）<br><code>private</code>：仅在自己类中可见</p>
-<p>1.上述4个访问权限都可以修饰类的成员，比如成员变量、成员方法、嵌套类等（即类中的一切）<br>2.只有<code>public</code>、<code>default</code>可以修饰顶级类。（顶级类定义出来就是被使用的，定义成其他类型就无法被使用，失去了存在的意义）<br>3.以上4个访问权限不可修饰局部类，局部变量。（局部变量的作用域仅限在方法里，与访问权限的意义相矛盾）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个java文件中，最外面的那个类叫顶级类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="comment">//嵌套类</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ABC</span></span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 修饰局部变量no</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> no = <span class="number">10</span>; <span class="comment">//会报错</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关于继承-父类变量私有化："><a href="#关于继承-父类变量私有化：" class="headerlink" title="关于继承 父类变量私有化："></a>关于继承 父类变量私有化：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 问：子类对象的内存中，是否包含父类中定义的private成员变量</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="comment">//提供getter和setter方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student st = <span class="keyword">new</span> Student();</span><br><span class="line">st.name; <span class="comment">//报错</span></span><br><span class="line">st.getName(); <span class="comment">//证明name变量存到了student对象中了。</span></span><br><span class="line"><span class="comment">//private只是做访问控制，让外界不能直接访问name，但不代表name就不存在了。</span></span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 5.访问权限：</span><br><span class="line"></span><br><span class="line">`<span class="keyword">public</span>`：在任何地方都可见</span><br><span class="line">`<span class="keyword">protected</span>`：仅在本包中，自己子类中可见</span><br><span class="line">`<span class="keyword">default</span>`(无修饰符)：仅在本包中可见 （所以无修饰符又叫包私有权限）</span><br><span class="line">`<span class="keyword">private</span>`：仅在自己类中可见</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>.上述<span class="number">4</span>个访问权限都可以修饰类的成员，比如成员变量、成员方法、嵌套类等（即类中的一切）</span><br><span class="line"><span class="number">2</span>.只有`<span class="keyword">public</span>`、`<span class="keyword">default</span>`可以修饰顶级类。（顶级类定义出来就是被使用的，定义成其他类型就无法被使用，失去了存在的意义）</span><br><span class="line"><span class="number">3</span>.以上<span class="number">4</span>个访问权限不可修饰局部类，局部变量。（局部变量的作用域仅限在方法里，与访问权限的意义相矛盾）</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line"><span class="comment">//一个java文件中，最外面的那个类叫顶级类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">    <span class="comment">//嵌套类</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ABC</span></span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 修饰局部变量no</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> no = <span class="number">10</span>; <span class="comment">//会报错</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 <h2 id="6-封装："><a href="#6-封装：" class="headerlink" title="6.封装："></a>6.封装：</h2><ol>
@@ -543,7 +539,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,7 +547,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">

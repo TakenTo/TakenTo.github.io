@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="5-匿名类、Lambda">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-24T13:20:43.295Z">
+<meta property="og:updated_time" content="2020-05-27T04:55:17.145Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -226,18 +226,14 @@
 
 
 <h2 id="2-Lambda"><a href="#2-Lambda" class="headerlink" title="2.Lambda"></a>2.Lambda</h2><ol>
-<li><p>函数式接口(Functional Interface): 只包含一个抽象方法的接口。</p>
-<p>建议在接口上加 @FunctionalInterface 注解，表示此接口是函数式接口。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Filter</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(String filename)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>函数式接口(Functional Interface): 只包含一个抽象方法的接口。<br>建议在接口上加 @FunctionalInterface 注解，表示此接口是函数式接口。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Filter</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(String filename)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ol>
 <ol start="2">
-<li><p>当匿名类实现的是函数式接口时，可用Lambda表达式进行简化。</p>
-<p>Lambda表达式写法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(参数列表) -&gt; &#123; <span class="comment">//参数列表：函数式接口里面唯一的那个方法的参数列表</span></span><br><span class="line">    <span class="comment">//函数式接口里面唯一的那个方法</span></span><br><span class="line">    <span class="comment">//里面需要写的东西，都写在这里</span></span><br><span class="line">    <span class="comment">//return xxx; 若唯一的那个方法有返回值，这里要写return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>当匿名类实现的是函数式接口时，可用Lambda表达式进行简化。<br>Lambda表达式写法<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(参数列表) -&gt; &#123; <span class="comment">//参数列表：函数式接口里面唯一的那个方法的参数列表</span></span><br><span class="line">    <span class="comment">//函数式接口里面唯一的那个方法</span></span><br><span class="line">    <span class="comment">//里面需要写的东西，都写在这里</span></span><br><span class="line">    <span class="comment">//return xxx; 若唯一的那个方法有返回值，这里要写return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -510,7 +506,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,7 +514,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">

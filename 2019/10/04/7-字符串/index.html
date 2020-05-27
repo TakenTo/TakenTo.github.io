@@ -20,7 +20,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;7-2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;7-3.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;7-4.png">
-<meta property="og:updated_time" content="2020-05-24T13:20:45.300Z">
+<meta property="og:updated_time" content="2020-05-27T04:58:21.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;7-1.png">
   
@@ -177,15 +177,10 @@
         <h1 id="7-字符串"><a href="#7-字符串" class="headerlink" title="7.字符串"></a>7.字符串</h1><a id="more"></a>
 
 <h2 id="1-字符串简介"><a href="#1-字符串简介" class="headerlink" title="1.字符串简介"></a>1.字符串简介</h2><ol>
-<li><p>底层使用<code>char[]</code> 存储字符数据，从<code>java9</code>开始，底层使用<code>byte[]</code>存储字符数据。</p>
-</li>
-<li><p>所有字符串字面量（比如”abc”）都是String类的实例。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"abc"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">String str = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>String对象一旦创建完成，它的字符内容是不可以修改的。        </p>
-</li>
-<li><p>String对象的引用指向是可以修改的。   </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"555"</span>;</span><br><span class="line">s = <span class="string">"666"</span>;  <span class="comment">//s指向了"666"</span></span><br><span class="line">test(s); <span class="comment">//s的指向依然是"666"</span></span><br><span class="line">println(s); <span class="comment">//666</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(String str)</span></span>&#123; <span class="comment">//str指向666</span></span><br><span class="line">    str += <span class="string">"555"</span>; <span class="comment">//str 指向666555</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>底层使用<code>char[]</code> 存储字符数据，从<code>java9</code>开始，底层使用<code>byte[]</code>存储字符数据。</li>
+<li>所有字符串字面量（比如”abc”）都是String类的实例。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"abc"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">String str = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br></pre></td></tr></table></figure></li>
+<li>String对象一旦创建完成，它的字符内容是不可以修改的。  </li>
+<li>String对象的引用指向是可以修改的。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"555"</span>;</span><br><span class="line">s = <span class="string">"666"</span>;  <span class="comment">//s指向了"666"</span></span><br><span class="line">test(s); <span class="comment">//s的指向依然是"666"</span></span><br><span class="line">println(s); <span class="comment">//666</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(String str)</span></span>&#123; <span class="comment">//str指向666</span></span><br><span class="line">    str += <span class="string">"555"</span>; <span class="comment">//str 指向666555</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -496,7 +491,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,7 +499,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">

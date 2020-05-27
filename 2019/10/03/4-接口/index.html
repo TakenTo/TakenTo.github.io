@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="4-接口">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-24T13:07:03.350Z">
+<meta property="og:updated_time" content="2020-05-27T04:55:19.278Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -196,8 +196,7 @@
 </li>
 <li><p>接口也不能实例化。</p>
 </li>
-<li><p>一个类可通过implements关键字实现一个或多个接口。</p>
-<p>一个接口可以通过extends 来继承一个或多个接口（接口可以多继承其他接口）</p>
+<li><p>一个类可通过implements关键字实现一个或多个接口。<br>一个接口可以通过extends 来继承一个或多个接口（接口可以多继承其他接口）</p>
 </li>
 <li><p>实现接口的类必须实现接口中定义的所有抽象方法，除非它是个抽象类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">JiaImpl</span>, <span class="title">BaoImpl</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -222,12 +221,9 @@
 </li>
 </ol>
 <h2 id="5-何时选择抽象类？"><a href="#5-何时选择抽象类？" class="headerlink" title="5.何时选择抽象类？"></a>5.何时选择抽象类？</h2><ol>
-<li><p>在紧密相关的类之间共享代码。(A,B类之间有共同代码D，可把D弄到抽象类中)</p>
-</li>
-<li><p>需要除 public 之外的访问权限。</p>
-</li>
-<li><p>需要定义实例变量，非final的静态变量。</p>
-</li>
+<li>在紧密相关的类之间共享代码。(A,B类之间有共同代码D，可把D弄到抽象类中)</li>
+<li>需要除 public 之外的访问权限。</li>
+<li>需要定义实例变量，非final的静态变量。</li>
 </ol>
 <h2 id="6-何时选择接口？"><a href="#6-何时选择接口？" class="headerlink" title="6.何时选择接口？"></a>6.何时选择接口？</h2><ol>
 <li>不相关的类实现相同的方法。</li>
@@ -249,8 +245,7 @@
 </li>
 </ol>
 <ol start="5">
-<li><p>若一个类 父类定义的抽象方法与接口的默认方法相同时，要求子类实现此抽象方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Eatable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">default</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        print(<span class="string">"eat："</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>若一个类 父类定义的抽象方法与接口的默认方法相同时，要求子类实现此抽象方法。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Eatable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">default</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        print(<span class="string">"eat："</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -509,7 +504,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,7 +512,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
