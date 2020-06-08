@@ -20,7 +20,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-3.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-4.png">
-<meta property="og:updated_time" content="2020-05-27T04:39:50.882Z">
+<meta property="og:updated_time" content="2020-05-28T02:53:19.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-1.png">
   
@@ -188,7 +188,7 @@
 
 <h2 id="3-数据类型"><a href="#3-数据类型" class="headerlink" title="3.数据类型"></a>3.数据类型</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span>: <span class="number">8</span>bit    [-<span class="number">128</span>, <span class="number">127</span>]      默认：<span class="number">0</span>                  </span><br><span class="line"><span class="keyword">short</span>: <span class="number">16</span>bit  [-<span class="number">32768</span>, <span class="number">32767</span>] 默认：<span class="number">0</span></span><br><span class="line"><span class="keyword">int</span>: <span class="number">32</span>bit     [-<span class="number">2</span>^<span class="number">31</span>, <span class="number">2</span>^<span class="number">31</span>-<span class="number">1</span>] 默认：<span class="number">0</span></span><br><span class="line"><span class="keyword">long</span>: <span class="number">64</span>bit    [-<span class="number">2</span>^<span class="number">63</span>, <span class="number">2</span>^<span class="number">63</span>-<span class="number">1</span>] 默认：<span class="number">0L</span></span><br><span class="line"><span class="keyword">float</span>: <span class="number">32</span>bit   [<span class="number">1.40E-45F</span>, <span class="number">3.4028235E38F</span>]       默认：<span class="number">0.0F</span></span><br><span class="line"><span class="keyword">double</span>: <span class="number">64</span>bit  [<span class="number">4.9E-324</span>, <span class="number">1.7976931348623157</span>E] 默认：<span class="number">0.0</span></span><br><span class="line"><span class="keyword">boolean</span>: <span class="keyword">true</span> <span class="keyword">false</span>  默认：<span class="keyword">false</span></span><br><span class="line"><span class="keyword">char</span>: <span class="number">16</span>bit的Unicode字符 默认：<span class="string">'\u0000'</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Math类的常用方法</span></span><br><span class="line">Math.abs(-<span class="number">100</span>);  <span class="comment">// 求绝对值 100</span></span><br><span class="line">Math.max();      <span class="comment">// 求最大值 200</span></span><br><span class="line">Math.min();      <span class="comment">// 求最小值 100</span></span><br><span class="line">Math.floor();    <span class="comment">// 向下取整 3.0</span></span><br><span class="line">Math.ceil();     <span class="comment">// 向上取整 4.0</span></span><br><span class="line">Math.round();    <span class="comment">// 四舍五入 4</span></span><br><span class="line">Math.pow();      <span class="comment">// 4的2次方 16.0</span></span><br><span class="line">Math.sqrt();     <span class="comment">// 16的平方根 4.0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Math类的常用方法</span></span><br><span class="line">Math.abs(-<span class="number">100</span>);     <span class="comment">// 求绝对值 100</span></span><br><span class="line">Math.max(<span class="number">22</span>, <span class="number">100</span>);  <span class="comment">// 求最大值 100</span></span><br><span class="line">Math.min(<span class="number">22</span>, <span class="number">100</span>);  <span class="comment">// 求最小值 22</span></span><br><span class="line">Math.floor(<span class="number">3.5</span>);    <span class="comment">// 向下取整 3.0</span></span><br><span class="line">Math.ceil(<span class="number">3.5</span>);     <span class="comment">// 向上取整 4.0</span></span><br><span class="line">Math.round(<span class="number">3.5</span>);    <span class="comment">// 四舍五入 4</span></span><br><span class="line">Math.pow(<span class="number">4</span>, <span class="number">2</span>);     <span class="comment">// 4的2次方 16.0</span></span><br><span class="line">Math.sqrt(<span class="number">16</span>);      <span class="comment">// 16的平方根 4.0</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -483,7 +483,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -491,7 +495,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
