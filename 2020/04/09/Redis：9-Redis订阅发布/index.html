@@ -19,7 +19,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;9-1.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;9-2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;9-3.png">
-<meta property="og:updated_time" content="2020-06-08T09:07:14.306Z">
+<meta property="og:updated_time" content="2020-06-08T10:10:52.487Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;9-1.png">
   
@@ -174,51 +174,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="订阅发布简介："><a href="#订阅发布简介：" class="headerlink" title="订阅发布简介："></a>订阅发布简介：</h1><a id="more"></a>
-<p>Redis发布订阅（pub/sub）是一种消息通信模式：发送者(pub)发送消息，接收者(sub)接收消息。</p>
-<p>Redis客户端可以订阅任意数量的频道。</p>
-<p>订阅/发布消息图：</p>
-<p>消息发送者、消息接收者、频道（图中的Redis Server）</p>
-<p><img src="/images/redis/9-1.png" alt="加载图片！"></p>
-<p>下图展示了频道channel1，与订阅这个频道的三个客户端（client2、client5、client1）之间的关系。</p>
-<p><img src="/images/redis/9-2.png" alt="加载图片！"></p>
-<p>当有新消息通过PUBLISH命令发送给频道channel1时，此消息就会被发送给订阅它的三个客户端。</p>
-<p><img src="/images/redis/9-3.png" alt="加载图片！"></p>
+<p>Redis发布订阅（pub/sub）是一种消息通信模式：发送者(pub)发送消息，接收者(sub)接收消息。<br>Redis客户端可以订阅任意数量的频道。   </p>
+<p>订阅/发布消息图：<br>消息发送者、消息接收者、频道（图中的Redis Server）<br><img src="/images/redis/9-1.png" alt="加载图片！"></p>
+<p>下图展示了频道channel1，与订阅这个频道的三个客户端（client2、client5、client1）之间的关系。<br><img src="/images/redis/9-2.png" alt="加载图片！"></p>
+<p>当有新消息通过PUBLISH命令发送给频道channel1时，此消息就会被发送给订阅它的三个客户端。<br><img src="/images/redis/9-3.png" alt="加载图片！"></p>
 <blockquote>
 <p>命令</p>
 </blockquote>
-<p>这些命令被广泛用于构建即时通信应用，如网络聊天室(chatroom)、实时广播、实时提醒等。</p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>[PSUBSCRIBE pattern [pattern …]]</td>
-<td>订阅一个或多个符合给定模式的频道。</td>
-</tr>
-<tr>
-<td>PUBSUB subcommand [argument [argument …]]</td>
-<td>查看订阅与发布系统状态。</td>
-</tr>
-<tr>
-<td>PUBLISH channel message</td>
-<td>将信息发送到指定的频道。</td>
-</tr>
-<tr>
-<td>PUNSUBSCRIBE [pattern [pattern …]]</td>
-<td>退订所有给定模式的频道。</td>
-</tr>
-<tr>
-<td>SUBSCRIBE channel [channel …]</td>
-<td>订阅给定的一个或多个频道的信息。</td>
-</tr>
-<tr>
-<td>UNSUBSCRIBE [channel [channel …]]</td>
-<td>指退订给定的频道。</td>
-</tr>
-</tbody></table>
+<p>这些命令被广泛用于构建即时通信应用，如网络聊天室(chatroom)、实时广播、实时提醒等。<br>| 命令                                        | 描述                               |<br>| ——————————————- | ———————————- |<br>| [PSUBSCRIBE pattern [pattern …]]         | 订阅一个或多个符合给定模式的频道。 |<br>| PUBSUB subcommand [argument [argument …]] | 查看订阅与发布系统状态。           |<br>| PUBLISH channel message                     | 将信息发送到指定的频道。           |<br>| PUNSUBSCRIBE [pattern [pattern …]]        | 退订所有给定模式的频道。           |<br>| SUBSCRIBE channel [channel …]             | 订阅给定的一个或多个频道的信息。   |<br>| UNSUBSCRIBE [channel [channel …]]         | 指退订给定的频道。                 |</p>
 <blockquote>
 <p>测试</p>
 </blockquote>
@@ -230,20 +193,13 @@
 <p>原理</p>
 </blockquote>
 <ul>
-<li><p>Redis是使用C实现的，通过分析 Redis 源码里的 <code>pubsub.c</code> 文件，了解发布和订阅机制的底层实现，籍此加深对 Redis 的理解。</p>
-</li>
-<li><p>Redis 通过 <code>publish</code> 、<code>subscribe</code> 和 <code>psubscribe</code> 等命令实现发布和订阅功能。</p>
-</li>
-<li><p>通过 <code>SUBSCRIBE</code> 命令订阅某频道后，<code>redis-server</code> 里维护了一个字典，字典的键就是一个个 channel (频道)，而字典的值则是一个链表，链表中保存了所有订阅这个 <code>channel</code> 的客户端（即保存哪些人订阅了此频道）。<code>SUBSCRIBE</code> 命令的关键，就是将客户端添加到给定 <code>channel</code> 的订阅链表中。</p>
-</li>
-<li><p>通过 <code>PUBLISH</code> 命令向订阅者发送消息，<code>redis-server</code> 会使用给定的频道作为键，在它所维护的 <code>channel</code> 字典中查找记录了订阅这个频道的所有客户端的链表，遍历这个链表，将消息发布给所有订阅者。</p>
-</li>
-<li><p>Pub/Sub 从字面上理解就是发布（Publish）与订阅（Subscribe），在Redis中，你可以设定对某一个 <code>key</code>值进行消息发布及消息订阅，当一个<code>key</code>值上进行了消息发布后，所有订阅它的客户端都会收到相应 的消息。这一功能明显的用法就是用作实时消息系统，比如普通的即时聊天，群聊等功能。</p>
-</li>
+<li>Redis是使用C实现的，通过分析 Redis 源码里的 <code>pubsub.c</code> 文件，了解发布和订阅机制的底层实现，籍此加深对 Redis 的理解。   </li>
+<li>Redis 通过 <code>publish</code> 、<code>subscribe</code> 和 <code>psubscribe</code> 等命令实现发布和订阅功能。   </li>
+<li>通过 <code>SUBSCRIBE</code> 命令订阅某频道后，<code>redis-server</code> 里维护了一个字典，字典的键就是一个个 channel (频道)，而字典的值则是一个链表，链表中保存了所有订阅这个 <code>channel</code> 的客户端（即保存哪些人订阅了此频道）。<code>SUBSCRIBE</code> 命令的关键，就是将客户端添加到给定 <code>channel</code> 的订阅链表中。   </li>
+<li>通过 <code>PUBLISH</code> 命令向订阅者发送消息，<code>redis-server</code> 会使用给定的频道作为键，在它所维护的 <code>channel</code> 字典中查找记录了订阅这个频道的所有客户端的链表，遍历这个链表，将消息发布给所有订阅者。   </li>
+<li>Pub/Sub 从字面上理解就是发布（Publish）与订阅（Subscribe），在Redis中，你可以设定对某一个 <code>key</code>值进行消息发布及消息订阅，当一个<code>key</code>值上进行了消息发布后，所有订阅它的客户端都会收到相应 的消息。这一功能明显的用法就是用作实时消息系统，比如普通的即时聊天，群聊等功能。  </li>
 </ul>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>1、实时聊天系统</p>
-<p>2、实时消息系统</p>
-<p>3、订阅、关注系统<br>其实更多时候都是使用MQ（消息中间件）来做的。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>1、实时聊天系统<br>2、实时消息系统<br>3、订阅、关注系统<br>其实更多时候都是使用MQ（消息中间件）来做的。</p>
 
       
 
@@ -499,15 +455,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -21,7 +21,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;10-3.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;10-4.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;10-5.png">
-<meta property="og:updated_time" content="2020-06-08T09:09:44.752Z">
+<meta property="og:updated_time" content="2020-06-08T10:17:06.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;10-1.png">
   
@@ -177,7 +177,7 @@
       
         <h1 id="1-主从复制"><a href="#1-主从复制" class="headerlink" title="1.主从复制"></a>1.主从复制</h1><a id="more"></a>
 
-<p><strong>1.1.概念：</strong></p>
+<p><strong>1.1.概念：</strong>   </p>
 <ul>
 <li>主从复制，是指将一台Redis服务器的数据，复制到其他的Redis服务器。前者称为主节点(master/leader)，后者称为从节点(slave/follower)；</li>
 <li>数据的复制是单向的，只能由主节点到从节点。</li>
@@ -185,143 +185,117 @@
 </ul>
 <p>主从复制，读写分离！80%的情况下都是进行读操作，用于减缓服务器的压力，架构中经常使用。至少要保证<code>一主二从</code>，在公司中，主从复制是必须要使用的。</p>
 <p> <strong>默认情况下，每台Redis服务器都是主节点</strong>。且一个主节点可以有多个从节点(或没有从节点)，但一个从节点只能有一个主节点。 （一个父亲可有多个儿子，儿子只有一个父亲）</p>
-<p><strong>1.2.主从复制的主要作用：</strong></p>
+<p><strong>1.2.主从复制的主要作用：</strong>   </p>
 <ol>
-<li><p>数据冗余：主从复制实现了数据的热备份，是持久化之外的一种数据冗余方式。</p>
-</li>
-<li><p>故障恢复：当主节点出现问题时，可以由从节点提供服务，实现快速的故障恢复；实际上是一种服务的冗余。</p>
-</li>
-<li><p>负载均衡：在主从复制的基础上，配合读写分离，可以由主节点提供写服务，由从节点提供读服务（即写Redis数据时应用连接主节点，读Redis数据时应用连接从节点），分担服务器负载；尤其是在写少读多的场景下，通过多个从节点分担读负载，可以大大提高Redis服务器的并发量。</p>
-</li>
-<li><p>高可用基石：除了上述作用以外，主从复制还是哨兵和集群能够实施的基础，因此说主从复制是Redis高可用的基础。(高可用大部分是说集群)</p>
-</li>
+<li>数据冗余：主从复制实现了数据的热备份，是持久化之外的一种数据冗余方式。   </li>
+<li>故障恢复：当主节点出现问题时，可以由从节点提供服务，实现快速的故障恢复；实际上是一种服务的冗余。   </li>
+<li>负载均衡：在主从复制的基础上，配合读写分离，可以由主节点提供写服务，由从节点提供读服务（即写Redis数据时应用连接主节点，读Redis数据时应用连接从节点），分担服务器负载；尤其是在写少读多的场景下，通过多个从节点分担读负载，可以大大提高Redis服务器的并发量。    </li>
+<li>高可用基石：除了上述作用以外，主从复制还是哨兵和集群能够实施的基础，因此说主从复制是Redis高可用的基础。(高可用大部分是说集群)   </li>
 </ol>
-<p> <strong>1.3.一般来说，要将Redis运用于工程项目中，只使用一台Redis是万万不能的，原因如下：</strong> </p>
+<p> <strong>1.3.一般来说，要将Redis运用于工程项目中，只使用一台Redis是万万不能的，原因如下：</strong>    </p>
 <ol>
-<li><p>从结构上，单个Redis服务器会发生单点故障，并且一台服务器需要处理所有的请求负载，压力较大。服务器宕机就凉凉了。</p>
-</li>
-<li><p>从容量上，单个Redis服务器内存容量有限，就算一台Redis服务器内存容量为256G，也不能将所有内存用作Redis存储内存。一般来说，单台Redis最大使用内存不应该超过20G（超过了就要考虑集群）。</p>
-<p>电商网站上的商品，一般都是一次上传，无数次浏览的，说专业点也就是”多读少写”。对于这种场景，我们可以使如下这种架构： </p>
-</li>
+<li>从结构上，单个Redis服务器会发生单点故障，并且一台服务器需要处理所有的请求负载，压力较大。服务器宕机就凉凉了。   </li>
+<li>从容量上，单个Redis服务器内存容量有限，就算一台Redis服务器内存容量为256G，也不能将所有内存用作Redis存储内存。一般来说，单台Redis最大使用内存不应该超过20G（超过了就要考虑集群）。<br>电商网站上的商品，一般都是一次上传，无数次浏览的，说专业点也就是”多读少写”。对于这种场景，我们可以使如下这种架构：<br><img src="/images/redis/10-1.png" alt="加载图片！"></li>
 </ol>
-<p><img src="/images/redis/10-1.png" alt="加载图片！"></p>
-<p> <strong>1.3.查看当前库信息：</strong></p>
+<p> <strong>1.3.查看当前库信息：</strong>   </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; info replication   <span class="comment"># 查看当前库的信息</span></span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:master  					   <span class="comment"># 角色：master表示是主机</span></span><br><span class="line">connected_slaves:0 				   <span class="comment"># 从机个数</span></span><br><span class="line">master_replid:b63c90e6c501143759cb0e7f450bd1eb0c70882a</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:0</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:0</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:0</span><br><span class="line">repl_backlog_histlen:0</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="2-集群环境配置"><a href="#2-集群环境配置" class="headerlink" title="2.集群环境配置"></a>2.集群环境配置</h3><p>只需配置从库，不用配置主库。(因为Reedis默认自己就是主库，所以要通过配置文件，让其变为从库)</p>
-<p>1.复制3份配置文件，用作从机的配置文件。</p>
+<h3 id="2-集群环境配置"><a href="#2-集群环境配置" class="headerlink" title="2.集群环境配置"></a>2.集群环境配置</h3><p>只需配置从库，不用配置主库。(因为Reedis默认自己就是主库，所以要通过配置文件，让其变为从库)<br>1.复制3份配置文件，用作从机的配置文件。   </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务器配置文件 我复制到了myconfig目录下</span></span><br><span class="line"><span class="built_in">cd</span> myconfig/</span><br><span class="line">cp redis.conf redis79.conf</span><br><span class="line">cp redis.conf redis80.conf</span><br><span class="line">cp redis.conf redis81.conf</span><br><span class="line"></span><br><span class="line">ls</span><br><span class="line">redis.conf redis79.conf redis80.conf redis81.conf</span><br></pre></td></tr></table></figure>
 
-<p>2.修改配置文件（以redis80.conf为例）</p>
-<p>因为在一台服务器上运行多个Redis服务端，为了使他们之间端口号以及生成的文件不出现冲突，所以要修改每个配置文件的以下内容。（这里只是为了测试方便，正常情况下是多机多服务）</p>
+
+<p>2.修改配置文件（以redis80.conf为例）<br>因为在一台服务器上运行多个Redis服务端，为了使他们之间端口号以及生成的文件不出现冲突，所以要修改每个配置文件的以下内容。（这里只是为了测试方便，正常情况下是多机多服务）     </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">port 6380      <span class="comment"># 修改端口号</span></span><br><span class="line">daemonize yes  <span class="comment"># 打开后台运行</span></span><br><span class="line">pidfile /var/run/redis_6380.pid  <span class="comment"># 存储pid的文件</span></span><br><span class="line">logfile <span class="string">"6380.log"</span>     <span class="comment"># 日志文件</span></span><br><span class="line">dbfilename dump80.rdb  <span class="comment"># 库文件</span></span><br></pre></td></tr></table></figure>
 
-<p>3.分别在不同的终端里启动Redis（以redis80.conf为例）</p>
+
+<p>3.分别在不同的终端里启动Redis（以redis80.conf为例）  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis-server myconfig/redis80.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动完三个Redis后。可通过下列命令查看进程信息。</span></span><br><span class="line">ps -ef|grep redis</span><br></pre></td></tr></table></figure>
+
 
 <p>4.分别在不同的终端里，用客户端连接Redis服务器（以redis80.conf对应的服务器为例）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -p 6380</span><br></pre></td></tr></table></figure>
 
-<p>5.<strong>主一从二</strong>配置</p>
+<p>5.<strong>主一从二</strong>配置  </p>
 <blockquote>
 <p> 默认情况下，每台Redis服务器都是主节点。</p>
 <p>所以一般情况下，只用配置从机就可以。</p>
 </blockquote>
-<p> <strong>真实开发中，主从配置应该在配置文件中配置，这样的话是永久的，这里使用的是命令，只是暂时的！</strong> </p>
-<p>如何配置从机？ - 认爹。</p>
-<p>说明：一主（79），二从（80，81）</p>
-<p>从机配置（以redis81.conf为例）</p>
+<p> <strong>真实开发中，主从配置应该在配置文件中配置，这样的话是永久的，这里使用的是命令，只是暂时的！</strong><br>如何配置从机？ - 认爹。<br>说明：一主（79），二从（80，81）<br>从机配置（以redis81.conf为例）   </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># slaveof host port</span></span><br><span class="line">127.0.0.1:6381&gt; slaveof 127.0.0.1 6379  <span class="comment"># 认爹</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前库的信息</span></span><br><span class="line">127.0.0.1:6381&gt; info replication  </span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:slave  	       <span class="comment"># 角色：slave表示是从机</span></span><br><span class="line">master_host:127.0.0.1  <span class="comment"># 主机地址 </span></span><br><span class="line">master_port:6379       <span class="comment"># 主机端口号</span></span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br></pre></td></tr></table></figure>
 
-<p>查看主机信息：</p>
+
+<p>查看主机信息：  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; info replication  <span class="comment"># 查看当前库的信息</span></span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:master</span><br><span class="line">connected_slaves:2         <span class="comment">#多了两个从机</span></span><br><span class="line">slave0:ip=127.0.0.1,port=6380,state=online,offset=210,lag=0</span><br><span class="line">slave1:ip=127.0.0.1,port=6381,state=online,offset=210,lag=1</span><br><span class="line">master_replid:3cfc9f3aa664a35ec4130b6baf1529bb7523b822</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:210</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="修改配置文件进行配置"><a href="#修改配置文件进行配置" class="headerlink" title="修改配置文件进行配置"></a>修改配置文件进行配置</h4><p><strong>真实开发中的配置方式</strong>：修改从机的<code>redis.conf</code>配置文件。</p>
+
+<h4 id="修改配置文件进行配置"><a href="#修改配置文件进行配置" class="headerlink" title="修改配置文件进行配置"></a>修改配置文件进行配置</h4><p><strong>真实开发中的配置方式</strong>：修改从机的<code>redis.conf</code>配置文件。  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置主机ip和端口</span></span><br><span class="line"><span class="comment"># replicaof &lt;masterip&gt; &lt;masterport&gt;</span></span><br><span class="line">replicaof 127.0.0.1 6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果主机有密码，则还需配置密码</span></span><br><span class="line"><span class="comment"># masterauth &lt;master-password&gt;</span></span><br><span class="line">masterauth 123456</span><br></pre></td></tr></table></figure>
 
 
 
 <h3 id="3-主从复制细节-读写分离"><a href="#3-主从复制细节-读写分离" class="headerlink" title="3.主从复制细节 - 读写分离"></a>3.主从复制细节 - 读写分离</h3><ol>
-<li><p>主机可以写，从机不能写只能读。（主机中的所有信息和数据，都会自动被从机保存）</p>
-</li>
-<li><p>当主机断开连接，从机依旧连接到主机，但是没有写操作，如果主机回来了，从机依旧可以直接获取到主机写的信息。</p>
-</li>
-<li><p>当从机断开连接，主机进行了写操作，此时从机再连接回来，从机还是可以读取到断开这段时间主机写的信息。</p>
-</li>
-<li><p>如果是使用命令行来配置主从的话，主机重启之后依然是主机。但是从机重启之后不再是从机，需要从新配置，一旦变回从机，依旧可以从主机中获取信息。（因为默认情况下，每台Redis服务器都是主机）</p>
-</li>
+<li>主机可以写，从机不能写只能读。（主机中的所有信息和数据，都会自动被从机保存）  </li>
+<li>当主机断开连接，从机依旧连接到主机，但是没有写操作，如果主机回来了，从机依旧可以直接获取到主机写的信息。  </li>
+<li>当从机断开连接，主机进行了写操作，此时从机再连接回来，从机还是可以读取到断开这段时间主机写的信息。  </li>
+<li>如果是使用命令行来配置主从的话，主机重启之后依然是主机。但是从机重启之后不再是从机，需要从新配置，一旦变回从机，依旧可以从主机中获取信息。（因为默认情况下，每台Redis服务器都是主机）  </li>
 </ol>
 <h3 id="4-从机复制原理"><a href="#4-从机复制原理" class="headerlink" title="4.从机复制原理"></a>4.从机复制原理</h3><p><code>Slave</code> 启动成功连接到 <code>master</code>后会发送一个<code>sync</code>同步命令。<br><code>Master</code> 接到命令，启动后台的存盘进程，同时收集所有接收到的用于修改数据集命令，在后台进程执行完毕之后，<strong><code>master</code>将传送整个数据文件到<code>slave</code>，并完成一次完全同步。</strong><br><strong>全量复制</strong>：而<code>slave</code>服务在接收到数据库文件数据后，将其存盘并加载到内存中。<br><strong>增量复制</strong>：<code>Master</code> 继续将新的所有收集到的修改命令依次传给<code>slave</code>，完成同步。<br>但是只要是重新连接<code>master</code>，一次完全同步（全量复制）将被自动执行！ (我们的数据一定可以在从机中看到！)</p>
-<p><strong>链表式主从复制</strong>：</p>
-<p>上一个主节点 连接下一个从节点。也能完成主从复制。</p>
-<p>但是中间哪个节点崩了，它后面的所有从机就都无效了。</p>
-<p><img src="/images/redis/10-2.png" alt="加载图片！"></p>
-<h4 id="上面的命令行配置，与链式配置，在工作中都不会使用。"><a href="#上面的命令行配置，与链式配置，在工作中都不会使用。" class="headerlink" title="上面的命令行配置，与链式配置，在工作中都不会使用。"></a>上面的命令行配置，与链式配置，在工作中都不会使用。</h4><h3 id="5-哨兵模式"><a href="#5-哨兵模式" class="headerlink" title="5.哨兵模式"></a>5.哨兵模式</h3><p><strong>如果主机挂了，那么谁来当爹呢？</strong></p>
+<p><strong>链表式主从复制</strong>：<br>上一个主节点 连接下一个从节点。也能完成主从复制。<br>但是中间哪个节点崩了，它后面的所有从机就都无效了。<br><img src="/images/redis/10-2.png" alt="加载图片！"></p>
+<h4 id="上面的命令行配置，与链式配置，在工作中都不会使用。"><a href="#上面的命令行配置，与链式配置，在工作中都不会使用。" class="headerlink" title="上面的命令行配置，与链式配置，在工作中都不会使用。"></a>上面的命令行配置，与链式配置，在工作中都不会使用。</h4><h3 id="5-哨兵模式"><a href="#5-哨兵模式" class="headerlink" title="5.哨兵模式"></a>5.哨兵模式</h3><p><strong>如果主机挂了，那么谁来当爹呢？</strong>    </p>
 <ul>
 <li>手动配置（在从机中选一个当爹，并进行配置）</li>
 <li>哨兵模式！（不用手动配置的，自动选举爹模式）</li>
 </ul>
 <blockquote>
-<p>概述</p>
+<p>概述   </p>
 </blockquote>
 <ol>
 <li>主从切换技术的方法是：当主服务器宕机后，需要手动把一台从服务器切换为主服务器，这就需要人工干预，费事费力，还会造成一段时间内服务不可用。这不是一种推荐的方式，更多时候，我们优先考虑<code>哨兵模式</code>。Redis从2.8开始正式提供了Sentinel（哨兵） 架构来解决这个问题。</li>
 <li>谋权篡位的自动版，能够后台监控主机是否故障，如果故障了根据投票数<code>自动将从库转换为主库</code>。</li>
-<li>哨兵模式是一种特殊的模式，首先Redis提供了哨兵的命令，哨兵是一个独立的进程，作为进程，它会独立运行。其原理是<strong>哨兵通过发送命令，等待Redis服务器响应，从而监控运行的多个Redis实例</strong>。</li>
+<li>哨兵模式是一种特殊的模式，首先Redis提供了哨兵的命令，哨兵是一个独立的进程，作为进程，它会独立运行。其原理是<strong>哨兵通过发送命令，等待Redis服务器响应，从而监控运行的多个Redis实例</strong>。<br><img src="/images/redis/10-3.png" alt="加载图片！"></li>
 </ol>
-<p><img src="/images/redis/10-3.png" alt="加载图片！"></p>
-<p>这里的哨兵有两个作用：</p>
+<p>这里的哨兵有两个作用：  </p>
 <ol>
-<li><p>通过发送命令，让Redis服务器返回监控其运行状态，包括主服务器和从服务器。</p>
-</li>
-<li><p>当哨兵监测到<code>master</code>宕机，会自动将<code>slave</code>切换成<code>master</code>，然后通过发布订阅模式通知其他的从服<br>务器，修改配置文件，让它们切换主机。</p>
-</li>
+<li>通过发送命令，让Redis服务器返回监控其运行状态，包括主服务器和从服务器。  </li>
+<li>当哨兵监测到<code>master</code>宕机，会自动将<code>slave</code>切换成<code>master</code>，然后通过发布订阅模式通知其他的从服<br>务器，修改配置文件，让它们切换主机。   </li>
 </ol>
-<p><strong>多哨兵模式：</strong></p>
-<p>一个哨兵进程对Redis服务器进行监控，如果这个哨兵挂了，可能会出现问题。为此，可以使用多个哨兵进行监控。各个哨兵之间还会进行监控，这样就形成了多哨兵模式。（类似于Eureka集群）</p>
+<p><strong>多哨兵模式：</strong><br>一个哨兵进程对Redis服务器进行监控，如果这个哨兵挂了，可能会出现问题。为此，可以使用多个哨兵进行监控。各个哨兵之间还会进行监控，这样就形成了多哨兵模式。（类似于Eureka集群）</p>
 <p><img src="/images/redis/10-4.png" alt="加载图片！"></p>
 <p>假设主服务器宕机，哨兵1先检测到这个结果，系统并不会马上进行failover过程，仅仅是哨兵1主观的认为主服务器不可用，这个现象成为<code>主观下线</code>。</p>
 <p>当后面的哨兵也检测到主服务器不可用，并且数量达到一定值时，这时可以认为主服务器不可用了。那么哨兵之间就会进行一次投票，投票的结果由一个哨兵发起，进行failover[故障转移]操作（票数高的作为新的主机）。切换主机成功后，就会通过发布订阅模式，让各个哨兵把自己监控的 从服务器 实现切换主机，这个过程称为<code>客观下线</code>。</p>
-<h3 id="测试哨兵"><a href="#测试哨兵" class="headerlink" title="测试哨兵"></a>测试哨兵</h3><p><strong>1、哨兵程序位置</strong></p>
-<p><img src="/images/redis/10-5.png" alt="加载图片！"></p>
-<p><strong>2、哨兵程序配置</strong></p>
-<p>我们现在目前的状态是一主（6379）二从（6380、6381）。 因此哨兵也可以选择3个 。</p>
+<h3 id="测试哨兵"><a href="#测试哨兵" class="headerlink" title="测试哨兵"></a>测试哨兵</h3><p><strong>1、哨兵程序位置</strong><br><img src="/images/redis/10-5.png" alt="加载图片！">   </p>
+<p><strong>2、哨兵程序配置</strong><br>我们现在目前的状态是一主（6379）二从（6380、6381）。 因此哨兵也可以选择3个 。</p>
 <p>分别给<code>6379</code>、<code>6380</code>、<code>6381</code>配置一个sentinel.conf。即<code>sentinel26379.conf</code>、<code>sentinel26380.conf</code>、<code>sentinel26381.conf</code>。</p>
-<p>这里以<code>sentinel26380.conf</code>为例进行配置： </p>
-<p>1、我们到刚刚复制的redis.conf目录下（myconfig）新建一个<code>sentinel26380.conf</code>文件。</p>
-<p>配置如下信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">port 26379       <span class="comment"># 哨兵端口</span></span><br><span class="line">daemonize yes    <span class="comment"># 守护态运行</span></span><br><span class="line">logfile <span class="string">"26379.log"</span>  <span class="comment"># 日志文件</span></span><br><span class="line">dir <span class="string">"./"</span>         <span class="comment"># 哨兵工作目录</span></span><br><span class="line"><span class="built_in">bind</span> 127.0.0.1   <span class="comment"># 绑定ip 多个ip使用空格隔开</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 告诉sentinel去监听地址为ip:port的一个master，这里的master-name可以自定义，quorum是一个数字，指明当有多少个sentinel认为一个master失效时，master才算真正失效（由于我们有3个哨兵，这里可填2）</span></span><br><span class="line"><span class="comment"># sentinel monitor &lt;master-name&gt; &lt;ip&gt; &lt;redis-port&gt; &lt;quorum&gt;</span></span><br><span class="line">sentinel monitor mymaster 127.0.0.1 6379 2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置连接master和slave时的密码，注意的是sentinel不能分别为master和slave设置不同的密码，因此master和slave的密码应该设置相同。如果没有密码，可以不写。</span></span><br><span class="line"><span class="comment"># sentinel auth-pass &lt;master-name&gt; &lt;password&gt;</span></span><br><span class="line">sentinel auth-pass mymaster 123456</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定多少毫秒之后 主节点没有应答哨兵sentinel 此时 哨兵主观上认为主节点下线 默认30秒,单位毫秒</span></span><br><span class="line"><span class="comment"># sentinel down-after-milliseconds &lt;master-name&gt; &lt;milliseconds&gt; </span></span><br><span class="line">sentinel down-after-milliseconds mymaster 30000</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个配置项指定了在发生failover主备切换时最多可以有多少个slave同时对新的master进行同步，这个数字越小，完成failover所需的时间就越长，但是如果这个数字越大，就意味着越多的slave因为replication而不可用。可以通过将这个值设为 1 来保证每次只有一个slave 处于不能处理命令请求的状态。</span></span><br><span class="line"><span class="comment"># sentinel parallel-syncs &lt;master-name&gt; &lt;numslaves&gt; </span></span><br><span class="line">sentinel parallel-syncs mymaster 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 故障转移的超时时间 failover-timeout 可以用在以下这些方面： </span></span><br><span class="line"><span class="comment"># 1.同一个sentinel对同一个master两次failover之间的间隔时间。</span></span><br><span class="line"><span class="comment"># 2.当一个slave从一个错误的master那里同步数据开始计算时间。直到slave被纠正为向正确的master那里同步数据时。</span></span><br><span class="line"><span class="comment"># 3.当想要取消一个正在进行的failover所需要的时间。  </span></span><br><span class="line"><span class="comment"># 4.当进行failover时，配置所有slaves指向新的master所需的最大时间。不过，即使过了这个超时，slaves依然会被正确配置为指向master，但是就不按parallel-syncs所配置的规则来了</span></span><br><span class="line"><span class="comment"># 默认三分钟,单位毫秒</span></span><br><span class="line"><span class="comment"># sentinel failover-timeout &lt;master-name&gt; &lt;milliseconds&gt;</span></span><br><span class="line">sentinel failover-timeout 180000</span><br></pre></td></tr></table></figure>
+<p>这里以<code>sentinel26380.conf</code>为例进行配置：<br>1、我们到刚刚复制的redis.conf目录下（myconfig）新建一个<code>sentinel26380.conf</code>文件。<br>配置如下信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">port 26379       <span class="comment"># 哨兵端口</span></span><br><span class="line">daemonize yes    <span class="comment"># 守护态运行</span></span><br><span class="line">logfile <span class="string">"26379.log"</span>  <span class="comment"># 日志文件</span></span><br><span class="line">dir <span class="string">"./"</span>         <span class="comment"># 哨兵工作目录</span></span><br><span class="line"><span class="built_in">bind</span> 127.0.0.1   <span class="comment"># 绑定ip 多个ip使用空格隔开</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 告诉sentinel去监听地址为ip:port的一个master，这里的master-name可以自定义，quorum是一个数字，指明当有多少个sentinel认为一个master失效时，master才算真正失效（由于我们有3个哨兵，这里可填2）</span></span><br><span class="line"><span class="comment"># sentinel monitor &lt;master-name&gt; &lt;ip&gt; &lt;redis-port&gt; &lt;quorum&gt;</span></span><br><span class="line">sentinel monitor mymaster 127.0.0.1 6379 2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置连接master和slave时的密码，注意的是sentinel不能分别为master和slave设置不同的密码，因此master和slave的密码应该设置相同。如果没有密码，可以不写。</span></span><br><span class="line"><span class="comment"># sentinel auth-pass &lt;master-name&gt; &lt;password&gt;</span></span><br><span class="line">sentinel auth-pass mymaster 123456</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定多少毫秒之后 主节点没有应答哨兵sentinel 此时 哨兵主观上认为主节点下线 默认30秒,单位毫秒</span></span><br><span class="line"><span class="comment"># sentinel down-after-milliseconds &lt;master-name&gt; &lt;milliseconds&gt; </span></span><br><span class="line">sentinel down-after-milliseconds mymaster 30000</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个配置项指定了在发生failover主备切换时最多可以有多少个slave同时对新的master进行同步，这个数字越小，完成failover所需的时间就越长，但是如果这个数字越大，就意味着越多的slave因为replication而不可用。可以通过将这个值设为 1 来保证每次只有一个slave 处于不能处理命令请求的状态。</span></span><br><span class="line"><span class="comment"># sentinel parallel-syncs &lt;master-name&gt; &lt;numslaves&gt; </span></span><br><span class="line">sentinel parallel-syncs mymaster 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 故障转移的超时时间 failover-timeout 可以用在以下这些方面： </span></span><br><span class="line"><span class="comment"># 1.同一个sentinel对同一个master两次failover之间的间隔时间。</span></span><br><span class="line"><span class="comment"># 2.当一个slave从一个错误的master那里同步数据开始计算时间。直到slave被纠正为向正确的master那里同步数据时。</span></span><br><span class="line"><span class="comment"># 3.当想要取消一个正在进行的failover所需要的时间。  </span></span><br><span class="line"><span class="comment"># 4.当进行failover时，配置所有slaves指向新的master所需的最大时间。不过，即使过了这个超时，slaves依然会被正确配置为指向master，但是就不按parallel-syncs所配置的规则来了</span></span><br><span class="line"><span class="comment"># 默认三分钟,单位毫秒</span></span><br><span class="line"><span class="comment"># sentinel failover-timeout &lt;master-name&gt; &lt;milliseconds&gt;</span></span><br><span class="line">sentinel failover-timeout 180000</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">此时，哨兵模式配置完毕，此外还可以再配置文件里配置一些额外信息如： </span><br><span class="line">```bash</span><br><span class="line"><span class="comment"># SCRIPTS EXECUTION</span></span><br><span class="line"><span class="comment">#配置当某一事件发生时所需要执行的脚本，可以通过脚本来通知管理员，例如当系统运行不正常时发邮件通知相关人员。</span></span><br><span class="line"><span class="comment">#对于脚本的运行结果有以下规则：</span></span><br><span class="line"><span class="comment">#若脚本执行后返回1，那么该脚本稍后将会被再次执行，重复次数目前默认为10</span></span><br><span class="line"><span class="comment">#若脚本执行后返回2，或者比2更高的一个返回值，脚本将不会重复执行。</span></span><br><span class="line"><span class="comment">#如果脚本在执行过程中由于收到系统中断信号被终止了，则同返回值为1时的行为相同。</span></span><br><span class="line"><span class="comment">#一个脚本的最大执行时间为60s，如果超过这个时间，脚本将会被一个SIGKILL信号终止，之后重新执行。</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">#通知型脚本:当sentinel有任何警告级别的事件发生时（比如说redis实例的主观失效和客观失效等等），</span></span><br><span class="line"><span class="comment">#将会去调用这个脚本，这时这个脚本应该通过邮件，SMS等方式去通知系统管理员关于系统不正常运行的信</span></span><br><span class="line"><span class="comment">#息。调用该脚本时，将传给脚本两个参数，一个是事件的类型，一个是事件的描述。如果sentinel.conf配</span></span><br><span class="line"><span class="comment">#置文件中配置了这个脚本路径，那么必须保证这个脚本存在于这个路径，并且是可执行的，否则sentinel无</span></span><br><span class="line"><span class="comment">#法正常启动成功。</span></span><br><span class="line"><span class="comment">#通知脚本</span></span><br><span class="line"><span class="comment"># shell编程</span></span><br><span class="line"><span class="comment"># sentinel notification-script &lt;master-name&gt; &lt;script-path&gt;</span></span><br><span class="line">sentinel notification-script mymaster /var/redis/notify.sh</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 客户端重新配置主节点参数脚本</span></span><br><span class="line"><span class="comment"># 当一个master由于failover而发生改变时，这个脚本将会被调用，通知相关的客户端关于master地址已</span></span><br><span class="line"><span class="comment"># 经发生改变的信息。</span></span><br><span class="line"><span class="comment"># 以下参数将会在调用脚本时传给脚本:</span></span><br><span class="line"><span class="comment"># &lt;master-name&gt; &lt;role&gt; &lt;state&gt; &lt;from-ip&gt; &lt;from-port&gt; &lt;to-ip&gt; &lt;to-port&gt;</span></span><br><span class="line"><span class="comment"># 目前&lt;state&gt;总是“failover”,</span></span><br><span class="line"><span class="comment"># &lt;role&gt;是“leader”或者“observer”中的一个。 </span></span><br><span class="line"><span class="comment"># 参数 from-ip, from-port, to-ip, to-port是用来和旧的master和新的master(即旧的slave)通信的</span></span><br><span class="line"><span class="comment"># 这个脚本应该是通用的，能被多次调用，不是针对性的。</span></span><br><span class="line"><span class="comment"># sentinel client-reconfig-script &lt;master-name&gt; &lt;script-path&gt;</span></span><br><span class="line">sentinel client-reconfig-script mymaster /var/redis/reconfig.sh <span class="comment"># 一般都是由运维来配置</span></span><br></pre></td></tr></table></figure>
 
-<p>此时，哨兵模式配置完毕，此外还可以再配置文件里配置一些额外信息如： </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># SCRIPTS EXECUTION</span></span><br><span class="line"><span class="comment">#配置当某一事件发生时所需要执行的脚本，可以通过脚本来通知管理员，例如当系统运行不正常时发邮件通知相关人员。</span></span><br><span class="line"><span class="comment">#对于脚本的运行结果有以下规则：</span></span><br><span class="line"><span class="comment">#若脚本执行后返回1，那么该脚本稍后将会被再次执行，重复次数目前默认为10</span></span><br><span class="line"><span class="comment">#若脚本执行后返回2，或者比2更高的一个返回值，脚本将不会重复执行。</span></span><br><span class="line"><span class="comment">#如果脚本在执行过程中由于收到系统中断信号被终止了，则同返回值为1时的行为相同。</span></span><br><span class="line"><span class="comment">#一个脚本的最大执行时间为60s，如果超过这个时间，脚本将会被一个SIGKILL信号终止，之后重新执行。</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">#通知型脚本:当sentinel有任何警告级别的事件发生时（比如说redis实例的主观失效和客观失效等等），</span></span><br><span class="line"><span class="comment">#将会去调用这个脚本，这时这个脚本应该通过邮件，SMS等方式去通知系统管理员关于系统不正常运行的信</span></span><br><span class="line"><span class="comment">#息。调用该脚本时，将传给脚本两个参数，一个是事件的类型，一个是事件的描述。如果sentinel.conf配</span></span><br><span class="line"><span class="comment">#置文件中配置了这个脚本路径，那么必须保证这个脚本存在于这个路径，并且是可执行的，否则sentinel无</span></span><br><span class="line"><span class="comment">#法正常启动成功。</span></span><br><span class="line"><span class="comment">#通知脚本</span></span><br><span class="line"><span class="comment"># shell编程</span></span><br><span class="line"><span class="comment"># sentinel notification-script &lt;master-name&gt; &lt;script-path&gt;</span></span><br><span class="line">sentinel notification-script mymaster /var/redis/notify.sh</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 客户端重新配置主节点参数脚本</span></span><br><span class="line"><span class="comment"># 当一个master由于failover而发生改变时，这个脚本将会被调用，通知相关的客户端关于master地址已</span></span><br><span class="line"><span class="comment"># 经发生改变的信息。</span></span><br><span class="line"><span class="comment"># 以下参数将会在调用脚本时传给脚本:</span></span><br><span class="line"><span class="comment"># &lt;master-name&gt; &lt;role&gt; &lt;state&gt; &lt;from-ip&gt; &lt;from-port&gt; &lt;to-ip&gt; &lt;to-port&gt;</span></span><br><span class="line"><span class="comment"># 目前&lt;state&gt;总是“failover”,</span></span><br><span class="line"><span class="comment"># &lt;role&gt;是“leader”或者“observer”中的一个。 </span></span><br><span class="line"><span class="comment"># 参数 from-ip, from-port, to-ip, to-port是用来和旧的master和新的master(即旧的slave)通信的</span></span><br><span class="line"><span class="comment"># 这个脚本应该是通用的，能被多次调用，不是针对性的。</span></span><br><span class="line"><span class="comment"># sentinel client-reconfig-script &lt;master-name&gt; &lt;script-path&gt;</span></span><br><span class="line">sentinel client-reconfig-script mymaster /var/redis/reconfig.sh <span class="comment"># 一般都是由运维来配置</span></span><br></pre></td></tr></table></figure>
-
-<p> <strong>3、启动哨兵</strong> </p>
-<p> 配置完毕之后，分别启动sentinel。</p>
+<p> <strong>3、启动哨兵</strong><br> 配置完毕之后，分别启动sentinel。  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在Redis目录下 分别执行以下命令</span></span><br><span class="line">redis-sentinel myconfig/sentinel23679.conf</span><br><span class="line">redis-sentinel myconfig/sentinel23680.conf</span><br><span class="line">redis-sentinel myconfig/sentinel23681.conf</span><br></pre></td></tr></table></figure>
 
-<p> <strong>4、测试</strong> </p>
-<p> 关闭主机Master（模拟主机故障）， 这时候就会从从机中随机选择一个服务器！（这里有一个投票算法） </p>
+
+<p> <strong>4、测试</strong><br> 关闭主机Master（模拟主机故障）， 这时候就会从从机中随机选择一个服务器！（这里有一个投票算法） </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; shutdown</span><br><span class="line">not connected&gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
 
-<p> 查看6381库信息 ：</p>
+
+<p> 查看6381库信息 ：  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6381&gt; info replication</span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:master <span class="comment">#成为新的主机</span></span><br><span class="line">connected_slaves:1</span><br><span class="line">slave0:ip=127.0.0.1,port=6380,state=online,offset=14507,lag=1</span><br></pre></td></tr></table></figure>
 
-<p> 查看6380库信息 ：</p>
+
+<p> 查看6380库信息 ：  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6380&gt; info replication</span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:slave <span class="comment">#从机</span></span><br><span class="line">master_host:127.0.0.1</span><br><span class="line">master_port:6381  <span class="comment">#主机变成了6381</span></span><br></pre></td></tr></table></figure>
 
 <p> 如果主机此时回来了，只能归并到新的主机下，老老实实当儿子，做从机，这就是哨兵模式的规则。 </p>
-<p> *<em>5、 哨兵模式的优缺点 *</em> </p>
-<p>优点：</p>
+<p> <strong>5、 哨兵模式的优缺点</strong><br>优点：  </p>
 <ol>
 <li>哨兵集群，基于主从复制模式，所有的主从配置优点，它全有。</li>
 <li>主从可以切换，故障可以转移，系统的可用性就会更好。</li>
 <li>哨兵模式就是主从模式的升级，手动到自动。、</li>
 </ol>
-<p>缺点：</p>
+<p>缺点：  </p>
 <ol>
 <li>Redis不好在线扩容，集群容量一旦到达上限，在线扩容就十分麻烦。</li>
 <li>实现哨兵模式的配置其实是麻烦的，里面有很多选择。</li>
@@ -582,15 +556,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="1.基本概念：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-08T09:00:25.232Z">
+<meta property="og:updated_time" content="2020-06-08T09:42:44.038Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -169,15 +169,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-基本概念："><a href="#1-基本概念：" class="headerlink" title="1.基本概念："></a>1.基本概念：</h1><a id="more"></a>
-
-<p>Redis单条命令是保证原子性的，但是Redis事务是不保证原子性。</p>
-<p>Redis事务本质：一组命令的集合。一个事务中的所有命令都会被序列化，在事务执行过程中，会按照顺序执行。</p>
-<p>即按照一次性、顺序性、排他性 执行一系列命令。</p>
-<p>解释：把3个set命令放在一块执行，那么这3条命令入队，形成一个队列。队列中的命令执行过程中不允许被打断。（即要么全部成功，要么全部失败）</p>
-<p>Redis事务没有隔离级别的概念。</p>
-<p>所有的命令在事务中，并没有直接被执行（入队的时候未执行），只有发起执行命令的时候，才会执行。</p>
-<p>Redis事务3个阶段：</p>
+        <h1 id="1-基本概念："><a href="#1-基本概念：" class="headerlink" title="1.基本概念："></a>1.基本概念：</h1><a id="more"></a>   
+<p>Redis单条命令是保证原子性的，但是Redis事务是不保证原子性。<br>Redis事务本质：一组命令的集合。一个事务中的所有命令都会被序列化，在事务执行过程中，会按照顺序执行。<br>即按照一次性、顺序性、排他性 执行一系列命令。<br>解释：把3个set命令放在一块执行，那么这3条命令入队，形成一个队列。队列中的命令执行过程中不允许被打断。（即要么全部成功，要么全部失败）   </p>
+<p>Redis事务没有隔离级别的概念。<br>所有的命令在事务中，并没有直接被执行（入队的时候未执行），只有发起执行命令的时候，才会执行。   </p>
+<p>Redis事务3个阶段：   </p>
 <ul>
 <li>开启事务（multi）</li>
 <li>命令入队（这里写的命令都会入事务队列）</li>
@@ -200,7 +195,7 @@
 <h3 id="2-关于事务执行中的错误"><a href="#2-关于事务执行中的错误" class="headerlink" title="2.关于事务执行中的错误"></a>2.关于事务执行中的错误</h3><blockquote>
 <p>编译型异常：（导致编译器报错的异常）</p>
 </blockquote>
-<p>命令或代码有问题，事务中所有的命令都不会执行。（要么都成功，要么都失败）</p>
+<p>命令或代码有问题，事务中所有的命令都不会执行。（要么都成功，要么都失败）   </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">multi</span><br><span class="line"><span class="built_in">set</span> k1 aa</span><br><span class="line"><span class="built_in">set</span> k2 bb</span><br><span class="line">getset v3   <span class="comment"># 错误的命令</span></span><br><span class="line"><span class="built_in">set</span> k4 cc</span><br><span class="line"><span class="built_in">exec</span>        <span class="comment"># 执行事务的时候会报错</span></span><br></pre></td></tr></table></figure>
 
 
@@ -208,8 +203,7 @@
 <blockquote>
 <p>运行时异常（如1/0，数组下标越界等）</p>
 </blockquote>
-<p>如果事务队列中某条命令存在语法性错误，那么在执行的时候，其他命令是可以正常执行的。错误的那条命令会抛出异常。</p>
-<p>所以说Redis事务是不保证原子性的。</p>
+<p>如果事务队列中某条命令存在语法性错误，那么在执行的时候，其他命令是可以正常执行的。错误的那条命令会抛出异常。<br>所以说Redis事务是不保证原子性的。      </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> k1 <span class="string">"aa"</span></span><br><span class="line"></span><br><span class="line">multi</span><br><span class="line"><span class="built_in">set</span> k2 aa</span><br><span class="line">incr k1     <span class="comment"># 错误的命令(字符串无法自增)</span></span><br><span class="line"><span class="built_in">set</span> k3 bb </span><br><span class="line"><span class="built_in">exec</span>        <span class="comment"># 执行事务，除了incr k1，其他的都成功执行</span></span><br></pre></td></tr></table></figure>
 
 
@@ -233,10 +227,10 @@
 <blockquote>
 <p>Redis 的监控测试</p>
 </blockquote>
-<p>正常执行举例：</p>
+<p>正常执行举例：  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> money 100  <span class="comment"># 设置初始资金 100</span></span><br><span class="line"><span class="built_in">set</span> out 0      <span class="comment"># 设置支出 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># watch key [key...]</span></span><br><span class="line">watch money    <span class="comment"># 监视money对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行一个花钱的事务</span></span><br><span class="line">multi</span><br><span class="line">incrby out 20    <span class="comment"># out自增20 </span></span><br><span class="line">decrby money 20  <span class="comment"># money自减20</span></span><br><span class="line"><span class="built_in">exec</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 受监视的数据在事务执行期间，外界未使其发生变动，这个时候事务执行成功。并取消对money的监视。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 事务执行失败：受监视的数据在事务执行期间，外界使其发生变动。事务执行失败。</span></span><br></pre></td></tr></table></figure>
 
-<p>事务执行失败的处理</p>
+<p>事务执行失败的处理：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">unwatch         <span class="comment"># 如果发现事务执行失败，就先解锁</span></span><br><span class="line"></span><br><span class="line">watch money     <span class="comment"># 再重新监视 最新的值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新执行事务</span></span><br><span class="line">multi</span><br><span class="line">incrby out 20   </span><br><span class="line">decrby money 20 </span><br><span class="line"><span class="built_in">exec</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 受监视的数据在事务执行期间，外界未使其发生变动，这个时候事务执行成功。并取消对money的监视。</span></span><br><span class="line"><span class="comment"># 事务执行失败：Redis会重新 从第一行的 unwatch命令开始往下执行。</span></span><br></pre></td></tr></table></figure>
       
 
@@ -492,15 +486,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">

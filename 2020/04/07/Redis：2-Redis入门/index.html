@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="1.Redis概述">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-08T08:57:53.570Z">
+<meta property="og:updated_time" content="2020-06-08T09:34:52.979Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -173,9 +173,7 @@
 <blockquote>
 <p>Redis是什么</p>
 </blockquote>
-<p>1.Redis（Remote  Dictionary  Service）：远程字典服务</p>
-<p>开源的、C语言编写的、key-value数据库、提供多种语言的API。</p>
-<p>热门的NoSQL技术之一，被称之为结构化数据库。可以用作数据库、缓存、消息中间件MQ。</p>
+<p>1.Redis（Remote  Dictionary  Service）：远程字典服务。<br>开源的、C语言编写的、key-value数据库、提供多种语言的API。<br>热门的NoSQL技术之一，被称之为结构化数据库。可以用作数据库、缓存、消息中间件MQ。  </p>
 <blockquote>
 <p>Redis作用</p>
 </blockquote>
@@ -200,10 +198,7 @@
 <blockquote>
 <p>学习中需要用到的东西</p>
 </blockquote>
-<p>1.<a href="https://redis.io/" target="_blank" rel="noopener">官网</a></p>
-<p>2.<a href="http://www.redis.cn/" target="_blank" rel="noopener">中文网</a></p>
-<p>3.下载地址：通过官网下载（注意，windows版本在Github上下载 (停更很久了，因为官方不建议在windows上使用)）</p>
-<p>4.使用</p>
+<p>1.<a href="https://redis.io/" target="_blank" rel="noopener">官网</a><br>2.<a href="http://www.redis.cn/" target="_blank" rel="noopener">中文网</a><br>3.下载地址：通过官网下载（注意，windows版本在Github上下载 (停更很久了，因为官方不建议在windows上使用)）<br>4.使用    </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在在redis-service目录下，新建myconfig文件夹</span></span><br><span class="line"><span class="comment"># 将redis.config 拷贝到myconfig/下</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在redis-service目录下 启动服务，并选择配置文件路径</span></span><br><span class="line"><span class="comment"># 即通过哪个配置文件启动服务</span></span><br><span class="line">redis-server myconfig/redis.config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动客户端 需要选择端口号</span></span><br><span class="line">redis-cli -p 6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试是否链接成功</span></span><br><span class="line">ping</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭redis服务</span></span><br><span class="line">shutdown</span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
 
 <p>5.一些基本命令</p>
@@ -211,15 +206,12 @@
 
 
 
-<h1 id="2-目录下的文件"><a href="#2-目录下的文件" class="headerlink" title="2.目录下的文件"></a>2.目录下的文件</h1><p>redis-cli：客户端</p>
-<p>redis-server：Redis服务</p>
-<p>redis-benchmark：压力测试工具</p>
-<p>redis.config：配置文件</p>
-<h1 id="3-Redis基础"><a href="#3-Redis基础" class="headerlink" title="3.Redis基础"></a>3.Redis基础</h1><p>1.win下启动Redis服务：  Redis路径下输入： redis-server redis.windows.conf </p>
-<p>2.Redis默认有16个数据库（在配置文件中有：databases  16）</p>
-<p>  默认使用的是第0个数据库。</p>
-<p>3.redis命令不区分大小写。</p>
-<p>4.<a href="http://www.redis.cn/commands.html" target="_blank" rel="noopener">其他命令</a></p>
+<h1 id="2-目录下的文件"><a href="#2-目录下的文件" class="headerlink" title="2.目录下的文件"></a>2.目录下的文件</h1><p>redis-cli：客户端<br>redis-server：Redis服务<br>redis-benchmark：压力测试工具<br>redis.config：配置文件  </p>
+<h1 id="3-Redis基础"><a href="#3-Redis基础" class="headerlink" title="3.Redis基础"></a>3.Redis基础</h1><p>1.win下启动Redis服务：  Redis路径下输入： redis-server redis.windows.conf<br>2.Redis默认有16个数据库（在配置文件中有：databases  16）  </p>
+<ul>
+<li>默认使用的是第0个数据库。    </li>
+</ul>
+<p>3.redis命令不区分大小写。<br>4.<a href="http://www.redis.cn/commands.html" target="_blank" rel="noopener">其他命令</a>  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在Redis客户端 切换数据库 (如切换到第三个)</span></span><br><span class="line">select 3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看库大小</span></span><br><span class="line">dbsize</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前库所有的 key</span></span><br><span class="line">keys *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 移动某个键值对</span></span><br><span class="line">move key名 1   <span class="comment"># 移动到数据库1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 清空库里的内容 </span></span><br><span class="line">flushdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清空全部数据库</span></span><br><span class="line">flushall</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断某个key是否存在</span></span><br><span class="line">exists key名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置某个键值对过期时间</span></span><br><span class="line">expire name 10 <span class="comment"># 设置name 10s后过期</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看某个键值对 的剩余时间 （-1为永久不过期）</span></span><br><span class="line">ttl key名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看某个键值对是什么类型</span></span><br><span class="line"><span class="built_in">type</span> key名</span><br></pre></td></tr></table></figure>
 
 
@@ -229,9 +221,8 @@
 <blockquote>
 <p>Redis是单线程的</p>
 </blockquote>
-<p>1.Redis是很快的，官方表示，Redis是基于内存操作的，CPU不是Redis的性能瓶颈（多线程与cpu有关）。</p>
-<p>Redis瓶颈是根据机器的内存与网络带宽决定的。既然可以使用单线程实现，所以就使用了单线程了。</p>
-<p>2.为什么单线程还这么快？</p>
+<p>1.Redis是很快的，官方表示，Redis是基于内存操作的，CPU不是Redis的性能瓶颈（多线程与cpu有关）。<br>Redis瓶颈是根据机器的内存与网络带宽决定的。既然可以使用单线程实现，所以就使用了单线程了。  </p>
+<p>2.为什么单线程还这么快？   </p>
 <ul>
 <li>记住：高性能的服务器不一定是多线程的，多线程不一定比单线程效率高（多线程需要cpu上下文切换，这是耗时的操作）。</li>
 <li>核心：Redis是将全部的数据都放在内存中的，所以使用单线程操作 效率就是高（没有上下文切换）。多次读写都是在一个cpu上的，在内存情况下，这个就是最佳方案。</li>
@@ -491,15 +482,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">

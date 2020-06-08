@@ -17,7 +17,7 @@
 <meta property="og:description" content="1.缓存的引入">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;1-1.png">
-<meta property="og:updated_time" content="2020-06-08T08:56:27.815Z">
+<meta property="og:updated_time" content="2020-06-08T09:31:40.010Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;1-1.png">
   
@@ -185,16 +185,14 @@
 <blockquote>
 <p>如今互联网</p>
 </blockquote>
-<p>存储大文件：博客、图片等，会导致数据库表很大，读写效率低。如果有专门存储这些数据的数据库，MySQL的压力就会减少。</p>
-<p>大数据：如一个表中有1亿条数据，表几乎无法更改。</p>
+<p>存储大文件：博客、图片等，会导致数据库表很大，读写效率低。如果有专门存储这些数据的数据库，MySQL的压力就会减少。<br>大数据：如一个表中有1亿条数据，表几乎无法更改。</p>
 <blockquote>
 <p>一个基本的互联网项目</p>
 </blockquote>
 <blockquote>
 <p>为什么要用NoSQL</p>
 </blockquote>
-<p>用户的个人信息、社交网络、地理位置。用户自己产生的数据，用户日志等 爆发式增长！</p>
-<p>这个时候就要用到NoSQL数据库来应对以上情况。</p>
+<p>用户的个人信息、社交网络、地理位置。用户自己产生的数据，用户日志等 爆发式增长！<br>这个时候就要用到NoSQL数据库来应对以上情况。</p>
 <h1 id="2-什么是NoSQL"><a href="#2-什么是NoSQL" class="headerlink" title="2.什么是NoSQL"></a>2.什么是NoSQL</h1><blockquote>
 <p>NoSQL</p>
 </blockquote>
@@ -203,15 +201,15 @@
 <blockquote>
 <p>NoSQL特点：</p>
 </blockquote>
-<p>解耦！</p>
+<p>解耦！  </p>
 <ol>
-<li><p>方便扩展（数据之间没有联系，很好扩展）</p>
+<li><p>方便扩展（数据之间没有联系，很好扩展）  </p>
 </li>
-<li><p>大数据量性能高（Redis一秒写9万次，读11万次）</p>
+<li><p>大数据量性能高（Redis一秒写9万次，读11万次）  </p>
 </li>
-<li><p>数据类型多样化（无需事先设计数据库，随取随用）</p>
+<li><p>数据类型多样化（无需事先设计数据库，随取随用）  </p>
 </li>
-<li><p>传统关系型数据库 与 NoSQL对比</p>
+<li><p>传统关系型数据库 与 NoSQL对比  </p>
 </li>
 <li><pre><code class="bash">关系型数据库：
     结构化组织
@@ -225,13 +223,29 @@ NoSQL:
     没有固定的查询语言
     键值对存储、列存储、文档存储、图形存储
     最终一致性
-    高性能、高可用、高可扩
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">没有什么是加一层解决不了的：</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line"># 1.商品分类信息</span><br><span class="line">    名称、价格、商家信息：关系型数据库就能解决。</span><br><span class="line">    </span><br><span class="line"># 2.商品的描述、评论（文字比较多）</span><br><span class="line">    文档型数据库：MongoDB</span><br><span class="line">    </span><br><span class="line"># 3.图片</span><br><span class="line">    分布式文件系统 FastDFS</span><br><span class="line">    - 淘宝自己的 TFS</span><br><span class="line">    - Google的  GFS</span><br><span class="line">    - Hadoop    HDFS</span><br><span class="line">    - 阿里云     oss</span><br><span class="line">    </span><br><span class="line"># 4.商品的关键字（用于搜索）</span><br><span class="line">    - 搜索引擎  solr elasticsearch</span><br><span class="line">    </span><br><span class="line"># 5.商品热门的波段信息</span><br><span class="line">    - 内存数据库</span><br><span class="line">    - Redis、Tair、Memache...</span><br></pre></td></tr></table></figure>
-
-
-</code></pre>
+    高性能、高可用、高可扩</code></pre>
 </li>
 </ol>
+<p>没有什么是加一层解决不了的：     </p>
+<pre><code class="bash"><span class="comment"># 1.商品分类信息</span>
+    名称、价格、商家信息：关系型数据库就能解决。
+
+<span class="comment"># 2.商品的描述、评论（文字比较多）</span>
+    文档型数据库：MongoDB
+
+<span class="comment"># 3.图片</span>
+    分布式文件系统 FastDFS
+    - 淘宝自己的 TFS
+    - Google的  GFS
+    - Hadoop    HDFS
+    - 阿里云     oss
+
+<span class="comment"># 4.商品的关键字（用于搜索）</span>
+    - 搜索引擎  solr elasticsearch
+
+<span class="comment"># 5.商品热门的波段信息</span>
+    - 内存数据库
+    - Redis、Tair、Memache...</code></pre>
 <h1 id="3-NoSQL四大分类"><a href="#3-NoSQL四大分类" class="headerlink" title="3.NoSQL四大分类"></a>3.NoSQL四大分类</h1><h3 id="1-KV键值对"><a href="#1-KV键值对" class="headerlink" title="1.KV键值对"></a>1.KV键值对</h3><ul>
 <li>Redis、Tair、memache</li>
 </ul>
@@ -506,15 +520,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="Redis.conf配置文件">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-08T09:04:05.794Z">
+<meta property="og:updated_time" content="2020-06-08T10:04:40.202Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -170,7 +170,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Redis-conf配置文件"><a href="#Redis-conf配置文件" class="headerlink" title="Redis.conf配置文件"></a>Redis.conf配置文件</h1><a id="more"></a>
-<p>启动Redis服务的时候，就是通过配置文件来启动的。</p>
+<p>启动Redis服务的时候，就是通过配置文件来启动的。  </p>
 <blockquote>
 <p>默认单位</p>
 </blockquote>
@@ -194,8 +194,7 @@
 <blockquote>
 <p>快照</p>
 </blockquote>
-<p>即持久化到文件：在规定的时间内，执行多少次操作，会持久化到文件。（.rdb、.aof）</p>
-<p>因为Redis的数据保存在内存中，如果不持久化到硬盘上，断电数据会丢失。</p>
+<p>即持久化到文件：在规定的时间内，执行多少次操作，会持久化到文件。（.rdb、.aof）<br>因为Redis的数据保存在内存中，如果不持久化到硬盘上，断电数据会丢失。    </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">############################ SNAPSHOTTING  ######################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在900s内，若至少有1个key进行了修改，就进行持久化操作</span></span><br><span class="line">save 900 1 </span><br><span class="line"></span><br><span class="line"><span class="comment"># 在300s内，若至少有10个key进行了修改，就进行持久化操作</span></span><br><span class="line">save 300 10</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在60s内，若至少有10000个key进行了修改，就进行持久化操作</span></span><br><span class="line">save 60 10000</span><br><span class="line"><span class="comment"># 学习阶段，把以上数据修改的小一点，方便测试。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">stop-writes-on-bgsave-error yes  <span class="comment"># 持久化出错后，是否继续工作</span></span><br><span class="line">rdbcompression yes   <span class="comment"># 是否压缩rdb文件，默认开启。（会消耗cpu资源）</span></span><br><span class="line">rdbchecksum yes      <span class="comment"># 保存rdb文件时，是否校验rdb文件，默认开启</span></span><br><span class="line">dir ./         <span class="comment"># rdb文件保存位置</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -479,15 +478,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
