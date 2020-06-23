@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="6.锁">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-23T08:48:22.968Z">
+<meta property="og:updated_time" content="2020-06-23T09:26:00.174Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -180,114 +180,23 @@
 <li>在线程间共享多个资源的时候，如果几个线程分别占有一部分资源不释放，并且大家都等待对方释放资源，就会造成死锁。（多个线程互相抱着对方需要的资源不放，形成僵持。）</li>
 <li>某一个同步块同时拥有“<strong>两个以上对象的锁</strong>”时，就可能发生“<strong>死锁</strong>”的问题。    </li>
 </ul>
-<p><strong>产生死锁的四个必要条件：</strong>  </p>
+<p><strong>产生死锁的四个必要条件：</strong></p>
 <ol>
 <li>互斥条件：一个资源每次只能被一个进程使用。</li>
 <li>请求和保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放。</li>
 <li>不剥夺条件：进程已获得的资源，在未使用完之前，不能强行剥夺。</li>
 <li>循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系。     </li>
 </ol>
-<p><strong>避免死锁：</strong>   </p>
+<p><strong>避免死锁：</strong></p>
 <ul>
 <li>上面列出的4个条件，破坏其中的一个或多个，就能避免死锁。</li>
 <li>不要在一个代码块当中，同时持有多个对象的锁（即不要锁套锁）</li>
 </ul>
 <p>举例：</p>
-<pre><code class="java"><span class="comment">/**</span>
-<span class="comment"> *  代码多运行几遍 - 就可能会发现死锁的情况 如下：</span>
-<span class="comment"> *  1号人获得镜子</span>
-<span class="comment"> *  2号人获得口红      </span>
-<span class="comment"> */</span>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  代码多运行几遍 - 就可能会发现死锁的情况 如下：</span></span><br><span class="line"><span class="comment"> *  1号人获得镜子</span></span><br><span class="line"><span class="comment"> *  2号人获得口红      </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeadLock</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		Markup g1 = <span class="keyword">new</span> Markup(<span class="number">1</span>, <span class="string">"1号人"</span>);</span><br><span class="line">		Markup g2 = <span class="keyword">new</span> Markup(<span class="number">2</span>, <span class="string">"2号人"</span>);</span><br><span class="line">		</span><br><span class="line">		g1.start();</span><br><span class="line">		g2.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//口红</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Lipstick</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//镜子</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mirror</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//化妆</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Markup</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//只有一个口红 一面镜子  所以加个静态 表示就这一份 不管创建几个对象</span></span><br><span class="line">	<span class="keyword">static</span> Lipstick lipstick = <span class="keyword">new</span> Lipstick();</span><br><span class="line">	<span class="keyword">static</span> Mirror mirror = <span class="keyword">new</span> Mirror();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> choice;     <span class="comment">//选择</span></span><br><span class="line">	String girl;    <span class="comment">//名字</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Markup</span><span class="params">(<span class="keyword">int</span> choice, String girl)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.choice = choice;</span><br><span class="line">		<span class="keyword">this</span>.girl = girl;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">//化妆</span></span><br><span class="line">		mark();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//相互持有对方的对象锁 --&gt; 可能造成死锁</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">mark</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(choice == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">synchronized</span>(lipstick) &#123;  <span class="comment">//获得口红的锁</span></span><br><span class="line">				System.out.println(<span class="keyword">this</span>.girl + <span class="string">"获得口红"</span>);</span><br><span class="line">				</span><br><span class="line">				<span class="comment">//1s后想拥有镜子的锁</span></span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">				&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">synchronized</span>(mirror) &#123;  <span class="comment">//获得镜子的锁</span></span><br><span class="line">					System.out.println(<span class="keyword">this</span>.girl + <span class="string">"获得镜子"</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">/*</span></span><br><span class="line"><span class="comment">			 * 把上面的代码块  挪到这个位置  就解决了死锁的问题</span></span><br><span class="line"><span class="comment">			 * 不要锁套锁 就行了</span></span><br><span class="line"><span class="comment">			 * 同理 下面的代码也是一样的</span></span><br><span class="line"><span class="comment">			synchronized(mirror) &#123;  //获得镜子的锁</span></span><br><span class="line"><span class="comment">				System.out.println(this.girl + "获得镜子");</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">			 */</span></span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">synchronized</span>(mirror) &#123;  <span class="comment">//获得镜子的锁</span></span><br><span class="line">				System.out.println(<span class="keyword">this</span>.girl + <span class="string">"获得镜子"</span>);</span><br><span class="line">				</span><br><span class="line">				<span class="comment">//2s后想拥有口红的锁</span></span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">				&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">synchronized</span>(lipstick) &#123;  <span class="comment">//获得口红的锁</span></span><br><span class="line">					System.out.println(<span class="keyword">this</span>.girl + <span class="string">"获得口红"</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeadLock</span> </span>{
 
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
-
-        Markup g1 = <span class="keyword">new</span> Markup(<span class="number">1</span>, <span class="string">"1号人"</span>);
-        Markup g2 = <span class="keyword">new</span> Markup(<span class="number">2</span>, <span class="string">"2号人"</span>);
-
-        g1.start();
-        g2.start();
-    }
-}
-
-
-<span class="comment">//口红</span>
-<span class="class"><span class="keyword">class</span> <span class="title">Lipstick</span></span>{
-
-}
-
-<span class="comment">//镜子</span>
-<span class="class"><span class="keyword">class</span> <span class="title">Mirror</span></span>{
-
-}
-
-<span class="comment">//化妆</span>
-<span class="class"><span class="keyword">class</span> <span class="title">Markup</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>{
-
-    <span class="comment">//只有一个口红 一面镜子  所以加个静态 表示就这一份 不管创建几个对象</span>
-    <span class="keyword">static</span> Lipstick lipstick = <span class="keyword">new</span> Lipstick();
-    <span class="keyword">static</span> Mirror mirror = <span class="keyword">new</span> Mirror();
-
-    <span class="keyword">int</span> choice;     <span class="comment">//选择</span>
-    String girl;    <span class="comment">//名字</span>
-
-    <span class="function"><span class="keyword">public</span> <span class="title">Markup</span><span class="params">(<span class="keyword">int</span> choice, String girl)</span> </span>{
-        <span class="keyword">this</span>.choice = choice;
-        <span class="keyword">this</span>.girl = girl;
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{
-        <span class="comment">//化妆</span>
-        mark();
-    }
-
-    <span class="comment">//相互持有对方的对象锁 --&gt; 可能造成死锁</span>
-    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">mark</span><span class="params">()</span> </span>{
-
-        <span class="keyword">if</span>(choice == <span class="number">0</span>) {
-            <span class="keyword">synchronized</span>(lipstick) {  <span class="comment">//获得口红的锁</span>
-                System.out.println(<span class="keyword">this</span>.girl + <span class="string">"获得口红"</span>);
-
-                <span class="comment">//1s后想拥有镜子的锁</span>
-                <span class="keyword">try</span> {
-                    Thread.sleep(<span class="number">1000</span>);
-                } <span class="keyword">catch</span> (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                <span class="keyword">synchronized</span>(mirror) {  <span class="comment">//获得镜子的锁</span>
-                    System.out.println(<span class="keyword">this</span>.girl + <span class="string">"获得镜子"</span>);
-                }
-            }
-            <span class="comment">/*</span>
-<span class="comment">             * 把上面的代码块  挪到这个位置  就解决了死锁的问题</span>
-<span class="comment">             * 不要锁套锁 就行了</span>
-<span class="comment">             * 同理 下面的代码也是一样的</span>
-<span class="comment">            synchronized(mirror) {  //获得镜子的锁</span>
-<span class="comment">                System.out.println(this.girl + "获得镜子");</span>
-<span class="comment">            }</span>
-<span class="comment">             */</span>
-        }<span class="keyword">else</span> {
-            <span class="keyword">synchronized</span>(mirror) {  <span class="comment">//获得镜子的锁</span>
-                System.out.println(<span class="keyword">this</span>.girl + <span class="string">"获得镜子"</span>);
-
-                <span class="comment">//2s后想拥有口红的锁</span>
-                <span class="keyword">try</span> {
-                    Thread.sleep(<span class="number">2000</span>);
-                } <span class="keyword">catch</span> (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                <span class="keyword">synchronized</span>(lipstick) {  <span class="comment">//获得口红的锁</span>
-                    System.out.println(<span class="keyword">this</span>.girl + <span class="string">"获得口红"</span>);
-                }
-            }    
-        }
-    }
-
-}</code></pre>
 <h3 id="2-Lock（锁）"><a href="#2-Lock（锁）" class="headerlink" title="2.Lock（锁）"></a>2.Lock（锁）</h3><ul>
 <li>JDK5.0后，java提供了更强大的线程同步机制——通过显示定义同步锁对象来实现同步。同步锁使用Lock对象充当。</li>
 <li>java.util.concurrent.locks.Lock接口是控制多个线程对共享资源进行访问的工具。锁提供了对共享资源的独占访问，每次只能有一个线程对Lock对象加锁，线程开始访问共享资源之前，先获得Lock对象。</li>
@@ -295,91 +204,20 @@
 <li><code>ReentrantLock</code>：可重用锁。   </li>
 </ul>
 <p><strong>Lock大致格式：</strong>   </p>
-<pre><code class="java"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>{
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义lock锁</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock rLock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        rLock.lock();  <span class="comment">//加锁</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">// 需要保证线程安全的代码</span></span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 如果同步代码有异常，要将unlock() 写在finally语句块里</span></span><br><span class="line">            rLock.unlock();  <span class="comment">// 解锁</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    <span class="comment">// 定义lock锁</span>
-    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock rLock = <span class="keyword">new</span> ReentrantLock();
 
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>{
-        rLock.lock();  <span class="comment">//加锁</span>
 
-        <span class="keyword">try</span>{
-            <span class="comment">// 需要保证线程安全的代码</span>
-        }<span class="keyword">finally</span> {
-            <span class="comment">// 如果同步代码有异常，要将unlock() 写在finally语句块里</span>
-            rLock.unlock();  <span class="comment">// 解锁</span>
-        }
-    }
-}</code></pre>
 <p><strong>测试：</strong><br><strong>1.不安全写法：</strong>   </p>
-<pre><code class="java"><span class="comment">// 测试Lock锁</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestLock</span> </span>{
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
-        BuyTicket buyTicket = <span class="keyword">new</span> BuyTicket();
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试Lock锁</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestLock</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BuyTicket buyTicket = <span class="keyword">new</span> BuyTicket();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(buyTicket).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(buyTicket).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(buyTicket).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 买票</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuyTicket</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticketNums = <span class="number">5</span>;  <span class="comment">// 票数量</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 买票</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ticketNums &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 买到票 票数减1</span></span><br><span class="line">                System.out.println(ticketNums--);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <span class="keyword">new</span> Thread(buyTicket).start();
-        <span class="keyword">new</span> Thread(buyTicket).start();
-        <span class="keyword">new</span> Thread(buyTicket).start();
-    }
-}
 
-<span class="comment">// 买票</span>
-<span class="class"><span class="keyword">class</span> <span class="title">BuyTicket</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>{
 
-    <span class="keyword">private</span> <span class="keyword">int</span> ticketNums = <span class="number">5</span>;  <span class="comment">// 票数量</span>
-
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{
-        <span class="comment">// 买票</span>
-        <span class="keyword">while</span> (<span class="keyword">true</span>){
-            <span class="keyword">if</span>(ticketNums &lt;= <span class="number">0</span>){
-                <span class="keyword">break</span>;
-            }<span class="keyword">else</span> {
-                <span class="comment">// 买到票 票数减1</span>
-                System.out.println(ticketNums--);
-            }
-        }
-    }
-}</code></pre>
 <p><strong>2.加lock锁 改成安全写法：</strong>  </p>
-<pre><code class="java"><span class="comment">// 测试Lock锁</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestLock</span> </span>{
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
-        BuyTicket buyTicket = <span class="keyword">new</span> BuyTicket();
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试Lock锁</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestLock</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BuyTicket buyTicket = <span class="keyword">new</span> BuyTicket();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(buyTicket).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(buyTicket).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(buyTicket).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 买票</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuyTicket</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticketNums = <span class="number">5</span>;  <span class="comment">// 票数量</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义lock锁</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 买票</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                lock.lock(); <span class="comment">// 加锁</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(ticketNums &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// 买到票 票数减1</span></span><br><span class="line">                    System.out.println(ticketNums--);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                lock.unlock();  <span class="comment">// 解锁</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <span class="keyword">new</span> Thread(buyTicket).start();
-        <span class="keyword">new</span> Thread(buyTicket).start();
-        <span class="keyword">new</span> Thread(buyTicket).start();
-    }
-}
 
-<span class="comment">// 买票</span>
-<span class="class"><span class="keyword">class</span> <span class="title">BuyTicket</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>{
 
-    <span class="keyword">private</span> <span class="keyword">int</span> ticketNums = <span class="number">5</span>;  <span class="comment">// 票数量</span>
-
-    <span class="comment">// 定义lock锁</span>
-    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">new</span> ReentrantLock();
-
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{
-        <span class="comment">// 买票</span>
-        <span class="keyword">while</span> (<span class="keyword">true</span>){
-            <span class="keyword">try</span>{
-                lock.lock(); <span class="comment">// 加锁</span>
-
-                <span class="keyword">if</span>(ticketNums &lt;= <span class="number">0</span>){
-                    <span class="keyword">break</span>;
-                }<span class="keyword">else</span> {
-                    <span class="comment">// 买到票 票数减1</span>
-                    System.out.println(ticketNums--);
-                }
-            } <span class="keyword">finally</span> {
-                lock.unlock();  <span class="comment">// 解锁</span>
-            }
-        }
-    }
-}</code></pre>
 <h3 id="3-synchronized-与-Lock对比"><a href="#3-synchronized-与-Lock对比" class="headerlink" title="3.synchronized 与 Lock对比"></a>3.synchronized 与 Lock对比</h3><ul>
 <li>Lock是显式锁（手动开启和关闭锁，别忘了关闭锁）。synchronized是隐式锁，出了作用域会自动释放锁。</li>
 <li>Lock只有代码块锁。synchronized有代码块锁和方法锁。</li>
