@@ -21,7 +21,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;linkde&#x2F;clear.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;linkde&#x2F;add.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;linkde&#x2F;remove.jpg">
-<meta property="og:updated_time" content="2019-12-09T07:19:44.908Z">
+<meta property="og:updated_time" content="2020-09-03T12:47:12.417Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;linkde&#x2F;interface.png">
   
@@ -203,7 +203,7 @@
 </blockquote>
 <hr>
 <h2 id="5-链表设计1-结点实现"><a href="#5-链表设计1-结点实现" class="headerlink" title="5.链表设计1 - 结点实现"></a>5.链表设计1 - 结点实现</h2><p><img src="/images/linkde/link.png" alt="图加载中..."></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在MyArrayList类里定义以下</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Node&lt;E&gt; first; <span class="comment">//首结点</span></span><br><span class="line">	</span><br><span class="line"><span class="comment">// 结点：私有的内部类</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    E element;        <span class="comment">//元素</span></span><br><span class="line">    Node&lt;E&gt; nextNode; <span class="comment">//下一个Node</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(E element, Node&lt;E&gt; nextNode)</span> </span>&#123; <span class="comment">// 构造方法</span></span><br><span class="line">        <span class="keyword">this</span>.element = element;</span><br><span class="line">        <span class="keyword">this</span>.nextNode = nextNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在MyArrayList类里定义以下</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Node&lt;E&gt; first; <span class="comment">// 首结点</span></span><br><span class="line">	</span><br><span class="line"><span class="comment">// 结点：私有的内部类</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    E element;        <span class="comment">// 元素</span></span><br><span class="line">    Node&lt;E&gt; nextNode; <span class="comment">// 下一个Node</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(E element, Node&lt;E&gt; nextNode)</span> </span>&#123; <span class="comment">// 构造方法</span></span><br><span class="line">        <span class="keyword">this</span>.element = element;</span><br><span class="line">        <span class="keyword">this</span>.nextNode = nextNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="6-清空链表-和ArrayList清空方式不同"><a href="#6-清空链表-和ArrayList清空方式不同" class="headerlink" title="6.清空链表 - (和ArrayList清空方式不同)"></a>6.清空链表 - (和ArrayList清空方式不同)</h2><p><img src="/images/linkde/clear.png" alt="图加载中..."></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    size = <span class="number">0</span>;</span><br><span class="line">    first = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -504,11 +504,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">

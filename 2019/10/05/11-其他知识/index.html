@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://TakenTo.github.io">
-  <title>11-其他知识 | 我的博客</title>
+  <title>11-其他知识（instanceof、泛型等） | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="11.杂知识点">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="11-其他知识">
+<meta property="og:title" content="11-其他知识（instanceof、泛型等）">
 <meta property="og:url" content="https:&#x2F;&#x2F;takento.github.io&#x2F;2019&#x2F;10&#x2F;05&#x2F;11-%E5%85%B6%E4%BB%96%E7%9F%A5%E8%AF%86&#x2F;index.html">
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="11.杂知识点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-24T13:12:26.812Z">
+<meta property="og:updated_time" content="2020-08-28T06:55:19.198Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -162,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      11-其他知识
+      11-其他知识（instanceof、泛型等）
     </h1>
   
 
@@ -189,6 +189,54 @@
 
 <h2 id="3-类方法的调用细节："><a href="#3-类方法的调用细节：" class="headerlink" title="3.类方法的调用细节："></a>3.类方法的调用细节：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        sout(<span class="string">"Animal"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        sout(<span class="string">"Dog"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line">Dog.run();    <span class="comment">// Dog</span></span><br><span class="line">Animal.run(); <span class="comment">// Animal</span></span><br><span class="line"></span><br><span class="line">Dog dog = <span class="keyword">new</span> Dog();</span><br><span class="line">dog.run();  <span class="comment">// Dog</span></span><br><span class="line"></span><br><span class="line">Animal dog2 = <span class="keyword">new</span> Dog();</span><br><span class="line">dog2.run(); <span class="comment">// Animal</span></span><br></pre></td></tr></table></figure>
 
+
+<h2 id="4-泛型"><a href="#4-泛型" class="headerlink" title="4.泛型"></a>4.泛型</h2><p><strong>1.泛型简介</strong><br>泛型即数据类型参数化。<br>Java中的泛型，只在编译阶段有效：在编译过程中，正确检验泛型结果后，会将泛型的相关信息擦出，并且在对象进入和离开方法的边界处添加类型检查和类型转换的方法。也就是说，泛型信息不会进入到运行时阶段。<br>对此总结成一句话：泛型类型在逻辑上看以看成是多个不同的类型，实际上都是相同的基本类型。   </p>
+<p><strong>1.泛型接收的类型</strong><br>只能传入引用数据类型，不能传入基本数据类型。</p>
+<p><strong>2.不能定义静态泛型变量</strong><br>原因：由于静态变量在java程序一运行时就已经被载入内存，而此时它的类型无法确定，而开辟空间必须知道类型，两者矛盾。   </p>
+<p><strong>3.方法前面的&lt;T&gt;</strong><br>&lt;T&gt;指定方法级别的泛型，是告诉编译器，当前的方法的值传入类型可以和类初始化的泛型类不同，也就是将该方法定义为泛型方法，不需要与类初始化的泛型类相同。    </p>
+<blockquote>
+<p>在java中泛型只是一个占位符，必须在传递类型后才能使用。就泛型类而言，类实例化时才能传递真正的类型参数，由于静态方法的加载先于类的实例化，也就是说类中的泛型还没有传递真正的类型参数时，静态方法就已经加载完成。显然，静态方法不能使用/访问泛型类中的泛型。（类加载时，静态的东西先加载）</p>
+</blockquote>
+<pre><code class="java"><span class="comment">// 此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span>&lt;<span class="title">T</span>&gt; </span>{
+
+    <span class="keyword">private</span> T key;
+
+    <span class="comment">/**</span>
+<span class="comment">     * 返回一个通用的 Demo对象</span>
+<span class="comment">     * Demo&lt;T&gt; 返回值类型</span>
+<span class="comment">     * 静态方法参数中如果使用泛型，必须指定方法级别的泛型</span>
+<span class="comment">     */</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Demo&lt;T&gt; <span class="title">success</span><span class="params">(T result)</span></span>{
+
+        tresult.toString();
+
+        <span class="keyword">return</span> responseResult;
+    }
+
+    <span class="comment">// 静态方法参数中如果使用泛型，必须将该方法定义为泛型方法</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">failure</span><span class="params">(T result)</span></span>{
+        <span class="keyword">return</span> result.toString();
+    }
+
+    <span class="comment">// 非静态方法也可定义 泛型方法</span>
+    <span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">(T result)</span></span>{
+        <span class="keyword">return</span> result.toString();
+    }
+
+    <span class="comment">// 使用类级别的泛型</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print2</span><span class="params">(T result)</span></span>{
+        <span class="keyword">return</span> result.toString();
+    }
+}</code></pre>
+<p>调用：</p>
+<pre><code class="java">Demo&lt;String&gt; demo = <span class="keyword">new</span> Demo&lt;&gt;();
+
+demo.print1(<span class="keyword">new</span> Integer(<span class="number">1</span>));  <span class="comment">// 可以编译</span>
+demo.print2(<span class="keyword">new</span> Integer(<span class="number">1</span>));  <span class="comment">// 不能编译</span>
+
+<span class="comment">// 静态 泛型方法</span>
+Demo.failure(<span class="keyword">new</span> Integer(<span class="number">1</span>));</code></pre>
 
       
 
@@ -464,11 +512,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">

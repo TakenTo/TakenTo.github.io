@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="4-接口">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-28T03:31:27.018Z">
+<meta property="og:updated_time" content="2020-09-02T14:41:49.644Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -175,25 +175,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="4-接口"><a href="#4-接口" class="headerlink" title="4-接口"></a>4-接口</h1><a id="more"></a>   
+        <h1 id="4-接口"><a href="#4-接口" class="headerlink" title="4-接口"></a>4-接口</h1><a id="more"></a>
 
 <h2 id="1-接口："><a href="#1-接口：" class="headerlink" title="1.接口："></a>1.接口：</h2><ol>
-<li>抽象类算是半个类，所以用extends 继承抽象类</li>
-<li>接口完全不是类，所以用implements 实现接口 </li>
+<li>抽象类算是半个类，所以用 extends 继承抽象类</li>
+<li>接口完全不是类，所以用 implements 实现接口</li>
+<li>作用：接口是把程序模块进行统一化的契约，是为了降低偶合（抽象类是为了重用）</li>
 </ol>
 <h2 id="2-接口中可定义的内容："><a href="#2-接口中可定义的内容：" class="headerlink" title="2.接口中可定义的内容："></a>2.接口中可定义的内容：</h2><ul>
 <li><p>抽象方法、常量、嵌套类型。</p>
 </li>
-<li><p>从java8开始可以定义：默认方法、静态方法。</p>
+<li><p>从 java8 开始可以定义：默认方法、静态方法。</p>
 </li>
-<li><p>上述这些可定义的内容，默认是public修饰的。（因为接口是提供给别人用的）</p>
+<li><p>上述这些可定义的内容，默认是 public 修饰的。（因为接口是提供给别人用的）</p>
 </li>
 <li><p>接口中定义的常量可以省略 static、final</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> AGE = <span class="number">10</span>; 等价于 <span class="keyword">int</span> AGE = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">（所以接口中是不能定义成员变量的，定义了也会给你变为常量）</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">select</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//相当于（因为接口中的方法 默认是抽象方法）</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">select</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">select</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//相当于（因为接口中的方法 默认是抽象方法）</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">select</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -202,34 +201,31 @@
 </li>
 <li><p>接口也不能实例化。</p>
 </li>
-<li><p>一个类可通过implements关键字实现一个或多个接口。<br>一个接口可以通过extends 来继承一个或多个接口（接口可以多继承其他接口）</p>
+<li><p>一个类可通过 implements 关键字实现一个或多个接口。<br>一个接口可以通过 extends 来继承一个或多个接口（接口可以多继承其他接口）</p>
 </li>
 <li><p>实现接口的类必须实现接口中定义的所有抽象方法，除非它是个抽象类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">JiaImpl</span>, <span class="title">BaoImpl</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">JiaImpl</span>, <span class="title">BaoImpl</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>若一个类实现的多个接口 中有相同的抽象方法，只需实现此方法一次。</p>
 </li>
-<li><p>extends和implements一起使用，extends必须写在implements前面。</p>
+<li><p>extends 和 implements 一起使用，extends 必须写在 implements 前面。</p>
 </li>
 <li><p>当父类、接口中的某个方法签名一样时，那返回值类型也必须一致。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Eatable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">eat</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name.length();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> calss Dog extends Animal implements Eatable&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//会报错，接口和父类 的此方法 返回值不一致</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Eatable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">eat</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name.length();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> calss Dog extends Animal implements Eatable&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//会报错，接口和父类 的此方法 返回值不一致</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
 <h2 id="4-抽象类与接口对比："><a href="#4-抽象类与接口对比：" class="headerlink" title="4.抽象类与接口对比："></a>4.抽象类与接口对比：</h2><ol>
 <li><p>使用抽象类叫继承，使用接口叫实现。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">继承：A extends B，    A 是 D</span><br><span class="line">实现：A implements B， A 会 D中的行为</span><br></pre></td></tr></table></figure>
-
-
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">继承：A extends B，    A 是 B</span><br><span class="line">实现：A implements B， A 会 B 中的行为</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接口为了降低耦合，抽象类为了重用。</p>
 </li>
 </ol>
 <h2 id="5-何时选择抽象类？"><a href="#5-何时选择抽象类？" class="headerlink" title="5.何时选择抽象类？"></a>5.何时选择抽象类？</h2><ol>
-<li>在紧密相关的类之间共享代码。(A,B类之间有共同代码D，可把D弄到抽象类中)</li>
+<li>在紧密相关的类之间共享代码。(A,B 类之间有共同代码 D，可把 D 弄到抽象类中)</li>
 <li>需要除 public 之外的访问权限。</li>
-<li>需要定义实例变量，非final的静态变量。</li>
+<li>需要定义实例变量，非 final 的静态变量。</li>
 </ol>
 <h2 id="6-何时选择接口？"><a href="#6-何时选择接口？" class="headerlink" title="6.何时选择接口？"></a>6.何时选择接口？</h2><ol>
 <li>不相关的类实现相同的方法。</li>
@@ -237,22 +233,17 @@
 <li>想实现类型的多重继承。</li>
 </ol>
 <h2 id="7-默认方法：Default-Method"><a href="#7-默认方法：Default-Method" class="headerlink" title="7.默认方法：Default Method"></a>7.默认方法：Default Method</h2><ol>
-<li><p>用default修饰的方法</p>
+<li><p>用 default 修饰的方法</p>
 </li>
 <li><p>默认方法只能是实例方法</p>
 </li>
 <li><p>默认方法不需要实现，直接可调用或重写。</p>
 </li>
 <li><p>若一个类 父类定义的非抽象方法与接口的默认方法相同时，最终调用父类的方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Animal - run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Runnable - run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line"><span class="keyword">public</span> calss Dog extends Animal implements Runnable&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Animal - run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Runnable - run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line"><span class="keyword">public</span> calss Dog extends Animal implements Runnable&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<ol start="5">
-<li>若一个类 父类定义的抽象方法与接口的默认方法相同时，要求子类实现此抽象方法。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Eatable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">default</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        print(<span class="string">"eat："</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<li><p>若一个类 父类定义的抽象方法与接口的默认方法相同时，要求子类实现此抽象方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Eatable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">default</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        print(<span class="string">"eat："</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -530,11 +521,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
