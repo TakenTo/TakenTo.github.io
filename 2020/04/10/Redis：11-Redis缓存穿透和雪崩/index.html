@@ -30,7 +30,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-5.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-14.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-15.jpg">
-<meta property="og:updated_time" content="2020-08-19T08:27:13.565Z">
+<meta property="og:updated_time" content="2020-09-07T09:16:31.860Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-1.jpg">
   
@@ -218,8 +218,8 @@
 </blockquote>
 <ol>
 <li><strong>缓存空对象</strong>：代码维护较简单，但是效果不好。</li>
-<li><strong>布隆过滤器</strong>：代码维护复杂，效果很好。   </li>
-<li><strong>接口校验</strong>：校验传入数据的合法性。  </li>
+<li><strong>布隆过滤器</strong>：代码维护复杂，效果很好。</li>
+<li><strong>接口校验</strong>：校验传入数据的合法性。</li>
 </ol>
 <p><strong>（1）缓存空对象</strong><br>缓存空对象是指当一个请求过来缓存中和数据库中都不存在该请求的数据，第一次请求就会跳过缓存进行数据库的访问，并且访问数据库后返回为空，此时也将该空对象进行缓存。<br>若是再次进行访问该空对象的时候，将会从缓存中获取，而不是再次<strong>数据库</strong>，从而保护了后端数据源，防止了攻击者反复使用同一查询参数进行攻击。（注意要设置缓存空值的存活时间）<br>缓存空对象实现的原理图如下：<br><img src="/images/redis/11-3.png" alt="加载图片！"></p>
 <p> 缓存空对象的实现代码如下：</p>
@@ -236,21 +236,21 @@
 <p>当用户想要查询的时候，使用布隆过滤器发现不在集合中，就直接丢弃，不再对持久层查询，从而避免对底层存储系统的查询压力。<br><img src="/images/redis/11-2.png" alt="加载图片！">  </p>
 <p>在计算机科学中有一种思想：<strong>空间换时间，时间换空间</strong>。一般两者是不可兼得，而布隆过滤器运行效率和空间大小都兼得，它是怎么做到的呢？</p>
 <p>在布隆过滤器中引用了一个<strong>误判率</strong>的概念，即它可能会把不属于这个集合的元素认为可能属于这个集合，但是不会把属于这个集合的认为不属于这个集合。</p>
-<p>布隆过滤器的特点如下：  </p>
+<p>布隆过滤器的特点如下：</p>
 <ol>
-<li><p>一个非常大<strong>的二进制位数组</strong> （数组里只有0和1）  </p>
+<li><p>一个非常大<strong>的二进制位数组</strong> （数组里只有0和1）</p>
 </li>
-<li><p>若干个<strong>哈希函数</strong>  </p>
+<li><p>若干个<strong>哈希函数</strong></p>
 </li>
-<li><p><strong>空间效率</strong>和<strong>查询效率高</strong>  </p>
+<li><p><strong>空间效率</strong>和<strong>查询效率高</strong></p>
 </li>
-<li><p>不存在<strong>漏报</strong>（False Negative）：某个元素在某个集合中，肯定能报出来。  </p>
+<li><p>不存在<strong>漏报</strong>（False Negative）：某个元素在某个集合中，肯定能报出来。</p>
 </li>
-<li><p>可能存在<strong>误报</strong>（False Positive）：某个元素不在某个集合中，可能也被爆出来。  </p>
+<li><p>可能存在<strong>误报</strong>（False Positive）：某个元素不在某个集合中，可能也被爆出来。</p>
 </li>
-<li><p>不提供删除方法，代码维护困难。  </p>
+<li><p>不提供删除方法，代码维护困难。</p>
 </li>
-<li><p>位数组初始化都为0，它不存元素的具体值，当元素经过哈希函数哈希后的值（也就是数组下标）对应的数组位置值改为1。  </p>
+<li><p>位数组初始化都为0，它不存元素的具体值，当元素经过哈希函数哈希后的值（也就是数组下标）对应的数组位置值改为1。</p>
 <p>实际布隆过滤器存储数据和查询数据的原理图如下：<br><img src="/images/redis/11-6.jpg" alt="加载图片！">   </p>
 </li>
 </ol>
@@ -604,11 +604,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -620,11 +620,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -640,15 +640,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
