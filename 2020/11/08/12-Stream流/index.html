@@ -23,7 +23,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;12-5.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;12-6.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;12-7.png">
-<meta property="og:updated_time" content="2020-11-08T14:45:42.707Z">
+<meta property="og:updated_time" content="2021-02-01T15:19:35.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;12-1.png">
   
@@ -296,13 +296,19 @@
 </ul>
 <p><img src="/images/java/12-3.png" alt="12-3.png"></p>
 <p> 通过引用 <code>import static java.util.stream.Collectors.summingInt;</code> 就可以直接调用 <strong>summingInt()</strong><br><strong>Apple::getWeight()</strong> 可以写为 <strong>apple -&gt; apple.getWeight()</strong>，求和函数的参数是结果转换函数 <strong>Function</strong>。</p>
-<h3 id="七、求平均值"><a href="#七、求平均值" class="headerlink" title="七、求平均值"></a>七、求平均值</h3><ul>
+<h3 id="七、求平均值、最大值、最小值"><a href="#七、求平均值、最大值、最小值" class="headerlink" title="七、求平均值、最大值、最小值"></a>七、求平均值、最大值、最小值</h3><ul>
 <li>Collectors.averagingInt()</li>
 <li>Collectors.averagingKLong()</li>
 <li>Collectors.averagingDouble()</li>
+<li></li>
 </ul>
 <p><img src="/images/java/12-4.png" alt="12-4.png"></p>
-<h3 id="八、归约"><a href="#八、归约" class="headerlink" title="八、归约"></a>八、归约</h3><ul>
+<h3 id="九、归约"><a href="#九、归约" class="headerlink" title="九、归约"></a>九、归约</h3><ul>
+<li>sorted()<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 按工资从小到大排序</span></span><br><span class="line">list.stream().sorted(Comparator.comparing(Employee::getSalary))</span><br><span class="line">             .peek(System.out::println)</span><br><span class="line">             .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 按工资从大到小排序</span></span><br><span class="line">list.stream().sorted(Comparator.comparing(Employee::getSalary).reversed())</span><br><span class="line">             .peek(System.out::println)</span><br><span class="line">             .collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="九、归约-1"><a href="#九、归约-1" class="headerlink" title="九、归约"></a>九、归约</h3><ul>
 <li>Collectors.reducing()</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Integer sum = appleStore</span><br><span class="line">        .stream()</span><br><span class="line">        .collect(reducing(<span class="number">0</span>, Apple::getWeight, (a, b) -&gt; a + b));</span><br><span class="line">    System.out.println(sum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -319,7 +325,7 @@
 <ul>
 <li>Collectors.counting(): 初始值为 <strong>0</strong>，转换函数 <strong>f(x)=1</strong>（x 就是 Stream<T> 的 T 类型），累积函数就是“做加法”</li>
 </ul>
-<h3 id="九、分组"><a href="#九、分组" class="headerlink" title="九、分组"></a>九、分组</h3><ul>
+<h3 id="十、分组"><a href="#十、分组" class="headerlink" title="十、分组"></a>十、分组</h3><ul>
 <li>Collectors.groupingBy()<br>分组就和 SQL 中的 <strong>GROUP BY</strong> 十分类似，所以 <strong>groupingBy()</strong> 的所有参数中有一个参数是 <strong>Collector</strong>接口，这样就能够和 求和/求平均值/归约 一起使用。<br><img src="/images/java/12-6.png" alt="12-6.png"></li>
 <li>传入参数的接口是 Function 接口，实现这个接口可以是实现从 A 类型到 B 类型的转换</li>
 <li>其中有一个方法可以传入参数 <code>Supplier mapFactory</code>,这个可以通过自定义 Map工厂，来创建自定义的分组 Map。</li>
@@ -478,6 +484,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2021/04/03/13-%E6%B3%A8%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          13-注解
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/09/06/linux%E5%9F%BA%E7%A1%80/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">linux基础</div>
@@ -523,7 +538,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 刘浩
+    		&copy; 2021 刘浩
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -602,15 +617,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,11 +637,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -638,7 +657,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,7 +665,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">

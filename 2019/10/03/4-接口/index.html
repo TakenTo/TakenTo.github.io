@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="4-接口">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-02T14:41:49.644Z">
+<meta property="og:updated_time" content="2021-04-05T08:33:43.380Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -197,9 +197,9 @@
 </li>
 </ul>
 <h2 id="3-接口细节："><a href="#3-接口细节：" class="headerlink" title="3.接口细节："></a>3.接口细节：</h2><ol>
-<li><p>不能定义构造方法、静态初始化块。</p>
+<li><p>不能定义静态初始化块、构造方法。</p>
 </li>
-<li><p>接口也不能实例化。</p>
+<li><p>接口也不能实例化（因为没有构造方法，所以不能通过new来创建）。</p>
 </li>
 <li><p>一个类可通过 implements 关键字实现一个或多个接口。<br>一个接口可以通过 extends 来继承一个或多个接口（接口可以多继承其他接口）</p>
 </li>
@@ -220,6 +220,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">继承：A extends B，    A 是 B</span><br><span class="line">实现：A implements B， A 会 B 中的行为</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>接口为了降低耦合，抽象类为了重用。</p>
+</li>
+<li><p>构造方法：抽象类可有构造方法，接口不能有。</p>
 </li>
 </ol>
 <h2 id="5-何时选择抽象类？"><a href="#5-何时选择抽象类？" class="headerlink" title="5.何时选择抽象类？"></a>5.何时选择抽象类？</h2><ol>
@@ -414,7 +416,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 刘浩
+    		&copy; 2021 刘浩
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -493,15 +495,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,11 +515,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,7 +535,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,7 +543,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">

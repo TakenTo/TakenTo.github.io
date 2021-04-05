@@ -22,7 +22,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-6.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-7.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-8.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-9.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-8.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-10.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-11.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-12.jpg">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-5.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-14.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-15.jpg">
-<meta property="og:updated_time" content="2020-09-07T09:16:31.860Z">
+<meta property="og:updated_time" content="2021-04-03T15:33:51.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;redis&#x2F;11-1.jpg">
   
@@ -206,7 +206,7 @@
 <h2 id="1-缓存穿透"><a href="#1-缓存穿透" class="headerlink" title="1.缓存穿透"></a>1.缓存穿透</h2><blockquote>
 <p>概念</p>
 </blockquote>
-<p>用户想要查询一个数据，发现redis内存数据库没有，也就是缓存没有命中，于是向持久层数据库查询。发现也没有，于是本次查询失败。当用户很多的时候，查询的某条数据缓存没有命中（如秒杀场景），于是都去请求了持久层数据库。这会给持久层数据库造成很大的压力，这时候就相当于出现了缓存穿透。 </p>
+<p>用户想要查询一个数据，发现redis中没有，也就是缓存没有命中，于是向数据库查询，发现也没有，于是本次查询失败。当用户很多的时候，查询的某条数据缓存没有命中（如秒杀场景），于是都去请求了持久层数据库。这会给持久层数据库造成很大的压力，这时候就相当于出现了缓存穿透。 （如黑客发送大量id = -1的请求，由于数据库中不存在id为-1的数据，大量请求全打到数据库上，导致数据库挂掉）</p>
 <p> <strong>这里需要注意和缓存击穿的区别，缓存击穿，是指一个key非常热点，在不停的扛着大并发，大并发集中对这一个点进行访问，当这个key在失效的瞬间，持续的大并发就穿破缓存，直接请求数据库，就像在一个屏障上凿开了一个洞。</strong> </p>
 <p><img src="/images/redis/11-1.jpg" alt="加载图片！">  </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="meta">@Autowired</span></span><br><span class="line">     UserDAO userDAO;</span><br><span class="line"></span><br><span class="line">     <span class="meta">@Autowired</span></span><br><span class="line">     RedisCache redisCache;</span><br><span class="line"> </span><br><span class="line">     <span class="function"><span class="keyword">public</span> User <span class="title">findUser</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 从缓存中查</span></span><br><span class="line">          Object object = redisCache.get(Integer.toString(id));</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span>(object == <span class="keyword">null</span>) &#123;</span><br><span class="line">              <span class="comment">// 缓存中不存在，从数据库中查</span></span><br><span class="line">               User user = userDAO.getUser(id);</span><br><span class="line">               </span><br><span class="line">               <span class="keyword">if</span>(user != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="comment">// 如果数据库中有此对象</span></span><br><span class="line">                    redisCache.put(Integer.toString(id),user);</span><br><span class="line">               &#125; </span><br><span class="line"></span><br><span class="line">               <span class="keyword">return</span> user;</span><br><span class="line">          &#125;</span><br><span class="line">     &#125;          </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -240,17 +240,17 @@
 <ol>
 <li><p>一个非常大<strong>的二进制位数组</strong> （数组里只有0和1）</p>
 </li>
+<li><p>位数组初始化都为0，即数据不在数组中。数组不存放元素的具体值，元素经过哈希函数后得到的值，作为数组下标，数组对应位置值改为1。</p>
+</li>
 <li><p>若干个<strong>哈希函数</strong></p>
 </li>
 <li><p><strong>空间效率</strong>和<strong>查询效率高</strong></p>
 </li>
 <li><p>不存在<strong>漏报</strong>（False Negative）：某个元素在某个集合中，肯定能报出来。</p>
 </li>
-<li><p>可能存在<strong>误报</strong>（False Positive）：某个元素不在某个集合中，可能也被爆出来。</p>
+<li><p>可能存在<strong>误报</strong>（False Positive）：某个元素不在某个集合中，可能也被报出来。</p>
 </li>
-<li><p>不提供删除方法，代码维护困难。</p>
-</li>
-<li><p>位数组初始化都为0，它不存元素的具体值，当元素经过哈希函数哈希后的值（也就是数组下标）对应的数组位置值改为1。</p>
+<li><p>不能进行删除操作。</p>
 <p>实际布隆过滤器存储数据和查询数据的原理图如下：<br><img src="/images/redis/11-6.jpg" alt="加载图片！">   </p>
 </li>
 </ol>
@@ -258,30 +258,29 @@
 <p>初始化的布隆过滤器的结构图如下：<br><img src="/images/redis/11-7.jpg" alt="加载图片！"></p>
 <p>以上只是画了布隆过滤器的很小很小的一部分，实际布隆过滤器是非常大的数组（ 这里的大是指它的<strong>长度大</strong>，并不是指它所占的<strong>内存空间大</strong> 。）</p>
 <p><strong>那么一个数据是怎么存进布隆过滤器的呢？</strong></p>
-<p>当一个数据进行存入布隆过滤器的时候，会经过如干个哈希函数进行哈希，得到对应的哈希值作为数组的下标，然后将初始化的位数组对应的下标的值修改为1，结果图如下：<br><img src="/images/redis/11-8.jpg" alt="加载图片！">  </p>
-<p> 当再次进行存入第二个值的时候，修改后的结果的原理图如下：<br><img src="/images/redis/11-9.jpg" alt="加载图片！">  </p>
-<p>所以每次存入一个数据，就会哈希函数的计算，计算的结果就会作为下标，在布隆过滤器中有多少个哈希函数就会计算出多少个下标，布隆过滤器插入的流程如下：  </p>
+<p>当一个数据进行存入布隆过滤器的时候，会经过若干个哈希函数，得到对应的哈希值作为数组的下标，然后将初始化的位数组对应的下标的值修改为1，结果图如下：<br><img src="/images/redis/11-8.jpg" alt="加载图片！">   </p>
+<p>所以每次存入一个数据，都要经过若干个哈希函数的计算，计算的结果就会作为下标。在布隆过滤器中有多少个哈希函数就会计算出多少个下标，布隆过滤器插入的流程如下：  </p>
 <ol>
 <li>将要添加的元素给m个哈希函数  </li>
 <li>得到对应于位数组上的m个位置  </li>
 <li>将这m个位置设为1   </li>
 </ol>
-<p><strong>那么为什么会有误判率呢？</strong><br>假设在我们多次存入值后，在布隆过滤器中存在x、y、z这三个值，布隆过滤器的存储结构图如下所示：<br><img src="/images/redis/11-10.jpg" alt="加载图片！">  </p>
+<p><strong>那么查数据？</strong><br>如查询X这个数据，通过Hash函数算出它存在于数组中的2、10位置。数组2、10位置的值必须都是1，才能证明存在X这个数据。只要有一个位置的二进制值不是1，那这个数据就不存在。<br><img src="/images/redis/11-8.jpg" alt="加载图片！">  </p>
+<p><strong>缺点1：那么为什么会有误判率呢？</strong><br>假设在我们多次存入值后，在布隆过滤器中存在x、y、z这三个值，布隆过滤器的存储结构图如下所示：<br><img src="/images/redis/11-10.jpg" alt="加载图片！">  </p>
 <p> 当我们要查询的时候，比如查询a这个数，实际中a这个数是不存在布隆过滤器中的，经过2个哈希函数计算后得到a的哈希值分别为2和13，结构原理图如下：<br><img src="/images/redis/11-11.jpg" alt="加载图片！">  </p>
-<p>经过查询后，发现2和13位置所存储的值都为1，但是2和13的下标分别是x和z经过计算后的下标位置的修改，该布隆过滤器中实际不存在a，那么布隆过滤器就会误判改值可能存在， 因为布隆过滤器不存<strong>元素值</strong>，所以存在<strong>误判率</strong>。 </p>
+<p>经过查询后，发现2和13位置所存储的值都为1，但是2和13的下标分别是x和z经过计算后的下标位置的修改，该布隆过滤器中实际不存在a，那么布隆过滤器就会误判改值可能存在。因为布隆过滤器不存<strong>元素值</strong>，所以存在<strong>误判率</strong>。 </p>
 <p>那么具体布隆过布隆过滤的判断的准确率和一下<strong>两个因素</strong>有关：  </p>
 <ol>
 <li><strong>布隆过滤器大小</strong>：越大，误判率就越小，所以说布隆过滤器一般长度都是非常大的。  </li>
 <li><strong>哈希函数的个数</strong>：哈希函数的个数越多，那么误判率就越小。  </li>
 </ol>
-<p><strong>那么为什么不能删除元素呢？</strong><br>原因很简单，因为删除元素后，将对应元素的下标设置为零，可能别的元素的下标也引用改下标，这样别的元素的判断就会收到影响，原理图如下：<br><img src="/images/redis/11-12.jpg" alt="加载图片！">   </p>
+<p><strong>缺点2：那么为什么不能删除元素呢？</strong><br>原因很简单，因为删除元素后，将元素对应的下标设置为零，可能别的元素算出下标也是该下标，这样别的元素的判断就会收到影响，原理图如下：<br><img src="/images/redis/11-12.jpg" alt="加载图片！">   </p>
 <p>当你删除z元素之后，将对应的下标10和13设置为0，这样导致x和y元素的下标受到影响，导致数据的判断不准确，所以直接不提供删除元素的api。</p>
-<p>以上说的都是布隆过滤器的原理，只有理解了原理，在实际的运用才能如鱼得水，下面就来实操代码，手写一个简单的布隆过滤器。</p>
-<p>对于要手写一个布隆过滤器，首先要明确布隆过滤器的核心：  </p>
+<p><strong>手写一个简单的布隆过滤器</strong><br>对于要手写一个布隆过滤器，首先要明确布隆过滤器的核心： </p>
 <ul>
 <li>若干哈希函数</li>
 <li>存值的Api</li>
-<li>判断值得Api  </li>
+<li>判断值得Api</li>
 </ul>
 <p>1.实现的代码如下： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBloomFilter</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 布隆过滤器长度</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SIZE = <span class="number">2</span> &lt;&lt; <span class="number">10</span>;</span><br><span class="line">    <span class="comment">// 模拟实现不同的哈希函数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>[] num= <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">5</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">31</span>,<span class="number">47</span>, <span class="number">71</span>&#125;;   </span><br><span class="line">    <span class="comment">// 初始化位数组</span></span><br><span class="line">    <span class="keyword">private</span> BitSet bits = <span class="keyword">new</span> BitSet(SIZE);</span><br><span class="line">    <span class="comment">// 用于存储哈希函数</span></span><br><span class="line">    <span class="keyword">private</span> MyHash[] function = <span class="keyword">new</span> MyHash[num.length];</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 初始化哈希函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyBloomFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num.length; i++) &#123;</span><br><span class="line">            function [i] = <span class="keyword">new</span> MyHash(SIZE, num[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 存值Api </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 对存入得值进行哈希计算</span></span><br><span class="line">        <span class="keyword">for</span> (MyHash f: function) &#123;</span><br><span class="line">            <span class="comment">// 将为数组对应的哈希下标得位置得值改为1</span></span><br><span class="line">            bits.set(f.hash(value), <span class="keyword">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 判断是否存在该值得Api</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (value == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">boolean</span> result= <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (MyHash f : func) &#123;</span><br><span class="line">            result= result&amp;&amp; bits.get(f.hash(value));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -337,7 +336,7 @@
 
 
 
-<h2 id="3-缓存雪崩"><a href="#3-缓存雪崩" class="headerlink" title="3.缓存雪崩"></a>3.缓存雪崩</h2><p><strong>缓存雪崩：</strong><br>缓存雪崩是指缓存层出现了错误，不能正常工作了。（如某一个时间段，缓存中的数据集中过期失效）<br>此刻无数的请求直接绕开缓存，直接请求数据库，存储层的调用量会暴增，造成存储层也会挂掉的情况。<br>缓存击穿和缓存穿透针对的都是同一个热点key的问题。  缓存雪崩是很多数据都过期了。   </p>
+<h2 id="3-缓存雪崩"><a href="#3-缓存雪崩" class="headerlink" title="3.缓存雪崩"></a>3.缓存雪崩</h2><p><strong>缓存雪崩：</strong><br>缓存雪崩是指缓存层出现了错误，不能正常工作了。（如缓存中大量的数据在同一时间全部过期）<br>此刻无数的请求绕开缓存，直接请求数据库，造成数据库挂掉。<br>缓存击穿和缓存穿透针对的都是同一个热点key的问题。 缓存雪崩是很多数据同一时间过期。   </p>
 <p><strong>造成缓存雪崩的2种原因：</strong>   </p>
 <ol>
 <li>reids宕机  </li>
@@ -351,7 +350,7 @@
 <p><strong>解决方案：</strong><br><strong>1.redis高可用</strong><br>​       这个思想的含义是，既然redis有可能挂掉，那就多设几台redis，这样一台挂掉后其他的还可以继续工作，其实就是搭建的集群。（搭建高可用的集群，防止单机的redis宕机。） </p>
 <p><strong>2.设置随机过期时间</strong><br>​       缓存数据的过期时间设置随机值， 防止同一时间大量数据过期的现象发生。  </p>
 <p><strong>3.限流降级</strong><br>​      这个解决方案的思想是，在缓存过期失效后，通过加锁或者队列来控制数据库写缓存的线程数量，比如某个key只允许一个线程查询数据和写缓存，其它线程等待；   </p>
-<p><strong>4.数据预热</strong><br>​      数据预热的含义就是在正式部署之前，把可能高频的数据预先先访问一遍，这样部分可能大量访问的数据就会加载到缓存中，在即将发生大并发访问前手动触发加载缓存不同的key，设置不同的过期时间，让缓存失效的时间点尽量均匀。（设置不同的过期时间，防止同一时间内大量的key失效。）   </p>
+<p><strong>4.数据预热</strong><br>​      数据预热的含义就是在正式部署之前，把可能高频的数据预先先访问一遍，这样部分可能大量访问的数据就会加载到缓存中，在即将发生大并发访问前手动触发加载缓存不同的key，设置不同的过期时间，让缓存失效的时间点尽量均匀。（设置不同的过期时间，防止同一时间内大量的key失效。） 或者设置定时任务，对于热点key定时刷新（在过期时间前再次访问）。  </p>
 <h2 id="4-缓存和数据库-数据一致性问题解决方案"><a href="#4-缓存和数据库-数据一致性问题解决方案" class="headerlink" title="4.缓存和数据库 数据一致性问题解决方案"></a>4.缓存和数据库 数据一致性问题解决方案</h2><p><strong>1.异步方式更新缓存</strong><br>如rabbitMQ<br><strong>2.乐观锁</strong><br>在需要缓存的表中，加上版本号字段。在存数据的时候，携带上版本号。<br><strong>3.双写</strong><br>在增删改数据的时候，顺便把缓存给更新。要求操作数据库与操作缓存要处于同一个事务当中。（这种是同步方式，用的较少）  </p>
 
       
@@ -521,7 +520,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 刘浩
+    		&copy; 2021 刘浩
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -600,15 +599,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -620,11 +619,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,7 +639,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -644,7 +647,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
