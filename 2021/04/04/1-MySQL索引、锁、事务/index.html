@@ -19,7 +19,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;MySQL&#x2F;1-1.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;MySQL&#x2F;1-2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;MySQL&#x2F;1-3.png">
-<meta property="og:updated_time" content="2021-04-05T10:54:32.290Z">
+<meta property="og:updated_time" content="2021-04-05T16:28:58.505Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;MySQL&#x2F;1-1.png">
   
@@ -200,8 +200,16 @@
 </ol>
 <p>这种数据结构，非常有利于减少读取硬盘的次数。假定一个节点可以容纳100个值，那么3层的B树可以容纳100万个数据，如果换成二叉查找树，则需要20层！假定操作系统一次读取一个节点，并且根节点保留在内存中，那么B树在100万个数据中查找目标值，只需要读取两次硬盘。</p>
 <h3 id="1-3、B-树"><a href="#1-3、B-树" class="headerlink" title="1.3、B+树"></a>1.3、B+树</h3><p>B树虽然减少了磁盘读取次数，但是未解决回旋查找的问题。如上图中查找大于12的数字，那么它首先定位到12的位置，然后再返回查找16，然后再查找12，再返回查找16，再查找18….。<br><a href="https://zhuanlan.zhihu.com/p/54102723" target="_blank" rel="noopener">什么是B+树？</a></p>
-<h3 id="1-3、索引"><a href="#1-3、索引" class="headerlink" title="1.3、索引"></a>1.3、索引</h3><p>数据库以B树格式储存，只解决了按照”主键”查找数据的问题。如果想查找其他字段，就需要建立索引（index）。</p>
-<p>所谓索引，就是以某个字段为关键字的B树文件。假定有一张”雇员表”，包含了员工号（主键）和姓名两个字段。可以对姓名建立索引文件，该文件以B树格式对姓名进行储存，每个姓名后面是其在数据库中的位置（即第几条记录）。查找姓名的时候，先从索引中找到对应第几条记录，然后再从表格中读取。  </p>
+<h3 id="1-3、索引"><a href="#1-3、索引" class="headerlink" title="1.3、索引"></a>1.3、索引</h3><p>索引用于快速找出在某个列中<code>有某特定值</code>的行。</p>
+<p>数据库以B树格式储存，只解决了按照”主键”查找数据的问题。如果想查找其他字段，就需要建立索引（index）。</p>
+<p>所谓索引，就是以某个字段为关键字的B树文件。假定有一张”雇员表”，包含了员工号（主键）和姓名两个字段。可以对姓名建立索引文件，该文件以B树格式对姓名进行储存，每个姓名后面是其在数据库中的位置（即第几条记录）。查找姓名的时候，先从索引中找到对应第几条记录，然后再从表格中读取。   </p>
+<h3 id="1-4、索引优势与劣势"><a href="#1-4、索引优势与劣势" class="headerlink" title="1.4、索引优势与劣势"></a>1.4、索引优势与劣势</h3><p>索引优势：提高查询效率、降低数据排序成本。<br>索引劣势：实际上索引也是一张表，该表保存了主键与索引字段，并指向实体表的记录，所以索引列也占内存空间。索引降低了插入、更新、删除的效率。  </p>
+<h3 id="1-5、索引分类"><a href="#1-5、索引分类" class="headerlink" title="1.5、索引分类"></a>1.5、索引分类</h3><ol>
+<li>单值索引：即一个索引只包含单个列，一个表可以有多个单列索引。</li>
+<li>唯一索引：索引列的值必须唯一，但允许有空值。</li>
+<li>复合索引：一个索引包含多个列。（<code>index MultiIdx(id,name,age)</code>）</li>
+<li>全文索引：只有在MyISAM引擎上才能使用，只能在CHAR,VARCHAR,TEXT类型字段上使用全文索引。</li>
+</ol>
 <h2 id="2-索引失效原因"><a href="#2-索引失效原因" class="headerlink" title="2.索引失效原因"></a>2.索引失效原因</h2><h3 id="2-1、分析"><a href="#2-1、分析" class="headerlink" title="2.1、分析"></a>2.1、分析</h3><p>如某个表中对id、age两个字段建立复合索引，那它底层存储结构如下:<br><img src="/images/MySQL/1-3.png" alt="加载图片！"><br>可以得出以下结论：  </p>
 <ol>
 <li>左边的值，即id的值是顺序的：1、1、2、2、3、3</li>
@@ -312,12 +320,24 @@
 <h3 id="4-分析InnoDB引擎当前的锁情况"><a href="#4-分析InnoDB引擎当前的锁情况" class="headerlink" title="4.分析InnoDB引擎当前的锁情况"></a>4.分析InnoDB引擎当前的锁情况</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">status</span> <span class="keyword">like</span> <span class="string">'innodb_now_lock%'</span>;</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="三、事务"><a href="#三、事务" class="headerlink" title="三、事务"></a>三、事务</h2><p>事务分类：原子性、一致性、隔离性、持久性。</p>
-<ol>
+<h2 id="三、事务"><a href="#三、事务" class="headerlink" title="三、事务"></a>三、事务</h2><h3 id="1-事务分类：原子性、一致性、隔离性、持久性。（ACID）"><a href="#1-事务分类：原子性、一致性、隔离性、持久性。（ACID）" class="headerlink" title="1.事务分类：原子性、一致性、隔离性、持久性。（ACID）"></a>1.事务分类：原子性、一致性、隔离性、持久性。（ACID）</h3><ol>
 <li>原子性：一个事务中的操作要么全部成功，要么全部失败。</li>
-<li>一致性：数据库总是从一个一致性的状态转换到另外一个一致性的状态。比如A转账给B100块钱，假设中间sql执行过程中系统崩溃A也不会损失100块，因为事务没有提交，修改也就不会保存到数据库。</li>
-<li>隔离性：一个事务的修改在最终提交前，对其他事务是不可见的。</li>
-<li>持久性：一旦事务提交，所做的修改就会永久保存到数据库中。（数据从内存到数据库 -&gt; 持久化）</li>
+<li>一致性：事务的执行结果必须使数据库从一个一致性的状态转换到另外一个一致性的状态，也就是说一个事务执行前后都必须处于一致性状态。比如A转账给B 100块钱，假设中间sql执行过程中系统崩溃A也不会损失100块，因为事务没有提交，修改也就不会保存到数据库。</li>
+<li>隔离性：一个事务的修改在最终提交前，其他事务是不能干扰的。多个并发事务之间要相互隔离。</li>
+<li>持久性：一旦事务提交，所做的修改就会永久保存到数据库中。（数据从内存到数据库 -&gt; 持久化）  </li>
+</ol>
+<h3 id="2-事务的使用"><a href="#2-事务的使用" class="headerlink" title="2.事务的使用"></a>2.事务的使用</h3><ol>
+<li>开启事务：<code>start transaction</code></li>
+<li>提交事务：<code>commit</code>（所有语句全部执行完毕，未发生异常，提交事务，更新到数据库当中。）</li>
+<li>回滚事务：<code>rollback</code>（当遇到一突发情况，撤销执行的sql语句）<br>执行流程：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span></span><br><span class="line"><span class="keyword">update</span> student <span class="keyword">set</span> age = age + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">update</span> student <span class="keyword">set</span> gread = gread + <span class="number">4</span>;</span><br><span class="line"><span class="keyword">rollback</span> <span class="comment"># 若执行rollback，则会跳回到 start transaction</span></span><br><span class="line"><span class="keyword">commit</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="2-事务隔离级别"><a href="#2-事务隔离级别" class="headerlink" title="2.事务隔离级别"></a>2.事务隔离级别</h3><ol>
+<li>可重复读(默认)：指在一个事务中读取到了别的事务插入的数据，导致前后读取不一致。（本来是2条数据，后来加了一条，再读就是3条）</li>
+<li>读未提交：就是一个事务可以读取到另一个事务未提交的数据。（脏读）</li>
+<li>读已提交：一个事务要等另一个事务提交后才能读取数据。</li>
+<li>串行化：在该级别下，事务串行化顺序执行，可以避免脏读、不可重复读与幻读。</li>
 </ol>
 
       
@@ -586,15 +606,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">RabbitMQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">RabbitMQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">SpringSecurity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,11 +634,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
