@@ -23,7 +23,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;12-5.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;12-6.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;12-7.png">
-<meta property="og:updated_time" content="2021-02-01T15:19:35.548Z">
+<meta property="og:updated_time" content="2021-04-11T13:12:22.475Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;12-1.png">
   
@@ -66,7 +66,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/JAVA/">JAVA</a></li>
+				<li><a href="/tags/java/">JAVA</a></li>
 	        
 				<li><a href="/tags/Vue/">Vue</a></li>
 	        
@@ -144,7 +144,7 @@
 				
 					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/JAVA/">JAVA</a></li>
+					<li style="width: 25%"><a href="/tags/java/">JAVA</a></li>
 		        
 					<li style="width: 25%"><a href="/tags/Vue/">Vue</a></li>
 		        
@@ -335,35 +335,35 @@
 <li>Collectors.partitioningBy() 传入参数的是 Predicate 接口，</li>
 <li>分区相当于把流中的数据，分组分成了“正反两个阵营”</li>
 </ul>
-<h1 id="数值流"><a href="#数值流" class="headerlink" title="数值流"></a>数值流</h1><p>之前在求和时用到的例子，<code>appleStore.stream().collect(summingInt(Apple::getWeight))</code>，我就被 IDEA 提醒：<br>appleStore.stream().collect(summingInt(Apple::getWeight))</p>
-<p>The ‘collect(summingInt())’ can be replaced with ‘mapToInt().sum()’</p>
+<h1 id="数值流"><a href="#数值流" class="headerlink" title="数值流"></a>数值流</h1><p>之前在求和时用到的例子，<code>appleStore.stream().collect(summingInt(Apple::getWeight))</code>，我就被 IDEA 提醒：<br><code>appleStore.stream().collect(summingInt(Apple::getWeight))</code></p>
+<p><code>The &#39;collect(summingInt())&#39; can be replaced with &#39;mapToInt().sum()</code></p>
 <p>这就告诉我们可以先转化为数值流，然后再用 IntStream 做求和。</p>
-<p>Java8引入了三个原始类型特化流接口：IntStream，LongStream，DoubleStream，分别将流中的元素特化为 int，long，double。<br>普通对象流和原始类型特化流之间可以相互转化：</p>
+<p>Java8引入了三个原始类型特化流接口：<code>IntStream</code>，<code>LongStream</code>，<code>DoubleStream</code>，分别将流中的元素特化为 <code>int</code>，<code>long</code>，<code>double</code>。<br>普通对象流和原始类型特化流之间可以相互转化：</p>
 <p><img src="/images/java/12-7.png" alt="12-7.png"></p>
 <ul>
-<li>其中 IntStream 和 LongStream 可以调用 asDoubleStream 变为 DoubleStream，但是这是单向的转化方法。</li>
-<li>IntStream#boxed() 可以得到 Stream<Integer> ,这个也是一个单向方法，支持数值流转换回对象流，LongStream 和 DoubleStream 也有类似的方法。</li>
+<li>其中 <code>IntStream</code> 和 <code>LongStream</code> 可以调用 <code>asDoubleStream</code> 变为 <code>DoubleStream</code>，但是这是单向的转化方法。</li>
+<li><code>IntStream#boxed()</code> 可以得到 <code>Stream&lt;Integer&gt;</code> ,这个也是一个单向方法，支持数值流转换回对象流，<code>LongStream</code> 和 <code>DoubleStream</code> 也有类似的方法。</li>
 </ul>
 <h2 id="生成一个数值流"><a href="#生成一个数值流" class="headerlink" title="生成一个数值流"></a>生成一个数值流</h2><ul>
-<li><strong>IntStream.range(int startInclusive, int endExclusive)</strong></li>
-<li><strong>IntStream.rangeClosed(int startInclusive, int endInclusive)</strong></li>
-<li>range 和 rangeClosed 的区别在于数值流是否包含 end 这个值。range 代表的区间是 [start, end) , rangeClosed 代表的区间是 [start, end]</li>
-<li>LongStream 也有 range 和 rangeClosed 方法，但是 DoubleStream 没有！</li>
+<li><code>IntStream.range(int startInclusive, int endExclusive)</code></li>
+<li><code>IntStream.rangeClosed(int startInclusive, int endInclusive)</code></li>
+<li><code>range</code> 和 <code>rangeClosed</code> 的区别在于数值流是否包含 <code>end</code> 这个值。<code>range</code> 代表的区间是 <code>[start, end)</code> , <code>rangeClosed</code> 代表的区间是 <code>[start, end]</code></li>
+<li><code>LongStream</code> 也有 <code>range</code> 和 <code>rangeClosed</code> 方法，但是 <code>DoubleStream</code> 没有！</li>
 </ul>
 <h2 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h2><ul>
-<li>Stream.flatMap 就是流中的每个对象，转换产生一个对象流。</li>
-<li>Stream.flatMapToInt 指定流中的每个对象，转换产生一个 IntStream 数值流；类似的，还有 flatMapToLong，flatMapToDouble</li>
-<li>IntStream.flatMap 数值流中的每个对象，转换产生一个数值流</li>
+<li><code>Stream.flatMap</code> 就是流中的每个对象，转换产生一个对象流。</li>
+<li><code>Stream.flatMapToInt</code> 指定流中的每个对象，转换产生一个 <code>IntStream</code> 数值流；类似的，还有 <code>flatMapToLong</code>，<code>flatMapToDouble</code></li>
+<li><code>IntStream.flatMap</code> 数值流中的每个对象，转换产生一个数值流</li>
 </ul>
-<p>flatMap 可以代替一些嵌套循环来开展业务：<br>比如我们要求勾股数（即 a<em>a+b</em>b=c*c 的一组数中的 a，b，c），且我们要求 a 和 b 的范围是 [1,100],我们在 Java8之前会这样写：</p>
+<p><code>flatMap</code> 可以代替一些嵌套循环来开展业务：<br>比如我们要求勾股数（即 <code>a*a+b*b=c*c</code> 的一组数中的 <code>a，b，c</code>），且我们要求 a 和 b 的范围是 <code>[1,100]</code>,我们在 Java8之前会这样写：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testJava</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;<span class="keyword">int</span>[]&gt; resultList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> a = <span class="number">1</span>; a &lt;= <span class="number">100</span>; a++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> b = a; b &lt;= <span class="number">100</span>; b++) &#123;</span><br><span class="line">            <span class="keyword">double</span> c = Math.sqrt(a * a + b * b);</span><br><span class="line">            <span class="keyword">if</span> (c % <span class="number">1</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                resultList.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;a, b, (<span class="keyword">int</span>) c&#125;);</span><br><span class="line">        	&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> size = resultList.size();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size &amp;&amp; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">    	<span class="keyword">int</span>[] a = resultList.get(i);</span><br><span class="line">    	System.out.println(a[<span class="number">0</span>] + <span class="string">" "</span> + a[<span class="number">1</span>] + <span class="string">" "</span> + a[<span class="number">2</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Java8之后，可以用 flatMap：</p>
+<p>Java8之后，可以用 <code>flatMap</code>：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Stream&lt;<span class="keyword">int</span>[]&gt; stream = IntStream.rangeClosed(<span class="number">1</span>, <span class="number">100</span>)</span><br><span class="line">        .boxed()</span><br><span class="line">        .flatMap(a -&gt; IntStream.rangeClosed(a, <span class="number">100</span>)</span><br><span class="line">                 .filter(b -&gt; Math.sqrt(a * a + b * b) % <span class="number">1</span> == <span class="number">0</span>)</span><br><span class="line">                 .mapToObj(b -&gt; <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;a, b, (<span class="keyword">int</span>) Math.sqrt(a * a + b * b)&#125;)</span><br><span class="line">    );</span><br><span class="line">    stream.limit(<span class="number">5</span>)</span><br><span class="line">        .forEach(a -&gt; System.out.println(a[<span class="number">0</span>] + <span class="string">" "</span> + a[<span class="number">1</span>] + <span class="string">" "</span> + a[<span class="number">2</span>]));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>创建一个从 1 到 100 的数值范围来创建 a 的值。对每个给定的 a 值，创建一个三元数流。<br>flatMap 方法在做映射的同时，还会把所有生成的三元数流扁平化成一个流。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
-<li>Stream 主要包括对象流和数值流两大类</li>
+<li>Stream 主要包括<code>对象流</code>和<code>数值流</code>两大类</li>
 <li>Stream.<strong>of()</strong> , Arrays.<strong>stream()</strong> , Stream.<strong>generate()</strong> , Stream.<strong>iterate()</strong> 方法创建对象流</li>
 <li>IntStream.<strong>range()</strong> 和 IntStream.<strong>rangeClosed()</strong> 可以创建数值流，对象流和数值流可以相互转换</li>
 <li>Collector 收集器接口，可以实现归约，统计函数（求和，求平均值，最大值，最小值），分组等功能</li>
@@ -383,7 +383,7 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>失败是成功之母，想知道谁是成功之父吗？<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>失败是成功之母<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
@@ -484,7 +484,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/04/03/13-%E6%B3%A8%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/11/10/13-%E6%B3%A8%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -629,15 +629,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -653,11 +649,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">SpringSecurity</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -669,11 +665,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://TakenTo.github.io">
-  <title>1.基础知识 | 我的博客</title>
+  <title>1-基础知识 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="基础知识">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1.基础知识">
+<meta property="og:title" content="1-基础知识">
 <meta property="og:url" content="https:&#x2F;&#x2F;takento.github.io&#x2F;2019&#x2F;10&#x2F;02&#x2F;1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86&#x2F;index.html">
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="基础知识">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-3.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-4.png">
-<meta property="og:updated_time" content="2020-09-07T09:28:12.612Z">
+<meta property="og:updated_time" content="2021-04-11T13:24:18.861Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;java&#x2F;1-1.png">
   
@@ -63,7 +63,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/JAVA/">JAVA</a></li>
+				<li><a href="/tags/java/">JAVA</a></li>
 	        
 				<li><a href="/tags/Vue/">Vue</a></li>
 	        
@@ -141,7 +141,7 @@
 				
 					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/JAVA/">JAVA</a></li>
+					<li style="width: 25%"><a href="/tags/java/">JAVA</a></li>
 		        
 					<li style="width: 25%"><a href="/tags/Vue/">Vue</a></li>
 		        
@@ -167,7 +167,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      1.基础知识
+      1-基础知识
     </h1>
   
 
@@ -203,38 +203,25 @@
 
 
 <h2 id="5-方法参数与返回值"><a href="#5-方法参数与返回值" class="headerlink" title="5.方法参数与返回值"></a>5.方法参数与返回值</h2><ol>
-<li><p>引用类型作为参数 传递的是地址</p>
-</li>
-<li><p>引用类型作为返回值 返回的是地址</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] test()&#123;</span><br><span class="line">    <span class="keyword">int</span>[] t = &#123;<span class="number">11</span>, <span class="number">22</span>&#125;;</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] n = test();</span><br><span class="line">test() 方法执行完，&#123;<span class="number">11</span>, <span class="number">22</span>&#125;在堆内存中的内容不会被GC，因为被n引用了。</span><br></pre></td></tr></table></figure>
+<li>引用类型作为参数 传递的是地址</li>
+<li>引用类型作为返回值 返回的是地址<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] test()&#123;</span><br><span class="line">    <span class="keyword">int</span>[] t = &#123;<span class="number">11</span>, <span class="number">22</span>&#125;;</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] n = test();</span><br><span class="line">test() 方法执行完，&#123;<span class="number">11</span>, <span class="number">22</span>&#125;在堆内存中的内容不会被GC，因为被n引用了。</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
 <h2 id="6-方法的签名：方法名-参数类型"><a href="#6-方法的签名：方法名-参数类型" class="headerlink" title="6.方法的签名：方法名 + 参数类型"></a>6.方法的签名：方法名 + 参数类型</h2><h2 id="7-方法重载：方法名相同，方法签名不同"><a href="#7-方法重载：方法名相同，方法签名不同" class="headerlink" title="7.方法重载：方法名相同，方法签名不同"></a>7.方法重载：方法名相同，方法签名不同</h2><h2 id="8-栈帧-Frame-："><a href="#8-栈帧-Frame-：" class="headerlink" title="8.栈帧(Frame)："></a>8.栈帧(Frame)：</h2><ol>
-<li><p>栈帧随着方法的调用而创建，随着方法结束而销毁，存储了方法的局部变量信息。</p>
-</li>
-<li><p>栈溢出：Stack Overflow</p>
-<p><img src="/images/java/1-1.png" alt="1-1"></p>
-</li>
+<li>栈帧随着方法的调用而创建，随着方法结束而销毁，存储了方法的局部变量信息。</li>
+<li>栈溢出：Stack Overflow<br><img src="/images/java/1-1.png" alt="1-1"></li>
 </ol>
 <h2 id="问：方法存储在哪里？"><a href="#问：方法存储在哪里？" class="headerlink" title="问：方法存储在哪里？"></a>问：方法存储在哪里？</h2><p>内存划分：</p>
 <ol>
-<li><p>PC寄存器(Program Counter Register)：存储java虚拟机正在执行的字节码指令地址</p>
-</li>
-<li><p>java虚拟机栈(java Virtual Machine Stack)：存储栈帧</p>
-</li>
-<li><p>堆(Heap)：存储GC所管理的各种对象</p>
-</li>
-<li><p>方法区(Method Area)：存储每个类的结构信息（比如字段名称和类型，方法的返回值与签名，构造方法和普通方法的字节码等）</p>
-</li>
-<li><p>本地方法栈(Native Method Stack)：用来支持native方法的调用(比如C语言编写的方法)</p>
-</li>
-<li><p>简单对象内存<br><img src="/images/java/1-2.png" alt=""></p>
-</li>
-<li><p>复杂对象内存<br><img src="/images/java/1-3.png" alt=""></p>
-</li>
-<li><p>对象数组内存<br><img src="/images/java/1-4.png" alt=""></p>
-</li>
+<li>PC寄存器(Program Counter Register)：存储java虚拟机正在执行的字节码指令地址</li>
+<li>java虚拟机栈(java Virtual Machine Stack)：存储栈帧</li>
+<li>堆(Heap)：存储GC所管理的各种对象</li>
+<li>方法区(Method Area)：存储每个类的结构信息（比如字段名称和类型，方法的返回值与签名，构造方法和普通方法的字节码等）</li>
+<li>本地方法栈(Native Method Stack)：用来支持native方法的调用(比如C语言编写的方法)</li>
+<li>简单对象内存<br><img src="/images/java/1-2.png" alt=""></li>
+<li>复杂对象内存<br><img src="/images/java/1-3.png" alt=""></li>
+<li>对象数组内存<br><img src="/images/java/1-4.png" alt=""></li>
 </ol>
 
       
@@ -249,7 +236,7 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>失败是成功之母，想知道谁是成功之父吗？<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>失败是成功之母<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
@@ -359,6 +346,11 @@
       </div>
     </a>
   
+  
+    <a href="/2019/10/01/0-%E5%90%8D%E8%AF%8D%EF%BC%9A%E5%AF%B9%E8%B1%A1%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E5%A0%86%E3%80%81%E6%A0%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">0-名词：对象、引用、堆、栈</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -490,15 +482,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,11 +502,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">SpringSecurity</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,11 +518,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://TakenTo.github.io">
-  <title>11-其他知识（instanceof、泛型等） | 我的博客</title>
+  <title>0-名词：对象、引用、堆、栈 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="11.杂知识点">
+  <meta name="description" content="Java名词：对象、引用、堆、栈">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="11-其他知识（instanceof、泛型等）">
-<meta property="og:url" content="https:&#x2F;&#x2F;takento.github.io&#x2F;2019&#x2F;10&#x2F;05&#x2F;11-%E5%85%B6%E4%BB%96%E7%9F%A5%E8%AF%86&#x2F;index.html">
+<meta property="og:title" content="0-名词：对象、引用、堆、栈">
+<meta property="og:url" content="https:&#x2F;&#x2F;takento.github.io&#x2F;2019&#x2F;10&#x2F;01&#x2F;0-%E5%90%8D%E8%AF%8D%EF%BC%9A%E5%AF%B9%E8%B1%A1%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E5%A0%86%E3%80%81%E6%A0%88&#x2F;index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="11.杂知识点">
+<meta property="og:description" content="Java名词：对象、引用、堆、栈">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-04-05T10:45:23.879Z">
+<meta property="og:updated_time" content="2021-04-11T13:23:33.260Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -58,7 +58,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/JAVA/">JAVA</a></li>
+				<li><a href="/tags/java/">JAVA</a></li>
 	        
 				<li><a href="/tags/Vue/">Vue</a></li>
 	        
@@ -136,7 +136,7 @@
 				
 					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/JAVA/">JAVA</a></li>
+					<li style="width: 25%"><a href="/tags/java/">JAVA</a></li>
 		        
 					<li style="width: 25%"><a href="/tags/Vue/">Vue</a></li>
 		        
@@ -155,106 +155,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-11-其他知识" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-0-名词：对象、引用、堆、栈" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      11-其他知识（instanceof、泛型等）
+      0-名词：对象、引用、堆、栈
     </h1>
   
 
         
-        <a href="/2019/10/05/11-%E5%85%B6%E4%BB%96%E7%9F%A5%E8%AF%86/" class="archive-article-date">
-  	<time datetime="2019-10-04T18:03:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-05</time>
+        <a href="/2019/10/01/0-%E5%90%8D%E8%AF%8D%EF%BC%9A%E5%AF%B9%E8%B1%A1%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E5%A0%86%E3%80%81%E6%A0%88/" class="archive-article-date">
+  	<time datetime="2019-10-01T02:34:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="11-杂知识点"><a href="#11-杂知识点" class="headerlink" title="11.杂知识点"></a>11.杂知识点</h1><a id="more"></a>  
-
-<h2 id="1-instanceof"><a href="#1-instanceof" class="headerlink" title="1.instanceof"></a>1.instanceof</h2><p>可以通过<code>instanceof</code>判断某个类型 是否 属于某种类型。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Object dog = <span class="keyword">new</span> Dog();</span><br><span class="line"></span><br><span class="line">sout(dog <span class="keyword">instanceof</span> Dog);      <span class="comment">// true</span></span><br><span class="line">sout(dog <span class="keyword">instanceof</span> Animal);   <span class="comment">// true</span></span><br><span class="line">sout(dog <span class="keyword">instanceof</span> Runnable); <span class="comment">// true</span></span><br><span class="line">sout(dog <span class="keyword">instanceof</span> String);   <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-UUID"><a href="#2-UUID" class="headerlink" title="2.UUID"></a>2.UUID</h2><p>uuid目的是让分布式系统中所有元素都能有唯一的标识符，而不需要通过中央控制器来做标识符的指定。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UUID.randomUUID();</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-类方法的调用细节："><a href="#3-类方法的调用细节：" class="headerlink" title="3.类方法的调用细节："></a>3.类方法的调用细节：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        sout(<span class="string">"Animal"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        sout(<span class="string">"Dog"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line">Dog.run();    <span class="comment">// Dog</span></span><br><span class="line">Animal.run(); <span class="comment">// Animal</span></span><br><span class="line"></span><br><span class="line">Dog dog = <span class="keyword">new</span> Dog();</span><br><span class="line">dog.run();  <span class="comment">// Dog</span></span><br><span class="line"></span><br><span class="line">Animal dog2 = <span class="keyword">new</span> Dog();</span><br><span class="line">dog2.run(); <span class="comment">// Animal</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="4-泛型"><a href="#4-泛型" class="headerlink" title="4.泛型"></a>4.泛型</h2><p><strong>1.泛型简介</strong><br>泛型即数据类型参数化。<br>Java中的泛型，只在编译阶段有效：在编译过程中，正确检验泛型结果后，会将泛型的相关信息擦出，并且在对象进入和离开方法的边界处添加类型检查和类型转换的方法。也就是说，泛型信息不会进入到运行时阶段。<br>对此总结成一句话：泛型类型在逻辑上看以看成是多个不同的类型，实际上都是相同的基本类型。   </p>
-<p><strong>1.泛型接收的类型</strong><br>只能传入引用数据类型，不能传入基本数据类型。</p>
-<p><strong>2.不能定义静态泛型变量</strong><br>原因：由于静态变量在java程序一运行时就已经被载入内存，而此时它的类型无法确定，而开辟空间必须知道类型，两者矛盾。   </p>
-<p><strong>3.方法前面的&lt;T&gt;</strong><br>&lt;T&gt;指定方法级别的泛型，是告诉编译器，当前的方法的值传入类型可以和类初始化的泛型类不同，也就是将该方法定义为泛型方法，不需要与类初始化的泛型类相同。    </p>
-<blockquote>
-<p>在java中泛型只是一个占位符，必须在传递类型后才能使用。就泛型类而言，类实例化时才能传递真正的类型参数，由于静态方法的加载先于类的实例化，也就是说类中的泛型还没有传递真正的类型参数时，静态方法就已经加载完成。显然，静态方法不能使用/访问泛型类中的泛型。（类加载时，静态的东西先加载）</p>
+        <h1 id="Java名词：对象、引用、堆、栈"><a href="#Java名词：对象、引用、堆、栈" class="headerlink" title="Java名词：对象、引用、堆、栈"></a>Java名词：对象、引用、堆、栈</h1><a id="more"></a>
+<h1 id="一、对象和引用"><a href="#一、对象和引用" class="headerlink" title="一、对象和引用"></a>一、对象和引用</h1><h2 id="对象的定义：按照通俗的说法，每个对象都是某个类（class）的一个实例（instance）。那么，实例化的过程怎么描述呢？-来看代码（类是-String）"><a href="#对象的定义：按照通俗的说法，每个对象都是某个类（class）的一个实例（instance）。那么，实例化的过程怎么描述呢？-来看代码（类是-String）" class="headerlink" title="对象的定义：按照通俗的说法，每个对象都是某个类（class）的一个实例（instance）。那么，实例化的过程怎么描述呢？ 来看代码（类是 String）"></a>对象的定义：按照通俗的说法，每个对象都是某个类（class）的一个实例（instance）。那么，实例化的过程怎么描述呢？ 来看代码（类是 String）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> String(<span class="string">"我是对象A"</span>);</span><br><span class="line"><span class="keyword">new</span> String(<span class="string">"我是对象B"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="在-Java-中，实例化指的就是通过关键字“new”来创建对象的过程。以上代码在运行时就会创建两个对象——“我是对象A”和”我是对象B”；现在，该怎么操作他们呢？"><a href="#在-Java-中，实例化指的就是通过关键字“new”来创建对象的过程。以上代码在运行时就会创建两个对象——“我是对象A”和”我是对象B”；现在，该怎么操作他们呢？" class="headerlink" title="在 Java 中，实例化指的就是通过关键字“new”来创建对象的过程。以上代码在运行时就会创建两个对象——“我是对象A”和”我是对象B”；现在，该怎么操作他们呢？"></a>在 Java 中，实例化指的就是通过关键字“new”来创建对象的过程。以上代码在运行时就会创建两个对象——“我是对象A”和”我是对象B”；现在，该怎么操作他们呢？</h2><blockquote>
+<p>需要有个指针指向 创建的对象，进而操作对象。 这就是“引用”</p>
 </blockquote>
-<pre><code class="java"><span class="comment">// 此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span>&lt;<span class="title">T</span>&gt; </span>{
-
-    <span class="keyword">private</span> T key;
-
-    <span class="comment">/**</span>
-<span class="comment">     * 返回一个通用的 Demo对象</span>
-<span class="comment">     * Demo&lt;T&gt; 返回值类型</span>
-<span class="comment">     * 静态方法参数中如果使用泛型，必须指定方法级别的泛型</span>
-<span class="comment">     */</span>
-    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Demo&lt;T&gt; <span class="title">success</span><span class="params">(T result)</span></span>{
-
-        tresult.toString();
-
-        <span class="keyword">return</span> responseResult;
-    }
-
-    <span class="comment">// 静态方法参数中如果使用泛型，必须将该方法定义为泛型方法</span>
-    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">failure</span><span class="params">(T result)</span></span>{
-        <span class="keyword">return</span> result.toString();
-    }
-
-    <span class="comment">// 非静态方法也可定义 泛型方法</span>
-    <span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">(T result)</span></span>{
-        <span class="keyword">return</span> result.toString();
-    }
-
-    <span class="comment">// 使用类级别的泛型</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print2</span><span class="params">(T result)</span></span>{
-        <span class="keyword">return</span> result.toString();
-    }
-}</code></pre>
-<p>调用：</p>
-<pre><code class="java">Demo&lt;String&gt; demo = <span class="keyword">new</span> Demo&lt;&gt;();
-
-demo.print1(<span class="keyword">new</span> Integer(<span class="number">1</span>));  <span class="comment">// 可以编译</span>
-demo.print2(<span class="keyword">new</span> Integer(<span class="number">1</span>));  <span class="comment">// 不能编译</span>
-
-<span class="comment">// 静态 泛型方法</span>
-Demo.failure(<span class="keyword">new</span> Integer(<span class="number">1</span>));</code></pre>
-<h2 id="4-缓存与缓冲的区别"><a href="#4-缓存与缓冲的区别" class="headerlink" title="4.缓存与缓冲的区别"></a>4.缓存与缓冲的区别</h2><p><strong>1.缓冲 Buffer</strong><br>缓冲的作用是协调上下层应用之间的<strong>性能差异</strong>：如上层流量大、速度快，而下层流量小、速度慢。这会导致下层接不住上层。这时就需要一个缓冲区来暂存上层发给下层的多余流量，然后一点点发给下层。<br>缓冲有效减少了上层组件对下层组件的等待时间，无需等待下层组件完全接收数据，即可进行其他操作，从而提高系统性能。<br>举例：消息队列（做流量削峰）、StringBuffer、BufferedWrite。<br>注意：缓冲区大小要适中，太小起不到缓冲作用，太大会浪费系统资源，增加GC负担。<br><strong>1.缓存</strong><br>缓存也是为了提升系统性能而开辟的一块空间。与缓冲不同的是，缓存是将反复被使用的数据存储起来，供程序直接调用，避免程序反复从数据库中读取相同的数据。<br>举例：MyBatis、Redis。</p>
-<h2 id="5-final、finally、finalize-有什么区别？"><a href="#5-final、finally、finalize-有什么区别？" class="headerlink" title="5.final、finally、finalize 有什么区别？"></a>5.final、finally、finalize 有什么区别？</h2><ol>
-<li><code>final</code>可以修饰类、变量、方法，修饰类表示该类不能被继承、修饰方法表示该方法不能被重写、修饰变量表示该变量是一个常量不能被重新赋值。</li>
-<li><code>finally</code>一般作用在try-catch代码块中，在处理异常的时候，通常我们将一定要执行的代码方法finally代码块中，表示不管是否出现异常，该代码块都会执行，一般用来存放一些关闭资源的代码。</li>
-<li><code>finalize</code>是一个方法，属于Object类的一个方法，而Object类是所有类的父类，该方法一般由垃圾回收器来调用，当我们调用System的gc()方法的时候，由垃圾回收器调用finalize(),回收垃圾。</li>
-</ol>
-<h2 id="6-forward-和-redirect-的区别？"><a href="#6-forward-和-redirect-的区别？" class="headerlink" title="6.forward 和 redirect 的区别？"></a>6.forward 和 redirect 的区别？</h2><p>Forward和Redirect代表了两种请求转发方式：直接转发和间接转发。  </p>
-<ol>
-<li><p>直接转发方式（Forward），客户端和浏览器只发出一次请求，Servlet、HTML、JSP或其它信息资源，由第二个信息资源响应该请求，在请求对象request中，保存的对象对于每个信息资源是共享的。</p>
-</li>
-<li><p>间接转发方式（Redirect）实际是两次HTTP请求，服务器端在响应第一次请求的时候，让浏览器再向另外一个URL发出请求，从而达到转发的目的。</p>
-</li>
-</ol>
-<p>举个通俗的例子：</p>
-<ul>
-<li>直接转发就相当于：“A找B借钱，B说没有，B去找C借，借到借不到都会把消息传递给A”；</li>
-<li>间接转发就相当于：”A找B借钱，B说没有，让A去找C借”。</li>
-</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String A, B;   <span class="comment">//声明了两个变量A，B  他们的类型是String</span></span><br><span class="line">A = <span class="keyword">new</span> String(<span class="string">"我是对象A"</span>);</span><br><span class="line">B = <span class="keyword">new</span> String(<span class="string">"我是对象B"</span>);</span><br></pre></td></tr></table></figure>
+<p>上述代码第一行 <code>A</code> 和 <code>B</code> 此时的值为 <code>undefined</code>，也就是未定义，或者应说未初始化<code>uninitialized</code>。但不管是 <code>undefined</code> 还是 <code>uninitialized</code>，都与 <code>null</code> 不同。<br>虽然说java默认初始化为<code>null</code>,但是强行使用的话，系统会报错。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(A);    <span class="comment">//系统会报错</span></span><br></pre></td></tr></table></figure>
+<p>如果把A，B初始化为<code>null</code>,编译器是认可的，不会报错。   </p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>再来看第二行代码：<code>A = new String(&quot;我是对象A&quot;);</code>——创建“我是对象A”的 String 类对象，并将其赋值给 A 这个变量。   </p>
+<h3 id="此时，A-就是”我是对象A”的引用；-“-”操作符赋予了-A-这样的权利。"><a href="#此时，A-就是”我是对象A”的引用；-“-”操作符赋予了-A-这样的权利。" class="headerlink" title="此时，A 就是”我是对象A”的引用；  “=”操作符赋予了 A 这样的权利。"></a>此时，A 就是”我是对象A”的引用；  “=”操作符赋予了 A 这样的权利。</h3><blockquote>
+<p>结论：对象是通过 new 关键字创建的；引用是依赖于对象的；= 操作符把对象赋值给了引用。   </p>
+</blockquote>
+<blockquote>
+<p>在java里，“=”不能被看成是一个赋值语句，它不是在把一个对象赋给另外一个对象，它的执行过程实质上是将右边对象的地址传给了左边的引用，使得左边的引用指向了右边的对象。<br>java表面上看起来没有指针，但它的引用其实质就是一个指针。<br>在java里，“=”语句不应该被翻译成赋值语句，因为它所执行的确实不是一个简单的赋值过程，而是一个传地址的过程，被译成赋值语句会造成很多误解，译得不准确。   </p>
+</blockquote>
+<h1 id="二、堆，栈，-堆栈"><a href="#二、堆，栈，-堆栈" class="headerlink" title="二、堆，栈， 堆栈"></a>二、堆，栈， 堆栈</h1><p>1） 并没有“堆栈”这一东西，这世界上只有“堆”或“栈”<br>2） 堆是在程序运行时在内存中申请的空间（可理解为动态的过程）；切记，不是在编译时；因此，Java 中的对象就放在这里，这样做的好处就是：</p>
+<blockquote>
+<p>当需要一个对象时，只需要通过 new 关键字写一行代码即可，当执行这行代码时，会自动在内存的“堆”区分配空间——这样就很灵活。      </p>
+</blockquote>
+<p>另外，需要记住，<strong>堆遵循“先进后出”</strong>的规则<br>3） 栈，<strong>Java 把对象的引用放在栈里</strong>。</p>
+<blockquote>
+<p>因为 Java 在编译程序时，必须明确的知道存储在栈里的东西的生命周期，否则就没法释放旧的内存来开辟新的内存空间存放引用——空间就那么大，前浪要把后浪拍死在沙滩上。      </p>
+</blockquote>
+<h1 id="三、基本数据类型"><a href="#三、基本数据类型" class="headerlink" title="三、基本数据类型"></a>三、基本数据类型</h1><p>先来看《Java 编程思想》中的一段话：</p>
+<blockquote>
+<p>在程序设计中经常用到一系列类型，他们需要特殊对待。之所以特殊对待，是因为 new 将对象存储于“堆”中，故用 new 创建一个对象──特别小、简单的变量，往往不是很有效。因此，不用new来创建这类变量，而是创建一个并非是引用的变量，这个变量直接存储值，并置于栈中，因此更加高效。      </p>
+</blockquote>
+<p>在 Java 中，这些基本类型有：boolean、char、byte、short、int、long、float、double 和 void；还有与之对应的包装器：Boolean、Character、Byte、Short、Integer、Long、Float、Double 和 Void；它们之间涉及到装箱和拆箱。    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<p>编译器先处理 <code>int a = 3;</code>编译器在处理时 在栈中创建了一个变量为 a 的内存空间，然后查找有没有字面值为 3 的地址，没找到，就开辟一个存放 3 这个字面值的地址，然后将 a 指向 3 的地址。</p>
+<p>编译器忙完了 <code>int a = 3;</code>，就来接着处理 <code>int b = 3;</code>在创建完 b 的变量后，由于栈中已经有 3 这个字面值，就将 b 直接指向 3 的地址；就不需要再开辟新的空间了。    </p>
+<p>假设在定义完 a 与 b 的值后，再令 <code>a = 4;</code>，此时 b 是等于 3 呢，还是 4 呢？         </p>
+<p>当编译器遇到<code>a = 4;</code>时，它会重新搜索栈中是否有 4 的字面值，如果没有，重新开辟地址存放 4 的值；如果已经有了，则直接将 a 指向 4 这个地址；因此 a 值的改变不会影响到 b 的值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Animal bird = <span class="keyword">new</span> Animal(<span class="string">"小鸟"</span>);</span><br><span class="line">		</span><br><span class="line">        Animal birdCopy = bird;</span><br><span class="line">		</span><br><span class="line">        bird.setName(<span class="string">"老鹰"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(bird.getName());</span><br><span class="line">        System.out.println(birdCopy.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Animal</span> <span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name1)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="运行结果为："><a href="#运行结果为：" class="headerlink" title="运行结果为："></a>运行结果为：</h2><p>老鹰<br>老鹰      </p>
+<h2 id="birdCopy里放的是对象的地址-（快捷方式）"><a href="#birdCopy里放的是对象的地址-（快捷方式）" class="headerlink" title="birdCopy里放的是对象的地址   （快捷方式）"></a><code>birdCopy</code>里放的是对象的地址   （快捷方式）</h2><h1 id="-1"><a href="#-1" class="headerlink" title=""></a></h1><h3 id="java大体上会把内存分为四块区域：堆，栈，静态区，常量区。"><a href="#java大体上会把内存分为四块区域：堆，栈，静态区，常量区。" class="headerlink" title="java大体上会把内存分为四块区域：堆，栈，静态区，常量区。"></a>java大体上会把内存分为四块区域：堆，栈，静态区，常量区。</h3><p>堆 ： 位于RAM中，用于存放所有的java对象。<br>栈 ： 位于RAM中，引用就存在于栈中。<br>静态区 : 位于RAM中，被static修饰符修饰的变量会被放在这里。<br>常量区 ：位于ROM中， 很明显，放常量的。    </p>
+<p><a href="https://blog.csdn.net/qq_31655965/article/details/53365564" target="_blank" rel="noopener">重新认识java（一） —- 万物皆对象</a></p>
 
       
 
@@ -268,7 +226,7 @@ Demo.failure(<span class="keyword">new</span> Integer(<span class="number">1</sp
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>失败是成功之母，想知道谁是成功之父吗？<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>失败是成功之母<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
@@ -355,7 +313,7 @@ Demo.failure(<span class="keyword">new</span> Integer(<span class="number">1</sp
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://takento.github.io/2019/10/05/11-%E5%85%B6%E4%BB%96%E7%9F%A5%E8%AF%86/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://takento.github.io/2019/10/01/0-%E5%90%8D%E8%AF%8D%EF%BC%9A%E5%AF%B9%E8%B1%A1%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E5%A0%86%E3%80%81%E6%A0%88/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -369,20 +327,15 @@ Demo.failure(<span class="keyword">new</span> Integer(<span class="number">1</sp
   
 <nav id="article-nav">
   
-    <a href="/2019/10/05/9-%E5%BC%82%E5%B8%B8/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/02/1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          9-异常
+          1-基础知识
         
       </div>
     </a>
   
-  
-    <a href="/2019/10/04/8-%E6%97%A5%E6%9C%9F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">8-日期</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
@@ -514,15 +467,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,11 +487,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">SpringSecurity</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,11 +503,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">

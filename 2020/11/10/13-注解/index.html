@@ -12,11 +12,11 @@
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="13-注解">
-<meta property="og:url" content="https:&#x2F;&#x2F;takento.github.io&#x2F;2021&#x2F;04&#x2F;03&#x2F;13-%E6%B3%A8%E8%A7%A3&#x2F;index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;takento.github.io&#x2F;2020&#x2F;11&#x2F;10&#x2F;13-%E6%B3%A8%E8%A7%A3&#x2F;index.html">
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="注解 Annotation">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-04-03T14:07:21.416Z">
+<meta property="og:updated_time" content="2021-04-11T13:20:29.092Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -58,7 +58,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/JAVA/">JAVA</a></li>
+				<li><a href="/tags/java/">JAVA</a></li>
 	        
 				<li><a href="/tags/Vue/">Vue</a></li>
 	        
@@ -136,7 +136,7 @@
 				
 					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/JAVA/">JAVA</a></li>
+					<li style="width: 25%"><a href="/tags/java/">JAVA</a></li>
 		        
 					<li style="width: 25%"><a href="/tags/Vue/">Vue</a></li>
 		        
@@ -167,8 +167,8 @@
   
 
         
-        <a href="/2021/04/03/13-%E6%B3%A8%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2021-04-03T12:01:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-03</time>
+        <a href="/2020/11/10/13-%E6%B3%A8%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2020-11-10T12:01:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-10</time>
 </a>
         
       </header>
@@ -176,42 +176,41 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="注解-Annotation"><a href="#注解-Annotation" class="headerlink" title="注解 Annotation"></a>注解 Annotation</h2><a id="more"></a>
-<h2 id="1-注解分类"><a href="#1-注解分类" class="headerlink" title="1.注解分类"></a>1.注解分类</h2><p>1.1、源码注解：只在源码中存在，编译时不存在。<br>1.2、编译时注解：注解在源码和<code>.class</code>编译时都存在。<br>1.3、运行时注解：在运行阶段存在起作用。 </p>
+<h2 id="1-注解分类"><a href="#1-注解分类" class="headerlink" title="1.注解分类"></a>1.注解分类</h2><p>1.1、<code>源码</code>注解：只在源码中存在，编译时不存在。<br>1.2、<code>编译时</code>注解：注解在源码和<code>.class</code>编译时都存在。<br>1.3、<code>运行时</code>注解：在运行阶段存在起作用。 </p>
 <h2 id="2-元注解：给注解进行注解"><a href="#2-元注解：给注解进行注解" class="headerlink" title="2.元注解：给注解进行注解"></a>2.元注解：给注解进行注解</h2><h3 id="2-1、-Target-作用域，即注解可在什么地方使用"><a href="#2-1、-Target-作用域，即注解可在什么地方使用" class="headerlink" title="2.1、@Target: 作用域，即注解可在什么地方使用"></a>2.1、@Target: 作用域，即注解可在什么地方使用</h3><ul>
-<li>package：包声明</li>
-<li>type：类、接口声明</li>
-<li>constructor：构造方法声明</li>
-<li>method：方法声明</li>
-<li>field：字段声明</li>
-<li>parameter：参数声明</li>
-<li>local_variable：局部变量声明  <h3 id="2-2、-Retention：生命周期，即注解在什么时候还有用"><a href="#2-2、-Retention：生命周期，即注解在什么时候还有用" class="headerlink" title="2.2、@Retention：生命周期，即注解在什么时候还有用"></a>2.2、@Retention：生命周期，即注解在什么时候还有用</h3></li>
-<li>source：只在源码显示，编译时会丢弃。用<code>@Retention(RetentionPolicy.SOURCE)</code>修饰的注解,表示注解的信息会被编译器抛弃，不会留在<code>class</code>文件中，注解的信息只会留在源文件中。如<code>@Override</code>、<code>@Test</code>。</li>
-<li>class：编译时会记录到<code>class</code>中，运行时忽略。用<code>@Retention(RetentionPolicy.CLASS)</code>修饰的注解，表示注解的信息在程序编译时被保留在<code>class</code>文件(字节码文件)中，但不会被虚拟机读取在运行的时候。</li>
-<li>runtime：运行时存在，可以通过反射读取。用<code>@Retention(RetentionPolicy.RUNTIME)</code>修饰的注解，表示注解的信息被保留在<code>class</code>文件(字节码文件)中当程序编译时，会被虚拟机保留在运行时，所以可以用反射的方式读取。如<code>@Controller</code>。  <h3 id="2-3、Inherited：标识注解-允许子类继承父类的-被该注解标注的注解"><a href="#2-3、Inherited：标识注解-允许子类继承父类的-被该注解标注的注解" class="headerlink" title="2.3、Inherited：标识注解(允许子类继承父类的 被该注解标注的注解)"></a>2.3、Inherited：标识注解(允许子类继承父类的 被该注解标注的注解)</h3><h3 id="2-4、Documented：被该注解标注的注解-将被包含在Javadoc中-文档注释"><a href="#2-4、Documented：被该注解标注的注解-将被包含在Javadoc中-文档注释" class="headerlink" title="2.4、Documented：被该注解标注的注解 将被包含在Javadoc中(文档注释)"></a>2.4、Documented：被该注解标注的注解 将被包含在Javadoc中(文档注释)</h3></li>
+<li><strong>package</strong>：包声明</li>
+<li><strong>type</strong>：类、接口声明</li>
+<li><strong>constructor</strong>：构造方法声明</li>
+<li><strong>method</strong>：方法声明</li>
+<li><strong>field</strong>：字段声明</li>
+<li><strong>parameter</strong>：参数声明</li>
+<li><strong>local_variable</strong>：局部变量声明  <h3 id="2-2、-Retention：生命周期，即注解在什么时候还有用"><a href="#2-2、-Retention：生命周期，即注解在什么时候还有用" class="headerlink" title="2.2、@Retention：生命周期，即注解在什么时候还有用"></a>2.2、@Retention：生命周期，即注解在什么时候还有用</h3></li>
+<li><strong>source</strong>：只在源码显示，编译时会丢弃。用<code>@Retention(RetentionPolicy.SOURCE)</code>修饰的注解,表示注解的信息会被编译器抛弃，不会留在<code>class</code>文件中，注解的信息只会留在源文件中。如<code>@Override</code>、<code>@Test</code>。</li>
+<li><strong>class</strong>：编译时会记录到<code>class</code>中，运行时忽略。用<code>@Retention(RetentionPolicy.CLASS)</code>修饰的注解，表示注解的信息在程序编译时被保留在<code>class</code>文件(字节码文件)中，但不会被虚拟机读取在运行的时候。</li>
+<li><strong>runtime</strong>：运行时存在，可以通过反射读取。用<code>@Retention(RetentionPolicy.RUNTIME)</code>修饰的注解，表示注解的信息被保留在<code>class</code>文件(字节码文件)中当程序编译时，会被虚拟机保留在运行时，所以可以用反射的方式读取。如<code>@Controller</code>。  <h3 id="2-3、Inherited：标识注解-允许子类继承父类的-被该注解标注的注解"><a href="#2-3、Inherited：标识注解-允许子类继承父类的-被该注解标注的注解" class="headerlink" title="2.3、Inherited：标识注解(允许子类继承父类的 被该注解标注的注解)"></a>2.3、Inherited：标识注解(允许子类继承父类的 被该注解标注的注解)</h3><h3 id="2-4、Documented：被该注解标注的注解-将被包含在Javadoc中-文档注释"><a href="#2-4、Documented：被该注解标注的注解-将被包含在Javadoc中-文档注释" class="headerlink" title="2.4、Documented：被该注解标注的注解 将被包含在Javadoc中(文档注释)"></a>2.4、Documented：被该注解标注的注解 将被包含在Javadoc中(文档注释)</h3></li>
 </ul>
-<h2 id="3-内置注解"><a href="#3-内置注解" class="headerlink" title="3.内置注解"></a>3.内置注解</h2><p>3.1、@Override：重写。<br>3.2、@Deprecated：用于修饰已经过时的方法，即不推荐使用。<br>3.3、@suppressWarings(“deprecation”)：用于通知java编译器忽略特定的编译警告（镇压警告）。</p>
+<h2 id="3-内置注解"><a href="#3-内置注解" class="headerlink" title="3.内置注解"></a>3.内置注解</h2><p>3.1、@Override：重写。<br>3.2、@Deprecated：用于修饰已经过时的方法，即不推荐使用。<br>3.3、@SuppressWarings(“deprecation”)：用于通知java编译器忽略特定的编译警告（镇压警告）。</p>
 <h2 id="4-自定义注解"><a href="#4-自定义注解" class="headerlink" title="4.自定义注解"></a>4.自定义注解</h2><h3 id="4-1、注解格式"><a href="#4-1、注解格式" class="headerlink" title="4.1、注解格式"></a>4.1、注解格式</h3><ol>
 <li>注解里的每个方法，实际是声明注解中的一个参数。方法的返回值类型就是注解的参数类型：类型只能是<code>基本数据类型</code>、<code>String</code>、<code>Class</code>、<code>Annotation</code>、<code>Enumeration</code>。</li>
 <li>用<code>default</code>声明参数默认值。</li>
 <li>注解类可以没有成员，没有成员的注解成为标识注解。</li>
-<li>若注解只有一个参数，一般命名为<code>value</code>，调用时<code>value</code>可省略。<pre><code class="java"><span class="comment">// 注解格式：public @interface 注解名 {定义内容}</span>
-<span class="meta">@Target</span>({ElementType.FIELD, ElementType.TYPE})
-<span class="meta">@Retention</span>(value = RetentionPolicy.RUNTIME)
-<span class="meta">@Documented</span>
-<span class="meta">@Inherited</span>
-<span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation {
- <span class="comment">// 参数类型 + 参数名() + [default]</span>
- <span class="function">String <span class="title">name</span><span class="params">()</span></span>;
- <span class="function"><span class="keyword">int</span> <span class="title">age</span><span class="params">()</span> <span class="keyword">default</span> 0</span>;
- String[] school() <span class="keyword">default</span> <span class="string">""</span>;
-}
-</code></pre>
-</li>
+<li>若注解只有一个参数，一般命名为<code>value</code>，调用时<code>value</code>可省略。  </li>
 </ol>
-<p>// 调用<br>public class Test {<br>    // 参数顺序无要求，有默认值的参数可不写<br>    // @MyAnnotation(name = “aa”, school = “bb”, age = 10)<br>    @MyAnnotation(name = “aa”)<br>    public void test() {<br>        System.out.println(“注解”);<br>    }<br>}</p>
-<p>// 反射获取 方法上 指定注解，并执行被注解标注的方法<br>@Test<br>public void test2() throws ClassNotFoundException {<br>    Class clazz = Class.forName(“com.liu.demo.Test”);<br>    Method[] methods = clazz.getMethods();<br>    if (methods != null) {<br>        for (Method method : methods) {<br>            // 判断方法是否有 MyAnnotation注解<br>            boolean isAnno = method.isAnnotationPresent(MyAnnotation.Class);<br>            if (isAnno) {<br>                // 执行被MyAnnotation 标注的方法<br>                method.invoke(<br>                    clazz.getConstructor(null).newInstance(null)<br>                    , null);<br>            }<br>        }<br>    }<br>}</p>
-<p>// 反射获取 类上 指定注解<br>@Test<br>public void test2() throws ClassNotFoundException {<br>    Class clazz = Class.forName(“com.liu.demo.Test”);<br>    Annotation anno = clazz.getAnnotation(MyAnnotation.Class);<br>    if (anno != null) {<br>        System.out.println(“该方法含有 MyAnnotation注解”);<br>    }<br>}</p>
-<pre><code></code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注解格式：public @interface 注解名 &#123;定义内容&#125;</span></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.FIELD, ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(value = RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation &#123;</span><br><span class="line">    <span class="comment">// 参数类型 + 参数名() + [default]</span></span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">age</span><span class="params">()</span> <span class="keyword">default</span> 0</span>;</span><br><span class="line">    String[] school() <span class="keyword">default</span> <span class="string">""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2、调用"><a href="#4-2、调用" class="headerlink" title="4.2、调用"></a>4.2、调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 参数顺序无要求，有默认值的参数可不写</span></span><br><span class="line">    <span class="comment">// @MyAnnotation(name = "aa", school = "bb", age = 10)</span></span><br><span class="line">    <span class="meta">@MyAnnotation</span>(name = <span class="string">"aa"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"注解"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2、反射获取-方法上-指定注解，并执行被注解标注的方法"><a href="#4-2、反射获取-方法上-指定注解，并执行被注解标注的方法" class="headerlink" title="4.2、反射获取 方法上 指定注解，并执行被注解标注的方法"></a>4.2、反射获取 <code>方法上</code> 指定注解，并执行被注解标注的方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">    Class clazz = Class.forName(<span class="string">"com.liu.demo.Test"</span>);</span><br><span class="line">    Method[] methods = clazz.getMethods();</span><br><span class="line">    <span class="keyword">if</span> (methods != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (Method method : methods) &#123;</span><br><span class="line">            <span class="comment">// 判断方法是否有 MyAnnotation注解</span></span><br><span class="line">            <span class="keyword">boolean</span> isAnno = method.isAnnotationPresent(MyAnnotation.Class);</span><br><span class="line">            <span class="keyword">if</span> (isAnno) &#123;</span><br><span class="line">                <span class="comment">// 执行被MyAnnotation 标注的方法</span></span><br><span class="line">                method.invoke(</span><br><span class="line">                    clazz.getConstructor(<span class="keyword">null</span>).newInstance(<span class="keyword">null</span>)</span><br><span class="line">                    , <span class="keyword">null</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3、反射获取-类上-指定注解"><a href="#4-3、反射获取-类上-指定注解" class="headerlink" title="4.3、反射获取 类上 指定注解"></a>4.3、反射获取 <code>类上</code> 指定注解</h3><pre><code class="java"><span class="meta">@Test</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> ClassNotFoundException </span>{
+    Class clazz = Class.forName(<span class="string">"com.liu.demo.Test"</span>);
+    Annotation anno = clazz.getAnnotation(MyAnnotation.Class);
+    <span class="keyword">if</span> (anno != <span class="keyword">null</span>) {
+        System.out.println(<span class="string">"该方法含有 MyAnnotation注解"</span>);
+    }
+}</code></pre>
+
       
 
       
@@ -224,7 +223,7 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>失败是成功之母，想知道谁是成功之父吗？<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>失败是成功之母<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
@@ -311,7 +310,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://takento.github.io/2021/04/03/13-%E6%B3%A8%E8%A7%A3/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://takento.github.io/2020/11/10/13-%E6%B3%A8%E8%A7%A3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -470,15 +469,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,11 +489,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">SpringSecurity</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,11 +505,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
