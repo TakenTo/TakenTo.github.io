@@ -17,7 +17,7 @@
 <meta property="og:description" content="1.多线程概述">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;thread&#x2F;1-1.png">
-<meta property="og:updated_time" content="2020-06-23T08:49:18.186Z">
+<meta property="og:updated_time" content="2021-04-09T10:55:16.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;takento.github.io&#x2F;images&#x2F;thread&#x2F;1-1.png">
   
@@ -178,7 +178,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="1-多线程概述"><a href="#1-多线程概述" class="headerlink" title="1.多线程概述"></a>1.多线程概述</h1><a id="more"></a> 
-<h3 id="1-程序、进程、线程"><a href="#1-程序、进程、线程" class="headerlink" title="1.程序、进程、线程"></a>1.程序、进程、线程</h3><ul>
+<h2 id="1-1、程序、进程、线程"><a href="#1-1、程序、进程、线程" class="headerlink" title="1.1、程序、进程、线程"></a>1.1、程序、进程、线程</h2><ul>
 <li><strong>程序：</strong> 程序是指令和数据的集合，其本身没有任何运行的含义，是一个静态概念。</li>
 <li><strong>进程(process)：</strong> 进程是执行程序的一次执行过程，是一个动态概念，是系统资源分配的单位。在操作系统中运行的程序就是进程，如qq、游戏、IDEA。</li>
 <li><strong>线程(Thread)：</strong> 线程是CPU调度和执行的单位。一个进程至少有一个线程，也可有多个线程。</li>
@@ -188,8 +188,7 @@
 <li>许多 多线程是模拟出来的，真正的多线程是指有多个CPU，即多核，如服务器。</li>
 <li>模拟出来的多线程，即在一个CPU下，在同一时间，CPU只执行一行代码，因为切换速度快，所以就有同时执行的错觉。</li>
 </ul>
-<p><strong>核心概念：</strong></p>
-<ul>
+<h2 id="2、线程核心概念："><a href="#2、线程核心概念：" class="headerlink" title="2、线程核心概念："></a>2、线程核心概念：</h2><ul>
 <li>线程就是独立的执行路径。</li>
 <li>调用start() 方法后，线程不一定立即执行，需要CPU安排调度。</li>
 <li>在程序运行时，即使没有自己创建线程，后台也会有几个线程，如主线程、GC线程。</li>
@@ -199,7 +198,16 @@
 <li>线程会带来额外的开销，如CPU调度时间、并发控制开销。</li>
 <li>每个线程都有自己的工作内存，内存控制不当会造成数据的不一致。</li>
 </ul>
-<h3 id="2-普通方法的调用和多线程的调用："><a href="#2-普通方法的调用和多线程的调用：" class="headerlink" title="2.普通方法的调用和多线程的调用："></a>2.普通方法的调用和多线程的调用：</h3><p><img src="/images/thread/1-1.png" alt="加载图片！"></p>
+<h2 id="3、普通方法的调用和多线程的调用："><a href="#3、普通方法的调用和多线程的调用：" class="headerlink" title="3、普通方法的调用和多线程的调用："></a>3、普通方法的调用和多线程的调用：</h2><p><img src="/images/thread/1-1.png" alt="加载图片！"></p>
+<h2 id="4、线程安全问题"><a href="#4、线程安全问题" class="headerlink" title="4、线程安全问题"></a>4、线程安全问题</h2><h3 id="4-1、线程非安全：都是由全局变量、静态变量引起的"><a href="#4-1、线程非安全：都是由全局变量、静态变量引起的" class="headerlink" title="4.1、线程非安全：都是由全局变量、静态变量引起的:"></a>4.1、线程非安全：都是由<code>全局变量</code>、<code>静态变量</code>引起的:</h3><ol>
+<li>若每个线程对某个全局变量、静态变量只有读操作，而无写操作，那么这个全局变量是线程安全的。</li>
+<li>若多个线程对某个全局变量、静态变量同时执行写操作，可能会影响线程安全，要考虑线程同步。  </li>
+</ol>
+<h3 id="4-2、线程安全：共享资源只读不写"><a href="#4-2、线程安全：共享资源只读不写" class="headerlink" title="4.2、线程安全：共享资源只读不写"></a>4.2、线程安全：共享资源只读不写</h3><ol>
+<li>常量始终是线程安全的，因为只存在读操作。</li>
+<li>每次调用方法前都创建一个实例是线程安全的，因为不会访问共享资源。</li>
+<li>局部变量是线程安全的，因为每执行一个方法，都会在独立的空间创建局部变量，它不会共享资源。（局部变量包括形参和方法内部变量）</li>
+</ol>
 
       
 
@@ -447,15 +455,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">javaWeb</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">J2ee</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,15 +471,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,7 +483,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,15 +495,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">SpringSecurity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
